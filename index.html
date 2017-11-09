@@ -142,11 +142,11 @@ function init() {
   window.addEventListener('resize', onWindowResize, false);
 
   // Create Scene
-  scene.add( new THREE.DirectionalLight( 0xffffff, 0.5 ) );
+  //scene.add( new THREE.DirectionalLight( 0xffffff, 0.5 ) );
   var geometry = new THREE.SphereGeometry( 0.05, 32, 32 );
-  var material = new THREE.MeshStandardMaterial();
-	material.roughness = 0.5;
-	material.metalness = 0.5;
+  var material = new THREE.MeshBasicMaterial({color: 0xffff00});
+	//material.roughness = 0.5;
+	//material.metalness = 0.5;
   sphere = new THREE.Mesh( geometry, material );
   scene.add( sphere );
 
