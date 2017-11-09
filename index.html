@@ -79,6 +79,7 @@
 
 var vrDisplay, vrControls, arView;
 var canvas, camera, scene, renderer;
+var sphere;
 
 /**
  * Use the `getARDisplay()` utility to leverage the WebVR API
@@ -140,9 +141,9 @@ function init() {
   window.addEventListener('resize', onWindowResize, false);
 
   // Create Scene
-  var geometry = new THREE.SphereGeometry( 50, 32, 32 );
+  var geometry = new THREE.SphereGeometry( 5, 32, 32 );
   var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
-  var sphere = new THREE.Mesh( geometry, material );
+  sphere = new THREE.Mesh( geometry, material );
   scene.add( sphere );
 
   // Kick off the render loop!
@@ -170,6 +171,7 @@ function update() {
 
   // Render our three.js virtual scene
   renderer.clearDepth();
+  sphere.position = camera.position + Vector3(0.0, 0.0, -10.0);
   renderer.render(scene, camera);
 
   // Kick off the requestAnimationFrame to call this function
