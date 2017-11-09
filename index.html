@@ -142,7 +142,7 @@ function init() {
   window.addEventListener('resize', onWindowResize, false);
 
   // Create Scene
-  var geometry = new THREE.SphereGeometry( 5, 32, 32 );
+  var geometry = new THREE.SphereGeometry( 0.05, 32, 32 );
   var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
   sphere = new THREE.Mesh( geometry, material );
   scene.add( sphere );
