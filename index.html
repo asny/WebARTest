@@ -77,7 +77,7 @@
 <script src="./three.ar.js"></script>
 <script>
 
-var vrDisplay, vrControls, arView;
+var vrDisplay, vrControls, vrFrameData, arView;
 var canvas, camera, scene, renderer;
 var sphere;
 
@@ -89,6 +89,7 @@ var sphere;
  */
 THREE.ARUtils.getARDisplay().then(function (display) {
   if (display) {
+    vrFrameData = new VRFrameData();
     vrDisplay = display;
     init();
   } else {
@@ -166,6 +167,10 @@ function update() {
   // the near or far planes have updated
   camera.updateProjectionMatrix();
 
+  // From the WebVR API, populate `vrFrameData` with
+  // updated information for the frame
+  vrDisplay.getFrameData(vrFrameData);
+
   // Update our perspective camera's positioning
   vrControls.update();
 
@@ -177,7 +182,7 @@ function update() {
     pose.position[1],
     pose.position[2]
   );
-  sphere.position.copy(pos + Vector3(0.0, 0.0, -10.0));
+  sphere.position = pos + Vector3(0.0, 0.0, -10.0);
 
   // Render our three.js virtual scene
   renderer.clearDepth();
