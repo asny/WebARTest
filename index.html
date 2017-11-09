@@ -178,14 +178,14 @@ function update() {
   vrControls.update();
 
   // Fetch the pose data from the current frame
-  /*var pose = vrFrameData.pose;
+  var pose = vrFrameData.pose;
 
   var pos = new THREE.Vector3(
     pose.position[0],
     pose.position[1],
     pose.position[2]
   );
-  sphere.position = pos + Vector3(0.0, 0.0, -1.0);*/
+  sphere.position = pos + Vector3(0.0, 0.0, -1.0);
 
   // Render our three.js virtual scene
   renderer.clearDepth();
