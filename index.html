@@ -231,19 +231,23 @@ function update() {
     pose.position[1],
     pose.position[2]
   );
-  var product = products[0];
-  if(pos.distanceTo(product.anchor.position) < 1.0)
-  {
-    product.anchor.visible = false;
-    product.description.visible = true;
-  }
-  else {
-    product.anchor.visible = true;
-    product.description.visible = false;
-  }
 
-  product.anchor.rotation.x += 0.01;
-	product.anchor.rotation.y += 0.01;
+  for(var i = 0; i < products.length; i++)
+  {
+    var product = products[i];
+    if(pos.distanceTo(product.anchor.position) < 1.0)
+    {
+      product.anchor.visible = false;
+      product.description.visible = true;
+    }
+    else {
+      product.anchor.visible = true;
+      product.description.visible = false;
+    }
+
+    product.anchor.rotation.x += 0.01;
+  	product.anchor.rotation.y += 0.01;
+  }
 
   // Render our three.js virtual scene
   renderer.clearDepth();
