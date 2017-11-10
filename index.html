@@ -79,7 +79,7 @@
 
 var vrDisplay, vrControls, vrFrameData, arView;
 var canvas, camera, scene, renderer;
-var sphere;
+var mesh;
 
 /**
  * Use the `getARDisplay()` utility to leverage the WebVR API
@@ -148,9 +148,9 @@ function init() {
   var material = new THREE.MeshStandardMaterial();
 	material.roughness = 0.5;
 	material.metalness = 0.5;
-  sphere = new THREE.Mesh( geometry, material );
-  sphere.position = new THREE.Vector3(0.0, 10.0, -10.0);
-  scene.add( sphere );
+  mesh = new THREE.Mesh( geometry, material );
+  mesh.position = new THREE.Vector3(0.0, 10.0, -10.0);
+  scene.add( mesh );
 
   // Kick off the render loop!
   update();
@@ -188,6 +188,8 @@ function update() {
     pose.position[2]
   );
   sphere.position = pos + new THREE.Vector3(0.0, 10.0, -10.0);*/
+  mesh.rotation.x += 0.005;
+	mesh.rotation.y += 0.005;
 
   // Render our three.js virtual scene
   renderer.clearDepth();
