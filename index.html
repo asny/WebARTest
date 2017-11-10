@@ -79,7 +79,6 @@
 
 var vrDisplay, vrControls, vrFrameData, arView;
 var canvas, camera, scene, renderer;
-var mesh, textGeometry;
 var products = [];
 
 /**
@@ -160,7 +159,7 @@ function createProduct(position, text)
   var material = new THREE.MeshStandardMaterial();
 	material.roughness = 0.5;
 	material.metalness = 0.5;
-  mesh = new THREE.Mesh( geometry, material );
+  var mesh = new THREE.Mesh( geometry, material );
   mesh.translateX(position.x);
   mesh.translateY(position.y);
   mesh.translateZ(position.z);
@@ -192,7 +191,7 @@ function createProduct(position, text)
 
   var geometry = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide} );
-  textGeometry = new THREE.Mesh( geometry, material );
+  var textGeometry = new THREE.Mesh( geometry, material );
   textGeometry.translateX(position.x);
   textGeometry.translateY(position.y);
   textGeometry.translateZ(position.z);
@@ -243,8 +242,8 @@ function update() {
     product.description.visible = false;
   }
 
-  mesh.rotation.x += 0.01;
-	mesh.rotation.y += 0.01;
+  product.anchor.rotation.x += 0.01;
+	product.anchor.rotation.y += 0.01;
 
   // Render our three.js virtual scene
   renderer.clearDepth();
