@@ -156,11 +156,26 @@ function init() {
 
   // Text
   // load a texture, set wrap mode to repeat
-  var texture = new THREE.TextureLoader().load( "test.png" );
+  //var texture = new THREE.TextureLoader().load( "test.png" );
   //texture.wrapS = THREE.RepeatWrapping;
   //texture.wrapT = THREE.RepeatWrapping;
-  texture.repeat.set( 1, 1 );
+  //texture.repeat.set( 1, 1 );
+  //create image
+  var text = 'Test tekst.'
+  var bitmap = document.createElement('canvas');
+  var g = bitmap.getContext('2d');
+  bitmap.width = 100;
+  bitmap.height = 100;
+  g.font = 'Bold 20px Arial';
 
+  g.fillStyle = 'white';
+  g.fillText(text, 0, 20);
+  g.strokeStyle = 'black';
+  g.strokeText(text, 0, 20);
+
+  // canvas contents will be used for a texture
+  var texture = new THREE.Texture(bitmap)
+  texture.needsUpdate = true;
 
   var geometry = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide} );
