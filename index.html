@@ -149,8 +149,7 @@ function init() {
 	material.roughness = 0.5;
 	material.metalness = 0.5;
   mesh = new THREE.Mesh( geometry, material );
-  //var p = new THREE.Vector3(0.0, 10.0, -10.0);
-  mesh.translateX(10.0);
+  mesh.translateY(2.0);
   scene.add( mesh );
 
   // Kick off the render loop!
