@@ -150,6 +150,7 @@ function init() {
 	material.metalness = 0.5;
   mesh = new THREE.Mesh( geometry, material );
   mesh.translateY(0.5);
+  mesh.translateZ(-0.5);
   scene.add( mesh );
 
   // Text
