@@ -150,7 +150,7 @@ function init() {
 	material.metalness = 0.5;
   mesh = new THREE.Mesh( geometry, material );
   var p = new THREE.Vector3(0.0, 10.0, -10.0);
-  mesh.translate(p);
+  mesh.translateX(10.0);
   scene.add( mesh );
 
   // Kick off the render loop!
