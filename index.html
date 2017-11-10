@@ -79,7 +79,7 @@
 
 var vrDisplay, vrControls, vrFrameData, arView;
 var canvas, camera, scene, renderer;
-var mesh;
+var mesh, textGeometry;
 
 /**
  * Use the `getARDisplay()` utility to leverage the WebVR API
@@ -191,11 +191,11 @@ function createProduct(position, text)
 
   var geometry = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide} );
-  var plane = new THREE.Mesh( geometry, material );
-  plane.translateX(position.x);
-  plane.translateY(position.y);
-  plane.translateZ(position.z);
-  scene.add( plane );
+  textGeometry = new THREE.Mesh( geometry, material );
+  textGeometry.translateX(position.x);
+  textGeometry.translateY(position.y);
+  textGeometry.translateZ(position.z);
+  scene.add( textGeometry );
 
 }
 
@@ -230,12 +230,14 @@ function update() {
     pose.position[1],
     pose.position[2]
   );
-  if(pos.distanceTo(mesh.position) < 0.5)
+  if(pos.distanceTo(mesh.position) < 1.0)
   {
     mesh.visible = false;
+    textGeometry.visible = true;
   }
   else {
     mesh.visible = true;
+    textGeometry.visible = false;
   }
 
   mesh.rotation.x += 0.01;
