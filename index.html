@@ -166,7 +166,7 @@ function init() {
   var g = bitmap.getContext('2d');
   bitmap.width = 100;
   bitmap.height = 100;
-  g.font = 'Bold 40px Arial';
+  g.font = 'Bold 20px Arial';
 
   g.fillStyle = 'black';
   g.fillText(text, 0, 20);
@@ -176,6 +176,8 @@ function init() {
   // canvas contents will be used for a texture
   var texture = new THREE.Texture(bitmap)
   texture.needsUpdate = true;
+  texture.magFilter = THREE.NearestFilter;
+  texture.minFilter = THREE.NearestFilter;
 
   var geometry = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide} );
