@@ -157,14 +157,16 @@ function init() {
   // Text
   // load a texture, set wrap mode to repeat
   var texture = new THREE.TextureLoader().load( "test.png" );
-  texture.wrapS = THREE.RepeatWrapping;
-  texture.wrapT = THREE.RepeatWrapping;
-  texture.repeat.set( 4, 4 );
+  //texture.wrapS = THREE.RepeatWrapping;
+  //texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set( 1, 1 );
 
 
-  var geometry = new THREE.PlaneGeometry( 2, 2, 32, 32 );
+  var geometry = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide} );
   var plane = new THREE.Mesh( geometry, material );
+  plane.translateY(0.5);
+  plane.translateZ(-0.5);
   scene.add( plane );
 
   // Kick off the render loop!
