@@ -80,6 +80,7 @@
 var vrDisplay, vrControls, vrFrameData, arView;
 var canvas, camera, scene, renderer;
 var mesh, textGeometry;
+var products = [];
 
 /**
  * Use the `getARDisplay()` utility to leverage the WebVR API
@@ -196,7 +197,8 @@ function createProduct(position, text)
   textGeometry.translateY(position.y);
   textGeometry.translateZ(position.z);
   scene.add( textGeometry );
-
+  var product = {anchor:mesh, description:textGeometry};
+  products.push(product);
 }
 
 /**
@@ -230,14 +232,15 @@ function update() {
     pose.position[1],
     pose.position[2]
   );
-  if(pos.distanceTo(mesh.position) < 1.0)
+  var product = products[0];
+  if(pos.distanceTo(product.anchor.position) < 1.0)
   {
-    mesh.visible = false;
-    textGeometry.visible = true;
+    product.anchor.visible = false;
+    product.description.visible = true;
   }
   else {
-    mesh.visible = true;
-    textGeometry.visible = false;
+    product.anchor.visible = true;
+    product.description.visible = false;
   }
 
   mesh.rotation.x += 0.01;
