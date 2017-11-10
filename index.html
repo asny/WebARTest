@@ -151,7 +151,13 @@ function init() {
   mesh = new THREE.Mesh( geometry, material );
   mesh.translateY(0.5);
   scene.add( mesh );
-  
+
+  // Text
+  // load a texture, set wrap mode to repeat
+  var texture = new THREE.TextureLoader().load( "test.png" );
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set( 4, 4 );
 
   // Kick off the render loop!
   update();
