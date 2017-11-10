@@ -230,7 +230,7 @@ function update() {
     pose.position[1],
     pose.position[2]
   );
-  if(pose.distanceTo(mesh.position) < 0.5)
+  if(pos.distanceTo(mesh.position) < 0.5)
   {
     mesh.visible = false;
   }
