@@ -149,7 +149,7 @@ function init() {
 	material.roughness = 0.5;
 	material.metalness = 0.5;
   mesh = new THREE.Mesh( geometry, material );
-  mesh.position = new THREE.Vector3(0.0, 10.0, -10.0);
+  mesh.translate(new THREE.Vector3(0.0, 10.0, -10.0));
   scene.add( mesh );
 
   // Kick off the render loop!
@@ -188,8 +188,8 @@ function update() {
     pose.position[2]
   );
   sphere.position = pos + new THREE.Vector3(0.0, 10.0, -10.0);*/
-  mesh.rotation.x += 0.005;
-	mesh.rotation.y += 0.005;
+  mesh.rotation.x += 0.01;
+	mesh.rotation.y += 0.01;
 
   // Render our three.js virtual scene
   renderer.clearDepth();
