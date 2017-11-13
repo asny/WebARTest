@@ -169,12 +169,6 @@ function createProduct(position, text)
   mesh.position.set(position.x, position.y, position.z);
   scene.add( mesh );
 
-  // Text
-  // load a texture, set wrap mode to repeat
-  //var texture = new THREE.TextureLoader().load( "test.png" );
-  //texture.wrapS = THREE.RepeatWrapping;
-  //texture.wrapT = THREE.RepeatWrapping;
-  //texture.repeat.set( 1, 1 );
   //create image
   var bitmap = document.createElement('canvas');
   var context = bitmap.getContext('2d');
@@ -207,7 +201,7 @@ function createProduct(position, text)
   texture.minFilter = THREE.NearestFilter;
 
   var geometry = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
-  var material = new THREE.MeshBasicMaterial( {color: 0xffffff, map : texture, side: THREE.DoubleSide} );
+  var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide} );
   var textGeometry = new THREE.Mesh( geometry, material );
   textGeometry.position.set(position.x, position.y, position.z);
   scene.add( textGeometry );
