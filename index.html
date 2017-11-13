@@ -165,6 +165,7 @@ function init() {
 
 function createProduct(position, text)
 {
+  // Create anchor
   var geometry = new THREE.TorusKnotGeometry( 0.01, 0.005, 100, 16 );
   //var geometry = new THREE.SphereGeometry( 0.05, 32, 32 );
   var material = new THREE.MeshStandardMaterial();
@@ -174,21 +175,19 @@ function createProduct(position, text)
   mesh.position.set(position.x, position.y, position.z);
   scene.add( mesh );
 
-  //create image
+  // Create image
   var bitmap = document.createElement('canvas');
   var context = bitmap.getContext('2d');
   bitmap.width = 800;
   bitmap.height = 800;
 
-  // Background
+  // Create background
   //context.fillStyle = 'rgb(94, 122, 155)';
   //context.fillRect(0, 0, bitmap.width, bitmap.height);
-  //context.fillStyle = 'rgba(150, 150, 150)';
-  //context.fillRect(marginX, marginY, bitmap.width - 2 * marginX, bitmap.height - 2 * marginY);
   //var image = new Image(bitmap.width, bitmap.height);
   //image.src = 'assets/hero-img.jpg';
   var image = document.getElementById('source');
-  context.drawImage(image, 0, 0, bitmap.width/2, bitmap.height/2);
+  context.drawImage(image, 0, 0, bitmap.width, bitmap.height);
 
   // Draw text
   var lineHeight = 40;
@@ -198,17 +197,20 @@ function createProduct(position, text)
   context.fillStyle = 'white';
   wrapText(context, text, marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
 
-  // canvas contents will be used for a texture
+  // Create a texture
   var texture = new THREE.Texture(bitmap);
   texture.needsUpdate = true;
   texture.magFilter = THREE.NearestFilter;
   texture.minFilter = THREE.NearestFilter;
 
+  // Set up scene
   var geometry = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
   var textGeometry = new THREE.Mesh( geometry, material );
   textGeometry.position.set(position.x, position.y, position.z + 0.02);
   scene.add( textGeometry );
+
+  // Save product information
   var product = {anchor:mesh, description:textGeometry, animation:0.0};
   products.push(product);
 }
