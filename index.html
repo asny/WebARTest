@@ -144,16 +144,10 @@ function init() {
   // Create Scene
   scene.add( new THREE.DirectionalLight( 0xffffff, 0.5 ) );
 
-  createProduct(new THREE.Vector3(-0.3, 0.5, -1.0), 'Fundamentally, ARCore is doing two things: tracking the position of the mobile device as it moves,
-  and building its own understanding of the real world. ARCores motion tracking technology uses the phones camera to identify interesting points,
-  called features, and tracks how those points move over time. With a combination of the movement of these points and readings from the phones
-  inertial sensors, ARCore determines both the position and orientation of the phone as it moves through space.
-In addition to identifying key points, ARCore can detect flat surfaces, like a table or the floor, and can also estimate the average
-lighting in the area around it. These capabilities combine to enable ARCore to build its own understanding of the world around it.
-ARCores understanding of the real world lets you place objects, annotations, or other information in a way that integrates seamlessly
-with the real world. You can place a napping kitten on the corner of your coffee table, or annotate a painting with biographical information about
-the artist. Motion tracking means that you can move around and view these objects from any angle, and even if you turn around and leave the room,
-when you come back, the kitten or annotation will be right where you left it.');
+  createProduct(new THREE.Vector3(-0.3, 0.5, -1.0), 'Fundamentally, ARCore is doing two things: tracking the position of the mobile device as it moves,'+
+  'and building its own understanding of the real world. ARCores motion tracking technology uses the phones camera to identify interesting points,' +
+  'called features, and tracks how those points move over time. With a combination of the movement of these points and readings from the phones' +
+  'inertial sensors, ARCore determines both the position and orientation of the phone as it moves through space.');
   createProduct(new THREE.Vector3(-0.3, 0.0, -1.0), 'Jeans');
   createProduct(new THREE.Vector3(0.3, 0.0, -1.0), 'Shoes');
   createProduct(new THREE.Vector3(0.3, 0.5, -1.0), 'Dress');
