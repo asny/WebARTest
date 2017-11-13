@@ -65,13 +65,13 @@
   </style>
 </head>
 <body>
-<div id="info">
+<!--<div id="info">
   <span class="title">Render detected surfaces.</span><br/>
   <span class="links">
     <a href="https://github.com/google-ar/three.ar.js">three.ar.js</a> -
     <a href="https://developers.google.com/ar/develop/web/getting-started#examples">examples</a>
   </span>
-</div>
+</div>-->
 <script src="./three.js"></script>
 <script src="./VRControls.js"></script>
 <script src="./three.ar.js"></script>
@@ -111,7 +111,7 @@ function init() {
   var arDebug = new THREE.ARDebug(vrDisplay, scene, {
     showLastHit: true,
     showPoseStatus: true,
-    showPlanes: true,
+    showPlanes: false,
   });
   document.body.appendChild(arDebug.getElement());
 
