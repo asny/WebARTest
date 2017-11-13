@@ -180,11 +180,15 @@ function createProduct(position, text)
   var g = bitmap.getContext('2d');
   bitmap.width = 800;
   bitmap.height = 800;
+  var image = document.getElementById('assets/hero-img.jpg');
+  g.drawImage(image, 0, 0, bitmap.width, bitmap.height);
+
+  // Draw text
   var lineHeight = 40;
   var marginX = lineHeight * 2;
   var marginY = lineHeight * 2;
-  g.fillStyle = 'rgb(94, 122, 155)';
-  g.fillRect(0, 0, bitmap.width, bitmap.height);
+  //g.fillStyle = 'rgb(94, 122, 155)';
+  //g.fillRect(0, 0, bitmap.width, bitmap.height);
   //g.fillStyle = 'rgba(150, 150, 150)';
   //g.fillRect(marginX, marginY, bitmap.width - 2 * marginX, bitmap.height - 2 * marginY);
   g.font = '36px Open Sans';
