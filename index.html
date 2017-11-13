@@ -143,6 +143,8 @@ function init() {
 
   // Create Scene
   scene.add( new THREE.DirectionalLight( 0xffffff, 0.5 ) );
+  var ambient = new THREE.AmbientLight( 0x555555 );
+  scene.add(ambient);
 
   createProduct(new THREE.Vector3(-0.3, 0.5, -1.0), 'Fundamentally, ARCore is doing two things: \ntracking the position of the mobile device as it moves,'+
 'and building its own understanding of the real world. \nARCores motion tracking technology uses the phones camera to identify interesting points,' +
@@ -163,7 +165,8 @@ function createProduct(position, text)
   var material = new THREE.MeshStandardMaterial();
 	material.roughness = 0.5;
 	material.metalness = 0.5;
-  var mesh = new THREE.Mesh( geometry, material );
+  var material2 = new THREE.MeshLambertMaterial({color: 0x0000ff, transparent: true, opacity: 0.5});
+  var mesh = new THREE.Mesh( geometry, material2 );
   mesh.position.set(position.x, position.y, position.z);
   scene.add( mesh );
 
@@ -184,7 +187,7 @@ function createProduct(position, text)
   g.font = 'Semi-Bold 70px Open Sans';
   g.fillStyle = 'rgba(120, 160, 255, 0.1)';
   g.fillRect(0, 0, bitmap.width, bitmap.height);
-  g.fillStyle = 'rgba(255, 255, 255, 0.5)';
+  g.fillStyle = 'rgba(150, 150, 150, 0.5)';
   g.fillRect(marginX, marginY, bitmap.width - 2 * marginX, bitmap.height - 2 * marginY);
   g.fillStyle = 'black';
   g.strokeStyle = 'black';
