@@ -176,12 +176,12 @@ function createProduct(position, text)
   //create image
   var bitmap = document.createElement('canvas');
   var g = bitmap.getContext('2d');
-  var marginX = 20;
-  var marginY = 20;
-  var lineHeight = 18;
   bitmap.width = 800;
   bitmap.height = 800;
-  g.font = 'Bold 18px Arial';
+  var marginX = bitmap.width/20;
+  var marginY = bitmap.height/20;
+  var lineHeight = 24;
+  g.font = 'Bold 24px Arial';
   g.fillStyle = 'black';
   g.strokeStyle = 'black';
 
@@ -196,7 +196,7 @@ function createProduct(position, text)
   texture.magFilter = THREE.NearestFilter;
   texture.minFilter = THREE.NearestFilter;
 
-  var geometry = new THREE.PlaneGeometry( 1.0, 1.0, 32, 32 );
+  var geometry = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide} );
   var textGeometry = new THREE.Mesh( geometry, material );
   textGeometry.position.set(position.x, position.y, position.z);
