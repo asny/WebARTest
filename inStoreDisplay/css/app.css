@@ -3,6 +3,8 @@ body {
 	padding:0;
 }
 
+
+
 div.content {
 	margin:0;
 	padding:0;
@@ -14,6 +16,17 @@ div.content {
 div#background {
 	background-image:url("img/hero-img.jpg");
 	filter: blur(4px);
+}
+
+div#logo {
+	background-image:url("img/bAw-logo-payoff-hvid.png");
+	background-size:contain;
+	width:580px;
+	height:185px;
+}
+
+div#views {
+	background-color: rgba(84, 113, 159, 0.7);
 }
 
 div#productInfo {
