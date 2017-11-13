@@ -9,6 +9,8 @@ $(function() {
 	welcome.logo = welcome.find("div#logo");
 
 	var productInfo = $("div#productInfo");
+	productInfo.panel = productInfo.find("div#panel");
+
 	var activeView;
 	var animationLock = null;
 
@@ -30,6 +32,7 @@ $(function() {
 
 		// dont animate view if already shown
 		if(activeView === view) return false;
+
 		// register view as active
 		activeView = view;
 		// set animation lock
@@ -93,15 +96,25 @@ $(function() {
 		if(!canChangeView(productInfo)) return;
 		console.log("showProductInfo");
 
-		HideWelcomeScreen(function(){});
-		productInfo.show();
+		// hacky and hardcoded stuff
+		HideWelcomeScreen( function() {
 
+			productInfo.show();
 
+			// effects 
+			var panelSize = productInfo.panel.css('width');
+			console.log(panelSize);
+			var panelDuration = 200;
+			// hide panel
+			productInfo.panel.css('margin-left', "-" + panelSize);
+			
+			$(productInfo.panel).animate({
+				marginLeft: getPixels(0)
+			}, panelDuration, null);
+
+		});
 	}
 	
-
-
-
 	showWelcomeScreen();
 
 	document.addEventListener('keydown', 

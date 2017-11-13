@@ -1,9 +1,20 @@
 body {
 	margin:0;
 	padding:0;
+    font-family: 'Open Sans', sans-serif;
+	color:rgba(255,255,255,255);
+	font-size: 40px;     
 }
 
+h1 {
+	font-size: 50px;     
+	font-weight: 100;
+}
 
+span {
+	font-size: 40px;     
+	font-weight: 100;
+}
 
 div.content {
 	margin:0;
@@ -33,3 +44,14 @@ div#views {
 
 div#welcome {
 }
+
+div#productInfo div#panel {
+	background-color:rgba(255,255,255,0.1);
+	width:1200px;
+	height:800px;
+	margin-top:100px;
+	padding-top:20px;
+	padding-left:50px;
+}
+
+
