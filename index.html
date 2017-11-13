@@ -178,10 +178,10 @@ function createProduct(position, text)
   var g = bitmap.getContext('2d');
   bitmap.width = 800;
   bitmap.height = 800;
-  var marginX = bitmap.width/20;
-  var marginY = bitmap.height/20;
-  var lineHeight = 24;
-  g.font = 'Bold 24px Arial';
+  var marginX = bitmap.width/10;
+  var marginY = bitmap.height/10;
+  var lineHeight = 40;
+  g.font = '30px Open Sans';
   g.fillStyle = 'black';
   g.strokeStyle = 'black';
 
@@ -191,7 +191,7 @@ function createProduct(position, text)
   //g.strokeText(text, 0, 10);
 
   // canvas contents will be used for a texture
-  var texture = new THREE.Texture(bitmap)
+  var texture = new THREE.Texture(bitmap);
   texture.needsUpdate = true;
   texture.magFilter = THREE.NearestFilter;
   texture.minFilter = THREE.NearestFilter;
