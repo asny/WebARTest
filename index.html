@@ -183,8 +183,8 @@ function createProduct(position, text)
   var lineHeight = 40;
   var marginX = lineHeight * 2;
   var marginY = lineHeight * 2;
-  g.fillStyle = 'rgba(120, 120, 120, 0.5)';
-  g.fillRect(0, 0, bitmap.width, bitmap.height);
+  //g.fillStyle = 'rgba(120, 120, 120, 0.5)';
+  //g.fillRect(0, 0, bitmap.width, bitmap.height);
   //g.fillStyle = 'rgba(150, 150, 150)';
   //g.fillRect(marginX, marginY, bitmap.width - 2 * marginX, bitmap.height - 2 * marginY);
   g.font = 'Semi-Bold 36px Open Sans';
@@ -203,7 +203,7 @@ function createProduct(position, text)
   texture.minFilter = THREE.NearestFilter;
 
   var geometry = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
-  var material = new THREE.MeshBasicMaterial( {color: 0x999999, map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.5} );
+  var material = new THREE.MeshBasicMaterial( {color: 0xffffff, map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
   var textGeometry = new THREE.Mesh( geometry, material );
   textGeometry.position.set(position.x, position.y, position.z);
   scene.add( textGeometry );
