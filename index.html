@@ -201,7 +201,7 @@ function createProduct(position, text)
   texture.minFilter = THREE.NearestFilter;
 
   var geometry = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
-  var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide} );
+  var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
   var textGeometry = new THREE.Mesh( geometry, material );
   textGeometry.position.set(position.x, position.y, position.z);
   scene.add( textGeometry );
