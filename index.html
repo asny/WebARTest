@@ -193,9 +193,7 @@ function createProduct(position, text)
   var geometry = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide} );
   var textGeometry = new THREE.Mesh( geometry, material );
-  textGeometry.translateX(position.x + 0.5);
-  textGeometry.translateY(position.y - 0.5);
-  textGeometry.translateZ(position.z);
+  textGeometry.position.set(position.x + 0.1, position.y - 0.1, position.z);
   scene.add( textGeometry );
   var product = {anchor:mesh, description:textGeometry, animation:0.0};
   products.push(product);
