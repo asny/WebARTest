@@ -1,5 +1,4 @@
 $(function() {
-
 	console.log("app ready");
 
 	window.setInterval(update, config["updateInterval"]);
@@ -7,6 +6,8 @@ $(function() {
 	var background = $("div#background");
 	var welcome = $("div#welcome");
 	var productInfo = $("div#productInfo");
+	var activeView;
+	var animationLock = null;
 
 	function update() {
 	}
@@ -16,7 +17,21 @@ $(function() {
 		return 'blur(' + blur + 'px)';
 	}
 
+
+	function canChangeView(view) {
+		if(animationLock !== null) return false;  
+
+		// dont animate view if already shown
+		if(activeView === view) return false;
+		// register view as active
+		activeView = view;
+		// set animation lock
+		animationLock = view;
+		return true;
+	}
+
 	function showWelcomeScreen() {
+		if(!canChangeView(welcome)) return;
 		console.log("showWelcomeScreen");
 
 		welcome.show();
@@ -29,11 +44,13 @@ $(function() {
 			},
 			complete: function() {
 				background.css('filter', getBlur(0)); 
+				animationLock = null;
 			}
 		});
 	}
 
 	function showProductInfo() {
+		if(!canChangeView(productInfo)) return;
 		console.log("showProductInfo");
 
 		welcome.hide();
@@ -46,9 +63,12 @@ $(function() {
 			},
 			complete: function() {
 				background.css('filter', getBlur(1)); 
+				animationLock = null;
 			}
 		});
 	}
+
+	showWelcomeScreen();
 
 	document.addEventListener('keydown', 
 		function(event) {     
@@ -59,7 +79,4 @@ $(function() {
 			} 
 		}
 	);
-
-
-
 });
