@@ -184,6 +184,7 @@ function createProduct(position, text)
   g.font = 'Semi-Bold 30px Open Sans';
   g.fillStyle = 'rgba(255, 255, 0, 0.5)';
   g.fillRect(0, 0, bitmap.width, bitmap.height);
+  g.fillStyle = 'black';
   g.strokeStyle = 'red';
 
   wrapText(g, text, marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
