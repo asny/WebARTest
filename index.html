@@ -177,29 +177,28 @@ function createProduct(position, text)
   //texture.repeat.set( 1, 1 );
   //create image
   var bitmap = document.createElement('canvas');
-  var g = bitmap.getContext('2d');
+  var context = bitmap.getContext('2d');
   bitmap.width = 800;
   bitmap.height = 800;
+
+  // Background image
   var image = new Image(bitmap.width, bitmap.height);
   image.src = 'assets/hero-img.jpg';
-  g.drawImage(image, 0, 0, bitmap.width, bitmap.height);
+  context.drawImage(image, 0, 0, bitmap.width, bitmap.height);
 
   // Draw text
   var lineHeight = 40;
   var marginX = lineHeight * 2;
   var marginY = lineHeight * 2;
-  //g.fillStyle = 'rgb(94, 122, 155)';
-  //g.fillRect(0, 0, bitmap.width, bitmap.height);
-  //g.fillStyle = 'rgba(150, 150, 150)';
-  //g.fillRect(marginX, marginY, bitmap.width - 2 * marginX, bitmap.height - 2 * marginY);
-  g.font = '36px Open Sans';
-  g.fillStyle = 'white';
-  g.strokeStyle = 'white';
+  //context.fillStyle = 'rgb(94, 122, 155)';
+  //context.fillRect(0, 0, bitmap.width, bitmap.height);
+  //context.fillStyle = 'rgba(150, 150, 150)';
+  //context.fillRect(marginX, marginY, bitmap.width - 2 * marginX, bitmap.height - 2 * marginY);
+  context.font = '36px Open Sans';
+  context.fillStyle = 'white';
+  context.strokeStyle = 'white';
 
-  wrapText(g, text, marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
-
-  //g.fillText(text, 0, 10);
-  //g.strokeText(text, 0, 10);
+  wrapText(context, text, marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
 
   // canvas contents will be used for a texture
   var texture = new THREE.Texture(bitmap);
