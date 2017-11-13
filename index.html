@@ -197,10 +197,11 @@ function createProduct(position, text)
   textGeometry.translateY(position.y);
   textGeometry.translateZ(position.z);
   scene.add( textGeometry );
-  var product = {anchor:mesh, description:textGeometry};
+  var product = {anchor:mesh, description:textGeometry, animation:0.0};
   products.push(product);
 }
 
+var lastTime = new Date().getTime();
 /**
  * The render loop, called once per frame. Handles updating
  * our scene and rendering.
@@ -232,17 +233,19 @@ function update() {
     pose.position[1],
     pose.position[2]
   );
+  var currentTime = (new Date().getTime() - lastTime) / 1000;
 
   for(var i = 0; i < products.length; i++)
   {
     var product = products[i];
-    if(pos.distanceTo(product.anchor.position) < 1.0)
+    var dist = pos.distanceTo(product.anchor.position);
+    if(dist < 1.0)
     {
-      product.anchor.visible = false;
+      product.animation = max(1.0, product.animation + currentTime);
+      product.description.scale = product.animation;
       product.description.visible = true;
     }
-    else {
-      product.anchor.visible = true;
+    if(product.animation < 0.00001) {
       product.description.visible = false;
     }
 
