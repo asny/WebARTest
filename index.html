@@ -162,8 +162,6 @@ function createProduct(position, text)
 	material.metalness = 0.5;
   var mesh = new THREE.Mesh( geometry, material );
   mesh.position.set(position.x, position.y, position.z);
-  mesh.translateY(position.y);
-  mesh.translateZ(position.z);
   scene.add( mesh );
 
   // Text
