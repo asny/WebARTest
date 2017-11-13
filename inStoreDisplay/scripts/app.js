@@ -4,6 +4,7 @@ $(function() {
 
 	window.setInterval(update, config["updateInterval"]);
 
+	var background = $("div#background");
 	var welcome = $("div#welcome");
 	var productInfo = $("div#productInfo");
 
@@ -24,10 +25,10 @@ $(function() {
 		$({ t:0 }).animate( { t:1 }, {
 			duration: config['changePageDuration'],
 			step: function(now,fx) {
-				welcome.css('filter', getBlur(1 - now)); 
+				background.css('filter', getBlur(1 - now)); 
 			},
 			complete: function() {
-				console.log("done");
+				background.css('filter', getBlur(0)); 
 			}
 		});
 	}
@@ -41,10 +42,10 @@ $(function() {
 		$({ t:0 }).animate( { t:1 }, {
 			duration: config['changePageDuration'],
 			step: function(now,fx) {
-				welcome.css('filter', getBlur(now)); 
+				background.css('filter', getBlur(now)); 
 			},
 			complete: function() {
-				console.log("done");
+				background.css('filter', getBlur(1)); 
 			}
 		});
 	}

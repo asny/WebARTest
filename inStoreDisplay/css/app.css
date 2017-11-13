@@ -11,7 +11,7 @@ div.content {
 	height:1080px;
 }
 
-div#welcome {
+div#background {
 	background-image:url("img/hero-img.jpg");
 	filter: blur(4px);
 }
