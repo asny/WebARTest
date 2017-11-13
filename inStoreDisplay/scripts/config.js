@@ -1,7 +1,13 @@
 var config = {};
-config["updateInterval"] = 500; // miliseconds
+// performance stuff
+config['updateInterval'] = 500; // miliseconds
 
-console.log("registered config");
+// visual stuff
+config['changePageDuration'] = 500; // miliseconds
+config['productInfoBackgroundBlur'] = 4; // miliseconds
+
+console.log('registered config');
+
 for(var key in config) {
-	console.log(key + " " + config[key]);
+	console.log(key + ' ' + config[key]);
 }

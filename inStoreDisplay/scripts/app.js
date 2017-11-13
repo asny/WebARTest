@@ -10,17 +10,43 @@ $(function() {
 	function update() {
 	}
 
+	function getBlur(t) {
+		var blur = config['productInfoBackgroundBlur']  * t;
+		return 'blur(' + blur + 'px)';
+	}
+
 	function showWelcomeScreen() {
-		console.log("hide");
+		console.log("showWelcomeScreen");
+
 		welcome.show();
 		productInfo.hide();
+
+		$({ t:0 }).animate( { t:1 }, {
+			duration: config['changePageDuration'],
+			step: function(now,fx) {
+				welcome.css('filter', getBlur(1 - now)); 
+			},
+			complete: function() {
+				console.log("done");
+			}
+		});
 	}
 
 	function showProductInfo() {
-		console.log("show");
+		console.log("showProductInfo");
 
 		welcome.hide();
 		productInfo.show();
+
+		$({ t:0 }).animate( { t:1 }, {
+			duration: config['changePageDuration'],
+			step: function(now,fx) {
+				welcome.css('filter', getBlur(now)); 
+			},
+			complete: function() {
+				console.log("done");
+			}
+		});
 	}
 
 	document.addEventListener('keydown', 
