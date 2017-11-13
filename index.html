@@ -180,7 +180,8 @@ function createProduct(position, text)
   var g = bitmap.getContext('2d');
   bitmap.width = 800;
   bitmap.height = 800;
-  var image = document.getElementById('assets/hero-img.jpg');
+  var image = new Image(bitmap.width, bitmap.height);
+  image.src = 'assets/hero-img.jpg';
   g.drawImage(image, 0, 0, bitmap.width, bitmap.height);
 
   // Draw text
