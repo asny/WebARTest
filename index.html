@@ -182,9 +182,9 @@ function createProduct(position, text)
   var marginY = bitmap.height/10;
   var lineHeight = 40;
   g.font = 'Semi-Bold 30px Open Sans';
-  g.fillStyle = 'rgba(255, 255, 255, 0.5)';
+  g.fillStyle = 'rgba(255, 255, 0, 0.5)';
   g.fillRect(0, 0, bitmap.width, bitmap.height);
-  g.strokeStyle = 'black';
+  g.strokeStyle = 'red';
 
   wrapText(g, text, marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
 
