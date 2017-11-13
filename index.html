@@ -178,10 +178,10 @@ function createProduct(position, text)
   var g = bitmap.getContext('2d');
   bitmap.width = 800;
   bitmap.height = 800;
-  var marginX = bitmap.width/10;
-  var marginY = bitmap.height/10;
-  var lineHeight = 40;
-  g.font = '30px Open Sans';
+  var lineHeight = bitmap.height/10;
+  var marginX = lineHeight * 2;
+  var marginY = lineHeight * 2;
+  g.font = 'Semi-Bold 70px Open Sans';
   g.fillStyle = 'rgba(120, 160, 255, 0.1)';
   g.fillRect(0, 0, bitmap.width, bitmap.height);
   g.fillStyle = 'rgba(255, 255, 255, 0.5)';
