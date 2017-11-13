@@ -3,8 +3,10 @@ var config = {};
 config['updateInterval'] = 500; // miliseconds
 
 // visual stuff
-config['changePageDuration'] = 500; // miliseconds
+config['changePageDuration'] = 2000; // miliseconds
 config['productInfoBackgroundBlur'] = 4; // miliseconds
+config['logoMarginTop'] = 270; 
+
 
 console.log('registered config');
 

@@ -4,7 +4,10 @@ $(function() {
 	window.setInterval(update, config["updateInterval"]);
 
 	var background = $("div#background");
+
 	var welcome = $("div#welcome");
+	welcome.logo = welcome.find("div#logo");
+
 	var productInfo = $("div#productInfo");
 	var activeView;
 	var animationLock = null;
@@ -15,6 +18,10 @@ $(function() {
 	function getBlur(t) {
 		var blur = config['productInfoBackgroundBlur']  * t;
 		return 'blur(' + blur + 'px)';
+	}
+
+	function getPixels(t) {
+		return t + "px";
 	}
 
 
@@ -35,6 +42,15 @@ $(function() {
 		console.log("showWelcomeScreen");
 
 		welcome.show();
+
+		// effects
+		var logoOutDuration = 200;
+		var logoMarginTop = config['logoMarginTop'];
+
+		$(welcome.logo).animate({
+			marginTop: logoMarginTop
+		}, logoOutDuration, null);
+
 		productInfo.hide();
 
 		$({ t:0 }).animate( { t:1 }, {
@@ -49,13 +65,16 @@ $(function() {
 		});
 	}
 
-	function showProductInfo() {
-		if(!canChangeView(productInfo)) return;
-		console.log("showProductInfo");
+	function HideWelcomeScreen(onComplete) {
+		var logoOutDuration = 200;
 
-		welcome.hide();
-		productInfo.show();
+		// effects
+		$(welcome.logo).animate({
+			marginTop: "-500px"
+		}, logoOutDuration, null);
 
+
+		// main animation
 		$({ t:0 }).animate( { t:1 }, {
 			duration: config['changePageDuration'],
 			step: function(now,fx) {
@@ -64,9 +83,24 @@ $(function() {
 			complete: function() {
 				background.css('filter', getBlur(1)); 
 				animationLock = null;
+				welcome.hide();
+				onComplete();
 			}
 		});
 	}
+
+	function showProductInfo() {
+		if(!canChangeView(productInfo)) return;
+		console.log("showProductInfo");
+
+		HideWelcomeScreen(function(){});
+		productInfo.show();
+
+
+	}
+	
+
+
 
 	showWelcomeScreen();
 
