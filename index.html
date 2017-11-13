@@ -175,23 +175,21 @@ function createProduct(position, text)
   bitmap.width = 800;
   bitmap.height = 800;
 
-  // Background image
+  // Background
+  context.fillStyle = 'rgb(94, 122, 155)';
+  context.fillRect(0, 0, bitmap.width, bitmap.height);
+  //context.fillStyle = 'rgba(150, 150, 150)';
+  //context.fillRect(marginX, marginY, bitmap.width - 2 * marginX, bitmap.height - 2 * marginY);
   var image = new Image(bitmap.width, bitmap.height);
   image.src = 'assets/hero-img.jpg';
-  context.drawImage(image, 0, 0, bitmap.width, bitmap.height);
+  context.drawImage(image, 0, 0, bitmap.width/2, bitmap.height/2);
 
   // Draw text
   var lineHeight = 40;
   var marginX = lineHeight * 2;
   var marginY = lineHeight * 2;
-  //context.fillStyle = 'rgb(94, 122, 155)';
-  //context.fillRect(0, 0, bitmap.width, bitmap.height);
-  //context.fillStyle = 'rgba(150, 150, 150)';
-  //context.fillRect(marginX, marginY, bitmap.width - 2 * marginX, bitmap.height - 2 * marginY);
   context.font = '36px Open Sans';
   context.fillStyle = 'white';
-  context.strokeStyle = 'white';
-
   wrapText(context, text, marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
 
   // canvas contents will be used for a texture
