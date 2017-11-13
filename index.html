@@ -176,13 +176,16 @@ function createProduct(position, text)
   //create image
   var bitmap = document.createElement('canvas');
   var g = bitmap.getContext('2d');
+  var marginX = 20;
+  var marginY = 20;
+  var lineHeight = 18;
   bitmap.width = 800;
   bitmap.height = 800;
-  g.font = 'Bold 10px Arial';
+  g.font = 'Bold 18px Arial';
   g.fillStyle = 'black';
   g.strokeStyle = 'black';
 
-  wrapText(g, text, 20, 20, 180, 12);
+  wrapText(g, text, marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
 
   //g.fillText(text, 0, 10);
   //g.strokeText(text, 0, 10);
