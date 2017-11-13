@@ -237,7 +237,7 @@ function update() {
   var closestDist = 1000000.0;
   for(var i = 0; i < products.length; i++)
   {
-    var dist = pos.distanceTo(product.anchor.position);
+    var dist = pos.distanceTo(products[i].anchor.position);
     if(dist < 1.0 && closestDist > dist)
     {
       closestDist = dist;
