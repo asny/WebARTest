@@ -241,7 +241,7 @@ function update() {
     var dist = pos.distanceTo(product.anchor.position);
     if(dist < 1.0)
     {
-      product.animation = max(1.0, product.animation + currentTime);
+      product.animation = Math.max(1.0, product.animation + currentTime);
       product.description.scale = product.animation;
       product.description.visible = true;
     }
