@@ -239,12 +239,22 @@ function update() {
     pose.position[2]
   );
   var currentTime = (new Date().getTime() - lastTime) / 1000;
+  var closestProduct = -1;
+  var closestDist = 1000000.0;
+  for(var i = 0; i < products.length; i++)
+  {
+    var dist = pos.distanceTo(product.anchor.position);
+    if(dist < 1.0 && closestDist > dist)
+    {
+      closestDist = dist;
+      closestProduct = i;
+    }
+  }
 
   for(var i = 0; i < products.length; i++)
   {
     var product = products[i];
-    var dist = pos.distanceTo(product.anchor.position);
-    var animation = product.animation + 0.001 * currentTime * ( dist < 1.0 ? 1.0 : - 1.0 );
+    var animation = product.animation + 0.001 * currentTime * ( closestProduct == i ? 1.0 : - 1.0 );
     product.animation = Math.min(1.0, Math.max(0.0, animation));
     product.description.scale.set(product.animation, product.animation, product.animation);
 
