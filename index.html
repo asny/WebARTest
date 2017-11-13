@@ -161,7 +161,9 @@ function createProduct(position, text)
 	material.roughness = 0.5;
 	material.metalness = 0.5;
   var mesh = new THREE.Mesh( geometry, material );
-  mesh.position.set(position);
+  mesh.translateX(position.x);
+  mesh.translateY(position.y);
+  mesh.translateZ(position.z);
   scene.add( mesh );
 
   // Text
@@ -191,7 +193,8 @@ function createProduct(position, text)
   var geometry = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide} );
   var textGeometry = new THREE.Mesh( geometry, material );
-  textGeometry.position.set(position + new THREE.Vector3(0.5, -0.5, 0.0));
+  var p = position + new THREE.Vector3(0.5, -0.5, 0.0);
+  textGeometry.position.set(p.x, p.y, p.z);
   scene.add( textGeometry );
   var product = {anchor:mesh, description:textGeometry, animation:0.0};
   products.push(product);
