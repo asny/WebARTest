@@ -165,8 +165,7 @@ function createProduct(position, text)
   var material = new THREE.MeshStandardMaterial();
 	material.roughness = 0.5;
 	material.metalness = 0.5;
-  var material2 = new THREE.MeshLambertMaterial({color: 0x0000ff, transparent: true, opacity: 0.5});
-  var mesh = new THREE.Mesh( geometry, material2 );
+  var mesh = new THREE.Mesh( geometry, material );
   mesh.position.set(position.x, position.y, position.z);
   scene.add( mesh );
 
@@ -204,7 +203,7 @@ function createProduct(position, text)
   texture.minFilter = THREE.NearestFilter;
 
   var geometry = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
-  var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide} );
+  var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.5} );
   var textGeometry = new THREE.Mesh( geometry, material );
   textGeometry.position.set(position.x, position.y, position.z);
   scene.add( textGeometry );
