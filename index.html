@@ -240,7 +240,7 @@ function update() {
     var product = products[i];
     var dist = pos.distanceTo(product.anchor.position);
     var animation = product.animation + 0.001 * currentTime * ( dist < 1.0 ? 1.0 : - 1.0 );
-    product.animation = Math.min(1.0, Math.max(0.0, ));
+    product.animation = Math.min(1.0, Math.max(0.0, animation));
     product.description.scale = new THREE.Vector3(product.animation, product.animation, product.animation);
 
     product.description.visible = product.animation > 0.00001;
