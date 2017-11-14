@@ -60,7 +60,7 @@ div#productInfo div#panel {
 	padding-left:50px;
 }
 
-canvas#chartCanvas {
+div#chart {
 	position:absolute;
 	top:0px;
 	left:1200px;
