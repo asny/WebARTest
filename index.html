@@ -158,6 +158,7 @@ function init() {
   var geometry = new THREE.SphereGeometry( 0.05, 32, 32 );
   var material = new THREE.MeshStandardMaterial();
   hitMesh = new THREE.Mesh( geometry, material );
+  hitMesh.visible = false;
   scene.add(hitMesh);
 
   // Kick off the render loop!
@@ -188,13 +189,17 @@ function onClick (e)
 
   // If a hit is found, just use the first one
   if (hits && hits.length) {
+    // Record hit
     var hit = hits[0];
     var modelMatrix = new THREE.Matrix4();
     modelMatrix.fromArray(hit.modelMatrix);
     var pos = new THREE.Vector3();
     pos.setFromMatrixPosition( modelMatrix );
-    hitMesh.position.set(pos.x, pos.y, pos.z);
     recordedHits.push(pos);
+
+    // Show hit mesh
+    hitMesh.position.set(pos.x, pos.y, pos.z);
+    hitMesh.visible = true;
 
     if(recordedHits.length == 3)
     {
