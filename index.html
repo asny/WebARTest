@@ -208,13 +208,13 @@ function onClick (e)
 
 function createProducts()
 {
-  var x1 = new THREE.Vector3(0, -0.5, -0.5);
+  var x1 = new THREE.Vector3(0, -0.5, 0.5);
   var x2 = new THREE.Vector3(-0.3, -0.5, 0);
   var x3 = new THREE.Vector3(0.3, -0.5, 0);
 
   var translation = recordedHits[0] - x1;
   var localToWorld = new THREE.Matrix4();
-  localToWorld.setPosition(recordedHits[0]);
+  localToWorld.setPosition(recordedHits[0] - x1);
 
   createProduct(new THREE.Vector3(-0.3, 0.5, 0.0), localToWorld, 'Fundamentally, ARCore is doing two things: \ntracking the position of the mobile device as it moves,'+
 'and building its own understanding of the real world. \nARCores motion tracking technology uses the phones camera to identify interesting points,' +
