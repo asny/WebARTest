@@ -86,6 +86,8 @@ var vrDisplay, vrControls, vrFrameData, arView;
 var canvas, camera, scene, renderer;
 var hitMesh;
 var products = [];
+var recordedHits = [];
+var initialized = false;
 
 /**
  * Use the `getARDisplay()` utility to leverage the WebVR API
@@ -158,16 +160,66 @@ function init() {
   hitMesh = new THREE.Mesh( geometry, material );
   scene.add(hitMesh);
 
-  createProduct(new THREE.Vector3(-0.3, 0.5, -1.0), 'Fundamentally, ARCore is doing two things: \ntracking the position of the mobile device as it moves,'+
-'and building its own understanding of the real world. \nARCores motion tracking technology uses the phones camera to identify interesting points,' +
-'called features, and tracks how those points move over time. With a combination of the movement of these points and readings from the phones' +
-'inertial sensors, ARCore determines both the position and orientation of the phone as it moves through space.');
-  createProduct(new THREE.Vector3(-0.3, 0.0, -1.0), 'Jeans');
-  createProduct(new THREE.Vector3(0.3, 0.0, -1.0), 'Shoes');
-  createProduct(new THREE.Vector3(0.3, 0.5, -1.0), 'Dress');
-
   // Kick off the render loop!
   update();
+}
+
+/**
+ * When clicking on the screen, fire a ray from where the user clicked
+ * on the screen and if a hit is found, place a cube there.
+ */
+function onClick (e)
+{
+  // If we don't have a touches object, abort
+  // TODO: is this necessary?
+  if (initialized || !e.touches[0]) {
+    return;
+  }
+
+  // Inspect the event object and generate normalize screen coordinates
+  // (between 0 and 1) for the screen position.
+  var x = e.touches[0].pageX / window.innerWidth;
+  var y = e.touches[0].pageY / window.innerHeight;
+
+  // Send a ray from the point of click to the real world surface
+  // and attempt to find a hit. `hitTest` returns an array of potential
+  // hits.
+  var hits = vrDisplay.hitTest(x, y);
+
+  // If a hit is found, just use the first one
+  if (hits && hits.length) {
+    var hit = hits[0];
+    var modelMatrix = new THREE.Matrix4();
+    modelMatrix.fromArray(hit.modelMatrix);
+    var pos = new THREE.Vector3();
+    pos.setFromMatrixPosition( modelMatrix );
+    hitMesh.position.set(pos.x, pos.y, pos.z);
+
+    recordedHits.push(pos);
+    if(recordedHits.length == 3)
+    {
+
+    createProduct(new THREE.Vector3(-0.3, 0.5, -1.0), 'Fundamentally, ARCore is doing two things: \ntracking the position of the mobile device as it moves,'+
+  'and building its own understanding of the real world. \nARCores motion tracking technology uses the phones camera to identify interesting points,' +
+  'called features, and tracks how those points move over time. With a combination of the movement of these points and readings from the phones' +
+  'inertial sensors, ARCore determines both the position and orientation of the phone as it moves through space.');
+    createProduct(new THREE.Vector3(-0.3, 0.0, -1.0), 'Jeans');
+    createProduct(new THREE.Vector3(0.3, 0.0, -1.0), 'Shoes');
+    createProduct(new THREE.Vector3(0.3, 0.5, -1.0), 'Dress');
+      initialized = true;
+    }
+
+
+
+    // Use the `placeObjectAtHit` utility to position
+    // the cube where the hit occurred
+    /*THREE.ARUtils.placeObjectAtHit(hitMesh,  // The object to place
+                                   hit,   // The VRHit object to move the cube to
+                                   1,     // Easing value from 0 to 1; we want to move
+                                          // the cube directly to the hit position
+                                   true); // Whether or not we also apply orientation*/
+
+  }
 }
 
 function createProduct(position, text)
@@ -326,59 +378,6 @@ function wrapText(context, text, x, y, maxWidth, lineHeight)
 
       context.fillText(line, x, y);
       y += lineHeight;
-  }
-}
-
-var recordedHits = [];
-var initialized = false;
-
-/**
- * When clicking on the screen, fire a ray from where the user clicked
- * on the screen and if a hit is found, place a cube there.
- */
-function onClick (e)
-{
-  // If we don't have a touches object, abort
-  // TODO: is this necessary?
-  if (initialized || !e.touches[0]) {
-    return;
-  }
-
-  // Inspect the event object and generate normalize screen coordinates
-  // (between 0 and 1) for the screen position.
-  var x = e.touches[0].pageX / window.innerWidth;
-  var y = e.touches[0].pageY / window.innerHeight;
-
-  // Send a ray from the point of click to the real world surface
-  // and attempt to find a hit. `hitTest` returns an array of potential
-  // hits.
-  var hits = vrDisplay.hitTest(x, y);
-
-  // If a hit is found, just use the first one
-  if (hits && hits.length) {
-    var hit = hits[0];
-    var modelMatrix = new THREE.Matrix4();
-    modelMatrix.fromArray(hit.modelMatrix);
-    var pos = new THREE.Vector3();
-    pos.setFromMatrixPosition( modelMatrix );
-    hitMesh.position.set(pos.x, pos.y, pos.z);
-
-    recordedHits.push(pos);
-    if(recordedHits.length == 3)
-    {
-      initialized = true;
-    }
-
-
-
-    // Use the `placeObjectAtHit` utility to position
-    // the cube where the hit occurred
-    /*THREE.ARUtils.placeObjectAtHit(hitMesh,  // The object to place
-                                   hit,   // The VRHit object to move the cube to
-                                   1,     // Easing value from 0 to 1; we want to move
-                                          // the cube directly to the hit position
-                                   true); // Whether or not we also apply orientation*/
-
   }
 }
 </script>
