@@ -212,7 +212,7 @@ function createProducts()
   var x2 = new THREE.Vector3(-0.3, -0.5, 0);
   var x3 = new THREE.Vector3(0.3, -0.5, 0);
 
-  var translation = recordedHits[0] - x1;
+  var translation = recordedHits[0].clone().add(x1);
   var localToWorld = new THREE.Matrix4();
   localToWorld.setPosition(translation);
   hitMesh.position.set(-translation);
