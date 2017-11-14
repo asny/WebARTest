@@ -213,18 +213,21 @@ function createProducts()
   var x3 = new THREE.Vector3(0.3, -0.5, 0);
 
   var translation = recordedHits[0] - x1;
+  var localToWorld = new THREE.Matrix4();
 
-  createProduct(new THREE.Vector3(-0.3, 0.5, -1.0), 'Fundamentally, ARCore is doing two things: \ntracking the position of the mobile device as it moves,'+
+  createProduct(new THREE.Vector3(-0.3, 0.5, -1.0), localToWorld, 'Fundamentally, ARCore is doing two things: \ntracking the position of the mobile device as it moves,'+
 'and building its own understanding of the real world. \nARCores motion tracking technology uses the phones camera to identify interesting points,' +
 'called features, and tracks how those points move over time. With a combination of the movement of these points and readings from the phones' +
 'inertial sensors, ARCore determines both the position and orientation of the phone as it moves through space.');
-  createProduct(new THREE.Vector3(-0.3, 0.0, -1.0), 'Jeans');
-  createProduct(new THREE.Vector3(0.3, 0.0, -1.0), 'Shoes');
-  createProduct(new THREE.Vector3(0.3, 0.5, -1.0), 'Dress');
+  createProduct(new THREE.Vector3(-0.3, 0.0, -1.0), localToWorld, 'Jeans');
+  createProduct(new THREE.Vector3(0.3, 0.0, -1.0), localToWorld, 'Shoes');
+  createProduct(new THREE.Vector3(0.3, 0.5, -1.0), localToWorld, 'Dress');
 }
 
-function createProduct(position, text)
+function createProduct(position, localToWorld, text)
 {
+  var p = position.applyMatrix4(localToWorld);
+
   // Create anchor
   var geometry = new THREE.TorusKnotGeometry( 0.02, 0.005, 100, 16 );
   //var geometry = new THREE.SphereGeometry( 0.05, 32, 32 );
@@ -232,7 +235,7 @@ function createProduct(position, text)
 	material.roughness = 0.5;
 	material.metalness = 0.5;
   var mesh = new THREE.Mesh( geometry, material );
-  mesh.position.set(position.x, position.y, position.z);
+  mesh.position.set(p.x, p.y, p.z);
   scene.add( mesh );
 
   // Create image
@@ -267,7 +270,7 @@ function createProduct(position, text)
   var geometry = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
   var textGeometry = new THREE.Mesh( geometry, material );
-  textGeometry.position.set(position.x, position.y, position.z + 0.02);
+  textGeometry.position.set(p.x, p.y, p.z + 0.02);
   scene.add( textGeometry );
 
   // Save product information
