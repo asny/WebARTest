@@ -354,13 +354,21 @@ function onClick (e)
   // If a hit is found, just use the first one
   if (hits && hits.length) {
     var hit = hits[0];
+    var modelMatrix = new THREE.Matrix4();
+    modelMatrix.fromArray(hit.modelMatrix);
+    var pos = new THREE.Vector3();
+    pos.setFromMatrixPosition( modelMatrix );
+    hitMesh.position.set(pos.x, pos.y, pos.z);
+
+
+
     // Use the `placeObjectAtHit` utility to position
     // the cube where the hit occurred
-    THREE.ARUtils.placeObjectAtHit(hitMesh,  // The object to place
+    /*THREE.ARUtils.placeObjectAtHit(hitMesh,  // The object to place
                                    hit,   // The VRHit object to move the cube to
                                    1,     // Easing value from 0 to 1; we want to move
                                           // the cube directly to the hit position
-                                   true); // Whether or not we also apply orientation
+                                   true); // Whether or not we also apply orientation*/
 
   }
 }
