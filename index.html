@@ -150,11 +150,11 @@ function init() {
   window.addEventListener('resize', onWindowResize, false);
   canvas.addEventListener('touchstart', onClick, false);
 
-  // Create Scene
+  // Add lights
   scene.add( new THREE.DirectionalLight( 0xffffff, 0.5 ) );
-  var ambient = new THREE.AmbientLight( 0x555555 );
-  scene.add(ambient);
+  scene.add(new THREE.AmbientLight( 0x555555 ));
 
+  // Add hit geometry
   var geometry = new THREE.SphereGeometry( 0.05, 32, 32 );
   var material = new THREE.MeshStandardMaterial();
   hitMesh = new THREE.Mesh( geometry, material );
@@ -198,28 +198,23 @@ function onClick (e)
     recordedHits.push(pos);
     if(recordedHits.length == 3)
     {
-
-    createProduct(new THREE.Vector3(-0.3, 0.5, -1.0), 'Fundamentally, ARCore is doing two things: \ntracking the position of the mobile device as it moves,'+
-  'and building its own understanding of the real world. \nARCores motion tracking technology uses the phones camera to identify interesting points,' +
-  'called features, and tracks how those points move over time. With a combination of the movement of these points and readings from the phones' +
-  'inertial sensors, ARCore determines both the position and orientation of the phone as it moves through space.');
-    createProduct(new THREE.Vector3(-0.3, 0.0, -1.0), 'Jeans');
-    createProduct(new THREE.Vector3(0.3, 0.0, -1.0), 'Shoes');
-    createProduct(new THREE.Vector3(0.3, 0.5, -1.0), 'Dress');
+      scene.remove(hitMesh);
+      createProducts();
       initialized = true;
     }
 
-
-
-    // Use the `placeObjectAtHit` utility to position
-    // the cube where the hit occurred
-    /*THREE.ARUtils.placeObjectAtHit(hitMesh,  // The object to place
-                                   hit,   // The VRHit object to move the cube to
-                                   1,     // Easing value from 0 to 1; we want to move
-                                          // the cube directly to the hit position
-                                   true); // Whether or not we also apply orientation*/
-
   }
+}
+
+function createProducts()
+{
+      createProduct(new THREE.Vector3(-0.3, 0.5, -1.0), 'Fundamentally, ARCore is doing two things: \ntracking the position of the mobile device as it moves,'+
+    'and building its own understanding of the real world. \nARCores motion tracking technology uses the phones camera to identify interesting points,' +
+    'called features, and tracks how those points move over time. With a combination of the movement of these points and readings from the phones' +
+    'inertial sensors, ARCore determines both the position and orientation of the phone as it moves through space.');
+      createProduct(new THREE.Vector3(-0.3, 0.0, -1.0), 'Jeans');
+      createProduct(new THREE.Vector3(0.3, 0.0, -1.0), 'Shoes');
+      createProduct(new THREE.Vector3(0.3, 0.5, -1.0), 'Dress');
 }
 
 function createProduct(position, text)
@@ -298,38 +293,41 @@ function update() {
   // Update our perspective camera's positioning
   vrControls.update();
 
-  // Fetch the pose data from the current frame
-  var pose = vrFrameData.pose;
-
-  var pos = new THREE.Vector3(
-    pose.position[0],
-    pose.position[1],
-    pose.position[2]
-  );
-  var currentTime = (new Date().getTime() - lastTime) / 1000;
-  var closestProduct = -1;
-  var closestDist = 1000000.0;
-  for(var i = 0; i < products.length; i++)
+  if(initialized)
   {
-    var dist = pos.distanceTo(products[i].anchor.position);
-    if(dist < 1.0 && closestDist > dist)
+    // Fetch the pose data from the current frame
+    var pose = vrFrameData.pose;
+
+    var pos = new THREE.Vector3(
+      pose.position[0],
+      pose.position[1],
+      pose.position[2]
+    );
+    var currentTime = (new Date().getTime() - lastTime) / 1000;
+    var closestProduct = -1;
+    var closestDist = 1000000.0;
+    for(var i = 0; i < products.length; i++)
     {
-      closestDist = dist;
-      closestProduct = i;
+      var dist = pos.distanceTo(products[i].anchor.position);
+      if(dist < 1.0 && closestDist > dist)
+      {
+        closestDist = dist;
+        closestProduct = i;
+      }
     }
-  }
 
-  for(var i = 0; i < products.length; i++)
-  {
-    var product = products[i];
-    var animation = product.animation + 0.001 * currentTime * ( closestProduct == i ? 1.0 : - 1.0 );
-    product.animation = Math.min(1.0, Math.max(0.0, animation));
-    product.description.scale.set(product.animation, product.animation, product.animation);
+    for(var i = 0; i < products.length; i++)
+    {
+      var product = products[i];
+      var animation = product.animation + 0.001 * currentTime * ( closestProduct == i ? 1.0 : - 1.0 );
+      product.animation = Math.min(1.0, Math.max(0.0, animation));
+      product.description.scale.set(product.animation, product.animation, product.animation);
 
-    product.description.visible = product.animation > 0.00001;
+      product.description.visible = product.animation > 0.00001;
 
-    product.anchor.rotation.x += 0.01;
-  	product.anchor.rotation.y += 0.01;
+      product.anchor.rotation.x += 0.01;
+    	product.anchor.rotation.y += 0.01;
+    }
   }
 
   // Render our three.js virtual scene
