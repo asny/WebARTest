@@ -283,8 +283,11 @@ function createProducts()
 function createProduct(position, localToWorld, text)
 {
   var trans = new THREE.Vector3();
-  trans.setFromMatrixPosition( localToWorld );
-  var p = position.add(trans);
+  var rot = new THREE.Quaternion();
+  var scale = 1.0;
+  localToWorld.decompose(trans, rot, scale);
+  var p = position.clone().add(trans);
+
   var xAxis = new THREE.Vector3(), yAxis = new THREE.Vector3(), zAxis = new THREE.Vector3();
   localToWorld.extractBasis(xAxis, yAxis, zAxis);
 
@@ -331,9 +334,8 @@ function createProduct(position, localToWorld, text)
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
   var textGeometry = new THREE.Mesh( geometry, material );
   var p2 = p.clone().addScaledVector(zAxis, 0.04);
-  //textGeometry.position.set(p2.x, p2.y, p2.z);
-  textGeometry.matrixWorld = localToWorld;
-  textGeometry.matrixAutoUpdate = false;
+  textGeometry.position.copy(p2);
+  textGeometry.quaternion.copy(rot);
   scene.add( textGeometry );
 
   // Save product information
