@@ -55,22 +55,30 @@ function Chart () {
 		var lineWidth = 20;
 		for(var entry in entries) {
 			var magnitude = entries[entry].magnitude * t;
-			this.drawArc(context, centerX, centerY, radius, lineWidth, magnitude);
+			this.drawArc(context, centerX, centerY, radius, lineWidth, magnitude, t);
 			radius += radiusDelta;
 		}
+
 	}
 
-	this.drawArc = function(context, centerX, centerY, radius, lineWidth, magnitude) {
+	this.drawArc = function(context, centerX, centerY, radius, lineWidth, magnitude, t) {
 
 		context.beginPath();
 		var start = -Math.PI * 0.5;
-		var MAX = Math.PI * 2 * 0.8;
+		var MAX = Math.PI * 2 * 0.75;
 		var length = MAX *  magnitude + start;
-		context.arc(centerX, centerY, radius, -Math.PI * 0.5, length, false);
+		context.arc(centerX, centerY, radius, start, length, false);
 		//context.fillStyle = 'transparent';
 		//context.fill();
 		context.lineWidth = lineWidth;
 		context.strokeStyle = 'rgba(255,255,255,255)';
+		context.stroke();
+
+		context.beginPath();
+		context.arc(centerX, centerY, radius, start, MAX+start, false);
+		context.lineWidth = lineWidth;
+		var alpha = 0.1 * t;
+		context.strokeStyle = 'rgba(255,255,255,' + alpha + ')';
 		context.stroke();
 
 	};
