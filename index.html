@@ -260,7 +260,7 @@ function createProducts()
   var translation3 = recordedHits[2].clone().sub(x3);
   var translation = translation1.add(translation2.add(translation3)).multiplyScalar(0.333333);*/
   //localToWorld.setPosition(translation);
-  var localToWorld = estimateTransformation(localToWorld, [x1, x2, x3], recordedHits);
+  var localToWorld = estimateTransformation([x1, x2, x3], recordedHits);
 
   createProduct(new THREE.Vector3(-0.3, 0.5, 0.0), localToWorld, 'Fundamentally, ARCore is doing two things: \ntracking the position of the mobile device as it moves,'+
 'and building its own understanding of the real world. \nARCores motion tracking technology uses the phones camera to identify interesting points,' +
