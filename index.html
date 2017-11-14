@@ -243,12 +243,17 @@ function estimateTransformation(X, Y)
   var det = numeric.det(numeric.dot(V, WT));
   var D = [[1, 0, 0][0, 1, 0][0, 0, det]];
   var R = numeric.dot(V, numeric.dot(D, WT));
+  //var RT = numeric.transpose(R);
 
   // Create matrix
   var localToWorld = new THREE.Matrix4();
-  localToWorld.makeBasis(new THREE.Vector3(R[0][0], R[1][0], R[2][0]), new THREE.Vector3(R[0][1], R[1][1], R[2][1]),
+  localToWorld.set(R[0][0], R[0][1], R[0][2], 0,
+                  R[1][0], R[1][1], R[1][2], 0,
+                  R[2][0], R[2][1], R[2][2], 0,
+                  translation.x, translation.y, translation.z, 1.0);
+  /*localToWorld.makeBasis(new THREE.Vector3(R[0][0], R[1][0], R[2][0]), new THREE.Vector3(R[0][1], R[1][1], R[2][1]),
     new THREE.Vector3(R[0][2], R[1][2], R[2][2]));
-  localToWorld.setPosition(translation);
+  localToWorld.setPosition(translation);*/
   hitMesh.position.set(translation.x, translation.y, translation.z);
   return localToWorld;
 }
