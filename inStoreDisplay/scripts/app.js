@@ -2,7 +2,6 @@ $(function() {
 
 	var chart = new Chart();
 	chart.init();
-	chart.draw();
 
 	console.log("app ready");
 
@@ -49,28 +48,32 @@ $(function() {
 		if(!canChangeView(welcome)) return;
 		console.log("showWelcomeScreen");
 
-		welcome.show();
+		hideProductInfo(function() {
 
-		// effects
-		var logoOutDuration = 200;
-		var logoMarginTop = config['logoMarginTop'];
+			welcome.show();
 
-		$(welcome.logo).animate({
-			marginTop: logoMarginTop
-		}, logoOutDuration, null);
+			// effects
+			var logoOutDuration = 200;
+			var logoMarginTop = config['logoMarginTop'];
 
-		productInfo.hide();
+			$(welcome.logo).animate({
+				marginTop: logoMarginTop
+			}, logoOutDuration, null);
 
-		$({ t:0 }).animate( { t:1 }, {
-			duration: config['changePageDuration'],
-			step: function(now,fx) {
-				background.css('filter', getBlur(1 - now)); 
-			},
-			complete: function() {
-				background.css('filter', getBlur(0)); 
-				animationLock = null;
-			}
+
+			$({ t:0 }).animate( { t:1 }, {
+				duration: config['changePageDuration'],
+				step: function(now,fx) {
+					background.css('filter', getBlur(1 - now)); 
+				},
+				complete: function() {
+					background.css('filter', getBlur(0)); 
+					animationLock = null;
+				}
+			});
 		});
+
+
 	}
 
 	function HideWelcomeScreen(onComplete) {
@@ -105,6 +108,7 @@ $(function() {
 		HideWelcomeScreen( function() {
 
 			productInfo.show();
+			chart.show();
 
 			// effects 
 			var panelSize = productInfo.panel.css('width');
@@ -119,6 +123,31 @@ $(function() {
 
 		});
 	}
+
+	function hideProductInfo(onComplete) {
+		console.log("hide product info");
+		if(productInfo.css('display') === 'none') { 
+			onComplete();
+			return;
+		}
+
+		// effects
+		chart.hide();
+
+		// main animation
+		$({ t:0 }).animate( { t:1 }, {
+			duration: config['changePageDuration'],
+			step: function(now,fx) {
+			},
+			complete: function() {
+				productInfo.hide();
+				onComplete();
+			}
+		});
+	}
+
+	productInfo.hide();
+	welcome.hide();
 	
 	showWelcomeScreen();
 

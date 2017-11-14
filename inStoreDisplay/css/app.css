@@ -26,6 +26,10 @@ div.content {
 	height:1080px;
 }
 
+div.content.page {
+	display:none;
+}
+
 div#background {
 	background-image:url("img/hero-img.jpg");
 	filter: blur(4px);
