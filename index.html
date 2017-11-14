@@ -349,7 +349,7 @@ function onClick (e)
   // Send a ray from the point of click to the real world surface
   // and attempt to find a hit. `hitTest` returns an array of potential
   // hits.
-  var hits = vrDisplay.prototype.hitTest(x, y);
+  var hits = vrDisplay.hitTest(x, y);
 
   // If a hit is found, just use the first one
   if (hits && hits.length) {
