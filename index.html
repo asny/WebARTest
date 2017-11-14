@@ -242,6 +242,8 @@ function estimateTransformation(localToWorld, X, Y)
   var A = numeric.dot(numeric.transpose(P), Q);
   var svd = numeric.svd(A);
   var R = numeric.dot(svd.U, numeric.transpose(svd.V));
+  localToWorld.makeBasis(new THREE.Vector3(R[0][0], R[1][0], R[2][0]), new THREE.Vector3(R[0][1], R[1][1], R[2][1]),
+    new THREE.Vector3(R[0][2], R[1][2], R[2][2]));
 }
 
 function createProducts()
