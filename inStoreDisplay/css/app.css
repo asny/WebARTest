@@ -56,4 +56,9 @@ div#productInfo div#panel {
 	padding-left:50px;
 }
 
+canvas#chartCanvas {
+	position:absolute;
+	top:0px;
+}
+
 

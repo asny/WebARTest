@@ -1,4 +1,9 @@
 $(function() {
+
+	var chart = new Chart();
+	chart.init();
+	chart.draw();
+
 	console.log("app ready");
 
 	window.setInterval(update, config["updateInterval"]);
@@ -123,7 +128,10 @@ $(function() {
 				showWelcomeScreen();
 			} else if(event.keyCode == 83) {         
 				showProductInfo();     
-			} 
+			} else if(event.keyCode == 82) {         
+				location.reload();
+			}
 		}
+
 	);
 });
