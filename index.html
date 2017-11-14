@@ -242,7 +242,7 @@ function estimateTransformation(X, Y)
   var WT = numeric.transpose(svd.V);
   var det = numeric.det(numeric.dot(V, WT));
   var D = [[1, 0, 0][0, 1, 0][0, 0, det]];
-  var R = numeric.dot(V, numeric.dot(D, WT));
+  var R = numeric.transpose(numeric.dot(V, numeric.dot(D, WT)));
 
   // Create matrix
   var localToWorld = new THREE.Matrix4();
