@@ -243,7 +243,7 @@ function estimateTransformation(X, Y)
   var det = numeric.det(numeric.dot(V, WT));
   console.log(det);
   var D = [[1.0, 0.0, 0.0][0.0, 1.0, 0.0][0.0, 0.0, det]];
-  var R = numeric.dot(V, numeric.dot(D, WT));
+  var R = numeric.dot(V, WT);
   //var RT = numeric.transpose(R);
 
   // Create matrix
