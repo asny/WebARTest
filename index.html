@@ -329,6 +329,9 @@ function wrapText(context, text, x, y, maxWidth, lineHeight)
   }
 }
 
+var recordedHits = [];
+var initialized = false;
+
 /**
  * When clicking on the screen, fire a ray from where the user clicked
  * on the screen and if a hit is found, place a cube there.
@@ -337,7 +340,7 @@ function onClick (e)
 {
   // If we don't have a touches object, abort
   // TODO: is this necessary?
-  if (!e.touches[0]) {
+  if (initialized || !e.touches[0]) {
     return;
   }
 
@@ -359,6 +362,12 @@ function onClick (e)
     var pos = new THREE.Vector3();
     pos.setFromMatrixPosition( modelMatrix );
     hitMesh.position.set(pos.x, pos.y, pos.z);
+
+    recordedHits.push(pos);
+    if(recordedHits.length == 3)
+    {
+      initialized = true;
+    }
 
 
 
