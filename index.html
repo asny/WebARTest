@@ -285,7 +285,7 @@ function createProduct(position, localToWorld, text)
   var trans = new THREE.Vector3();
   trans.setFromMatrixPosition( localToWorld );
   var p = position.add(trans);
-  var xAxis, yAxis, zAxis;
+  var xAxis = new THREE.Vector3(), yAxis = new THREE.Vector3(), zAxis = new THREE.Vector3();
   localToWorld.extractBasis(xAxis, yAxis, zAxis);
 
   // Create anchor
