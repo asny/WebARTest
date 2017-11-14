@@ -213,15 +213,14 @@ function createProducts()
   var x3 = new THREE.Vector3(0.3, -0.5, 0);
 
   var translation = recordedHits[0] - x1;
-  translation = new THREE.Vector3(0, 0, 0);
 
-  createProduct(translation + new THREE.Vector3(-0.3, 0.5, -1.0), 'Fundamentally, ARCore is doing two things: \ntracking the position of the mobile device as it moves,'+
+  createProduct(new THREE.Vector3(-0.3, 0.5, -1.0), 'Fundamentally, ARCore is doing two things: \ntracking the position of the mobile device as it moves,'+
 'and building its own understanding of the real world. \nARCores motion tracking technology uses the phones camera to identify interesting points,' +
 'called features, and tracks how those points move over time. With a combination of the movement of these points and readings from the phones' +
 'inertial sensors, ARCore determines both the position and orientation of the phone as it moves through space.');
-  createProduct(translation + new THREE.Vector3(-0.3, 0.0, -1.0), 'Jeans');
-  createProduct(translation + new THREE.Vector3(0.3, 0.0, -1.0), 'Shoes');
-  createProduct(translation + new THREE.Vector3(0.3, 0.5, -1.0), 'Dress');
+  createProduct(new THREE.Vector3(-0.3, 0.0, -1.0), 'Jeans');
+  createProduct(new THREE.Vector3(0.3, 0.0, -1.0), 'Shoes');
+  createProduct(new THREE.Vector3(0.3, 0.5, -1.0), 'Dress');
 }
 
 function createProduct(position, text)
