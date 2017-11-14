@@ -303,6 +303,20 @@ function update() {
       pose.position[1],
       pose.position[2]
     );
+    updateProducts(pos);
+  }
+
+  // Render our three.js virtual scene
+  renderer.clearDepth();
+  renderer.render(scene, camera);
+
+  // Kick off the requestAnimationFrame to call this function
+  // when a new VRDisplay frame is rendered
+  vrDisplay.requestAnimationFrame(update);
+}
+
+function updateProducts(pos)
+{
     var currentTime = (new Date().getTime() - lastTime) / 1000;
     var closestProduct = -1;
     var closestDist = 1000000.0;
@@ -328,15 +342,6 @@ function update() {
       product.anchor.rotation.x += 0.01;
     	product.anchor.rotation.y += 0.01;
     }
-  }
-
-  // Render our three.js virtual scene
-  renderer.clearDepth();
-  renderer.render(scene, camera);
-
-  // Kick off the requestAnimationFrame to call this function
-  // when a new VRDisplay frame is rendered
-  vrDisplay.requestAnimationFrame(update);
 }
 
 /**
