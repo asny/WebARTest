@@ -218,7 +218,7 @@ function estimateTransformation(localToWorld, X, Y)
   var nSamples = X.length;
   var xAvg = new THREE.Vector3();
   var yAvg = new THREE.Vector3();
-  for(int i = 0; i < nSamples; i++)
+  for(var i = 0; i < nSamples; i++)
   {
     xAvg.add(X[i]);
     yAvg.add(Y[i]);
