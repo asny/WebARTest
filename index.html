@@ -282,7 +282,11 @@ function createProducts()
 
 function createProduct(position, localToWorld, text)
 {
-  var p = position.applyMatrix4(localToWorld);
+  var trans = new THREE.Vector3();
+  trans.setFromMatrixPosition( localToWorld );
+  var p = position.add(trans);
+  var xAxis, yAxis, zAxis;
+  localToWorld.extractBasis(xAxis, yAxis, zAxis);
 
   // Create anchor
   var geometry = new THREE.TorusKnotGeometry( 0.02, 0.005, 100, 16 );
@@ -326,7 +330,9 @@ function createProduct(position, localToWorld, text)
   var geometry = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
   var textGeometry = new THREE.Mesh( geometry, material );
-  textGeometry.position.set(p.x, p.y, p.z + 0.02);
+  var p2 = p.clone().addScaledVector(zAxis, 0.04);
+  textGeometry.position.set(p2.x, p2.y, p2.z);
+  //textGeometry.matrixWorld.set(localToWorld);
   scene.add( textGeometry );
 
   // Save product information
