@@ -331,8 +331,9 @@ function createProduct(position, localToWorld, text)
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
   var textGeometry = new THREE.Mesh( geometry, material );
   var p2 = p.clone().addScaledVector(zAxis, 0.04);
-  textGeometry.position.set(p2.x, p2.y, p2.z);
-  //textGeometry.matrixWorld.set(localToWorld);
+  //textGeometry.position.set(p2.x, p2.y, p2.z);
+  textGeometry.matrixWorld = localToWorld;
+  textGeometry.matrixAutoUpdate = false;
   scene.add( textGeometry );
 
   // Save product information
