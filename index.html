@@ -85,7 +85,6 @@
 
 var vrDisplay, vrControls, vrFrameData, arView;
 var canvas, camera, scene, renderer;
-var hitMesh;
 var products = [];
 var recordedHits = [];
 var initialized = false;
@@ -155,13 +154,6 @@ function init() {
   scene.add( new THREE.DirectionalLight( 0xffffff, 0.5 ) );
   scene.add(new THREE.AmbientLight( 0x555555 ));
 
-  // Add hit geometry
-  var geometry = new THREE.SphereGeometry( 0.05, 32, 32 );
-  var material = new THREE.MeshStandardMaterial();
-  hitMesh = new THREE.Mesh( geometry, material );
-  hitMesh.visible = false;
-  scene.add(hitMesh);
-
   // Kick off the render loop!
   update();
 }
@@ -198,9 +190,12 @@ function onClick (e)
     pos.setFromMatrixPosition( modelMatrix );
     recordedHits.push(pos);
 
-    // Show hit mesh
+    // Add hit geometry
+    var geometry = new THREE.SphereGeometry( 0.05, 32, 32 );
+    var material = new THREE.MeshStandardMaterial();
+    var hitMesh = new THREE.Mesh( geometry, material );
+    scene.add(hitMesh);
     hitMesh.position.set(pos.x, pos.y, pos.z);
-    hitMesh.visible = true;
 
     if(recordedHits.length == 3)
     {
@@ -210,6 +205,23 @@ function onClick (e)
     }
 
   }
+}
+
+function createProducts()
+{
+  var x1 = new THREE.Vector3(0, -0.5, 0.5);
+  var x2 = new THREE.Vector3(-0.3, -0.5, 0);
+  var x3 = new THREE.Vector3(0.3, -0.5, 0);
+
+  var localToWorld = estimateTransformation([x1, x2, x3], recordedHits);
+
+  createProduct(new THREE.Vector3(-0.3, 0.5, 0.0), localToWorld, 'Fundamentally, ARCore is doing two things: \ntracking the position of the mobile device as it moves,'+
+'and building its own understanding of the real world. \nARCores motion tracking technology uses the phones camera to identify interesting points,' +
+'called features, and tracks how those points move over time. With a combination of the movement of these points and readings from the phones' +
+'inertial sensors, ARCore determines both the position and orientation of the phone as it moves through space.');
+  createProduct(new THREE.Vector3(-0.3, 0.0, 0.0), localToWorld, 'Jeans');
+  createProduct(new THREE.Vector3(0.3, 0.0, 0.0), localToWorld, 'Shoes');
+  createProduct(new THREE.Vector3(0.3, 0.5, 0.0), localToWorld, 'Dress');
 }
 
 function estimateTransformation(X, Y)
@@ -252,25 +264,8 @@ function estimateTransformation(X, Y)
                   R[0][1], R[1][1], R[2][1], translation.y,
                   R[0][2], R[1][2], R[2][2], translation.z,
                   0.0, 0.0, 0.0, 1.0);
-                  
+
   return localToWorld;
-}
-
-function createProducts()
-{
-  var x1 = new THREE.Vector3(0, -0.5, 0.5);
-  var x2 = new THREE.Vector3(-0.3, -0.5, 0);
-  var x3 = new THREE.Vector3(0.3, -0.5, 0);
-
-  var localToWorld = estimateTransformation([x1, x2, x3], recordedHits);
-
-  createProduct(new THREE.Vector3(-0.3, 0.5, 0.0), localToWorld, 'Fundamentally, ARCore is doing two things: \ntracking the position of the mobile device as it moves,'+
-'and building its own understanding of the real world. \nARCores motion tracking technology uses the phones camera to identify interesting points,' +
-'called features, and tracks how those points move over time. With a combination of the movement of these points and readings from the phones' +
-'inertial sensors, ARCore determines both the position and orientation of the phone as it moves through space.');
-  createProduct(new THREE.Vector3(-0.3, 0.0, 0.0), localToWorld, 'Jeans');
-  createProduct(new THREE.Vector3(0.3, 0.0, 0.0), localToWorld, 'Shoes');
-  createProduct(new THREE.Vector3(0.3, 0.5, 0.0), localToWorld, 'Dress');
 }
 
 function createProduct(position, localToWorld, text)
@@ -285,15 +280,18 @@ function createProduct(position, localToWorld, text)
 
   var p = trans.clone().add(xAxis.clone().multiplyScalar(position.x).add(yAxis.clone().multiplyScalar(position.y)).add(zAxis.clone().multiplyScalar(position.z)));
 
+  // ANCHOR
   // Create anchor
   var geometry = new THREE.TorusKnotGeometry( 0.02, 0.005, 100, 16 );
   var material = new THREE.MeshStandardMaterial();
 	material.roughness = 0.5;
 	material.metalness = 0.5;
   var mesh = new THREE.Mesh( geometry, material );
-  mesh.position.set(p.x, p.y, p.z);
+  mesh.position.copy(p);
+  mesh.quaternion.copy(rot);
   scene.add( mesh );
 
+  // TEXT
   // Create image
   var bitmap = document.createElement('canvas');
   var context = bitmap.getContext('2d');
@@ -318,7 +316,7 @@ function createProduct(position, localToWorld, text)
   texture.magFilter = THREE.NearestFilter;
   texture.minFilter = THREE.NearestFilter;
 
-  // Set up scene
+  // Create text geometry
   var geometry = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
   var textGeometry = new THREE.Mesh( geometry, material );
