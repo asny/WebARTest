@@ -87,7 +87,6 @@ var vrDisplay, vrControls, vrFrameData, arView;
 var canvas, camera, scene, renderer;
 var products = [];
 var recordedHits = [];
-var initialized = false;
 
 /**
  * Use the `getARDisplay()` utility to leverage the WebVR API
@@ -166,7 +165,7 @@ function onClick (e)
 {
   // If we don't have a touches object, abort
   // TODO: is this necessary?
-  if (initialized || !e.touches[0]) {
+  if (isInitialized() || !e.touches[0]) {
     return;
   }
 
@@ -197,13 +196,10 @@ function onClick (e)
     scene.add(hitMesh);
     hitMesh.position.set(pos.x, pos.y, pos.z);
 
-    if(recordedHits.length == 3)
+    if(isInitialized())
     {
-      //scene.remove(hitMesh);
       createProducts();
-      initialized = true;
     }
-
   }
 }
 
@@ -330,6 +326,11 @@ function createProduct(position, localToWorld, text)
   products.push(product);
 }
 
+function isInitialized()
+{
+  return recordedHits.length == 3;
+}
+
 var lastTime = new Date().getTime();
 /**
  * The render loop, called once per frame. Handles updating
@@ -354,7 +355,7 @@ function update() {
   // Update our perspective camera's positioning
   vrControls.update();
 
-  if(initialized)
+  if(isInitialized())
   {
     // Fetch the pose data from the current frame
     var pose = vrFrameData.pose;
