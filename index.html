@@ -252,14 +252,7 @@ function estimateTransformation(X, Y)
                   R[0][1], R[1][1], R[2][1], translation.y,
                   R[0][2], R[1][2], R[2][2], translation.z,
                   0.0, 0.0, 0.0, 1.0);
-  console.log(R[0][0] + ", " + R[1][0] + ", " + R[2][0] + ", " + translation.x);
-  console.log(R[0][1] + ", " + R[1][1] + ", " + R[2][1] + ", " + translation.y);
-  console.log(R[0][2] + ", " + R[1][2] + ", " + R[2][2] + ", " + translation.z);
-
-  /*localToWorld.makeBasis(new THREE.Vector3(R[0][0], R[1][0], R[2][0]), new THREE.Vector3(R[0][1], R[1][1], R[2][1]),
-    new THREE.Vector3(R[0][2], R[1][2], R[2][2]));
-  localToWorld.setPosition(translation);*/
-  hitMesh.position.set(translation.x, translation.y, translation.z);
+                  
   return localToWorld;
 }
 
@@ -291,13 +284,9 @@ function createProduct(position, localToWorld, text)
   localToWorld.extractBasis(xAxis, yAxis, zAxis);
 
   var p = trans.clone().add(xAxis.clone().multiplyScalar(position.x).add(yAxis.clone().multiplyScalar(position.y)).add(zAxis.clone().multiplyScalar(position.z)));
-  console.log(trans.x + ", " + trans.y + ", " + trans.z);
-  console.log(p.x + ", " + p.y + ", " + p.z);
-
 
   // Create anchor
   var geometry = new THREE.TorusKnotGeometry( 0.02, 0.005, 100, 16 );
-  //var geometry = new THREE.SphereGeometry( 0.05, 32, 32 );
   var material = new THREE.MeshStandardMaterial();
 	material.roughness = 0.5;
 	material.metalness = 0.5;
@@ -312,10 +301,6 @@ function createProduct(position, localToWorld, text)
   bitmap.height = 800;
 
   // Create background
-  //context.fillStyle = 'rgb(94, 122, 155)';
-  //context.fillRect(0, 0, bitmap.width, bitmap.height);
-  //var image = new Image(bitmap.width, bitmap.height);
-  //image.src = 'assets/hero-img.jpg';
   var image = document.getElementById('source');
   context.drawImage(image, 0, 0, bitmap.width, bitmap.height);
 
