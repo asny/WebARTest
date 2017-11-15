@@ -286,12 +286,14 @@ function createProduct(position, localToWorld, text)
   var rot = new THREE.Quaternion();
   var scale = new THREE.Vector3();
   localToWorld.decompose(trans, rot, scale);
-  var p = position.clone().add(trans);
-  console.log(trans.x + ", " + trans.y + ", " + trans.z);
-  console.log(p.x + ", " + p.y + ", " + p.z);
 
   var xAxis = new THREE.Vector3(), yAxis = new THREE.Vector3(), zAxis = new THREE.Vector3();
   localToWorld.extractBasis(xAxis, yAxis, zAxis);
+
+  var p = trans.clone().add(xAxis.clone().multiplyScalar(position.x).add(yAxis.clone().multiplyScalar(position.y)).add(zAxis.clone().multiplyScalar(position.z)));
+  console.log(trans.x + ", " + trans.y + ", " + trans.z);
+  console.log(p.x + ", " + p.y + ", " + p.z);
+
 
   // Create anchor
   var geometry = new THREE.TorusKnotGeometry( 0.02, 0.005, 100, 16 );
