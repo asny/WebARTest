@@ -286,7 +286,7 @@ function createProduct(position, localToWorld, text)
   var rot = new THREE.Quaternion();
   var scale = new THREE.Vector3();
   localToWorld.decompose(trans, rot, scale);
-  var p = position.clone().sub(trans);
+  var p = position.clone().add(trans).multiplyScalar(-1.0);
 
   var xAxis = new THREE.Vector3(), yAxis = new THREE.Vector3(), zAxis = new THREE.Vector3();
   localToWorld.extractBasis(xAxis, yAxis, zAxis);
