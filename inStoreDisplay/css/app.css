@@ -84,3 +84,9 @@ div#chart li {
 	font-weight:300;
 	height:60px;
 }
+
+img#ProductImage {
+	max-width:400px;
+	height:auto;
+}
+

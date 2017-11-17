@@ -177,7 +177,7 @@ var products =[
       "ProductTitle": "Neutral T shirt Herre og Dame",
       "ProductName": "Boody",
       "img": {
-         "@src": "img/Neutral/Logo.eps"
+         "@src": "img/Neutral/Logo.png"
       },
       "Teaser": "Boody Boxers er lavet af bambus og er både allergivenlig og god for miljøet!",
       "ProcessLine": {
@@ -430,7 +430,7 @@ var products =[
       "ProductTitle": "Wunderwerk Jeans",
       "ProductName": "Boody",
       "img": {
-         "@src": "img/Boody/Boody.jpg"
+         "@src": "img/WW_Jeans/Wunderwerk.png"
       },
       "Teaser": "Boody Boxers er lavet af bambus og er både allergivenlig og god for miljøet!",
       "ProcessLine": {
@@ -517,14 +517,10 @@ var products =[
    {
       "ProductTitle": "Wunderwerk Tencel bluse",
       "ProductName": "Wunderwerk",
-      "img": [
-         {
-            "@src": "img/WW_Tencel/Wunderwerk.png"
-         },
+      "img": 
          {
             "@src": "img/WW_Tencel/tencel.jpg"
-         }
-      ],
+         },
       "Teaser": "Wunderwerk bluse er lavet af Tencel, som laves af bøge- og eukalyptus trærer!",
       "ProcessLine": {
          "Process": [
