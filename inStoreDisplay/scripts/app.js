@@ -29,6 +29,7 @@ $(function() {
 	var productName = $("#ProductName");
 	var teaser = $("#Teaser");
 	var productImage = $("#ProductImage");
+	var processLine = $("#ProcessLine");
 
 	function update() {
 	}
@@ -169,7 +170,14 @@ $(function() {
 		productName.html(product.ProductName);	
 		teaser.html(product.Teaser);	
 		productImage.attr("src", IMG_FOLDER + product.img["@src"]);
-
+		var MAX_PROCESSES = 1;
+		for(var i=0; i < MAX_PROCESSES; i++) {
+			var process = processLine.find("div#Process" + i);
+			var description = process.find("span.ProcessDescription");
+			var image = process.find("img.ProcessImg");
+			description.html(product.ProcessLine.Process[i]["@name"]);
+			image.attr("src", IMG_FOLDER + product.ProcessLine.img[i]["@src"]);
+		}
 	}
 	
 	function showProduct(id) {
