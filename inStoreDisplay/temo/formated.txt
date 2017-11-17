@@ -1,35 +1,47 @@
 #changes
+# add real quotes
 '<,'>s/”/"/ge
+# close image tags
+'<,'>s/<img\(.*\)>/<img\1><\/img>/ge
+# move everything in one indent
+Add product enclosing tags
+'<,'>s/<ProductName>\(\_.*\)EnvironmentalEffects>/<Product>\r\t<ProductName>\1EnvironmentalEffects>\r<\/Product>/ge
+#indent product one back
+'<,'>s/\t\(<Product>\)/\1/ge
+
+
 
 
 Boody boxers
-<ProductName>Boody</ProductName>
-<img src="img/Boody/boody.png">
-<Teaser>Boody Boxers er lavet af bambus og er både allergivenlig og god for miljøet!</Teaser>
-<ProcessLine>
-	<Process name="1. Dyrkning"></Process>
-	<img class="img-circle" src="img/Boody/1._Grown.PNG" style="width:204px">
-	<Process name="2. Høst"></Process>
-	<img class="img-circle" src="img/Boody/2._Harvest.PNG" style="width:204px">
-	<Process name="3. Processen"></Process>
-	<img class="img-circle" src="img/Boody/3._Process.PNG" style="width:204px">
-	<Process name="4. Tørring"></Process>
-	<img class="img-circle" src="img/Boody/4._Dry.PNG" style="width:204px">
-	<Process name="5. Knusning"></Process>
-	<img class="img-circle" src="img/Boody/5._Mill.PNG" style="width:204px">
-	<Process name="6. Syning"></Process>
-	<img class="img-circle" src="img/Boody/6._Sew.PNG" style="width:204px">
-	<Process name="7. Boxers"></Process>
-	<img class="img-circle" src="img/Boody/7._Boxers.PNG" style="width:204px">
-</ProcessLine>
-<Certification>
-	<Certificate>Ingen kunstig vanding</Certificate>
-	<Certificate>Ingen pesticider</Certificate>
-	<Certificate>Ingen gødning</Certificate>
-</Certification>
-<EnvironmentalEffects>
-	<img src="img/Boody/chart_boody.svg">
-	<effect name="Vand forbrug">66%</effect>
-<effect name="Forhøjet iltproduktion">30%</effect>
-	<effect name="pesticider">0%</effect>
-</EnvironmentalEffects>
+<Product>
+	<ProductName>Boody</ProductName>
+	<img src="img/Boody/boody.png"></img>
+	<Teaser>Boody Boxers er lavet af bambus og er både allergivenlig og god for miljøet!</Teaser>
+	<ProcessLine>
+		<Process name="1. Dyrkning"></Process>
+		<img class="img-circle" src="img/Boody/1._Grown.PNG" style="width:204px"></img>
+		<Process name="2. Høst"></Process>
+		<img class="img-circle" src="img/Boody/2._Harvest.PNG" style="width:204px"></img>
+		<Process name="3. Processen"></Process>
+		<img class="img-circle" src="img/Boody/3._Process.PNG" style="width:204px"></img>
+		<Process name="4. Tørring"></Process>
+		<img class="img-circle" src="img/Boody/4._Dry.PNG" style="width:204px"></img>
+		<Process name="5. Knusning"></Process>
+		<img class="img-circle" src="img/Boody/5._Mill.PNG" style="width:204px"></img>
+		<Process name="6. Syning"></Process>
+		<img class="img-circle" src="img/Boody/6._Sew.PNG" style="width:204px"></img>
+		<Process name="7. Boxers"></Process>
+		<img class="img-circle" src="img/Boody/7._Boxers.PNG" style="width:204px"></img>
+	</ProcessLine>
+	<Certification>
+		<Certificate>Ingen kunstig vanding</Certificate>
+		<Certificate>Ingen pesticider</Certificate>
+		<Certificate>Ingen gødning</Certificate>
+	</Certification>
+	<EnvironmentalEffects>
+		<img src="img/Boody/chart_boody.svg"></img>
+		<effect name="Vand forbrug">66%</effect>
+	<effect name="Forhøjet iltproduktion">30%</effect>
+		<effect name="pesticider">0%</effect>
+	</EnvironmentalEffects>
+</Product>
