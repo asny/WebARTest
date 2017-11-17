@@ -1,4 +1,11 @@
 $(function() {
+	/*
+	$.getJSON("data-from-to/product-info.json", function(json) {
+		    console.log(json); // this will show the info it in firebug console
+	});
+	*/
+
+	console.log(products.length + " products defined");
 
 	var chart = new Chart();
 	chart.init();
@@ -150,6 +157,10 @@ $(function() {
 	welcome.hide();
 	
 	showWelcomeScreen();
+	
+	function showProduct(id) {
+		console.log("requesting product " + id);
+	}
 
 	document.addEventListener('keydown', 
 		function(event) {     
@@ -159,6 +170,13 @@ $(function() {
 				showProductInfo();     
 			} else if(event.keyCode == 82) {         
 				location.reload();
+			}
+			var offset = 48;
+			for(var i=0; i<10;i++) {
+				if(event.keyCode == i + offset) {
+					showProduct(i);
+					break;
+				}
 			}
 		}
 
