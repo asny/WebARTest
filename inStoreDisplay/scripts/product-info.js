@@ -338,7 +338,7 @@ var products =[
                "@style": "width:204px"
             },
             {
-               "@src": "img/Pinqponq/taske.PNG",
+               "@src": "img/Pinqponq/taske.jpg",
                "@style": "width:204px"
             }
          ]
@@ -396,7 +396,7 @@ var products =[
                "@src": "img/SS/Water.png"
             },
             {
-               "@src": "img/SS/Recycling.svg"
+               "@src": "img/SS/Recycling.png"
             },
             {
                "@src": "img/SS/Stocking.PNG"
@@ -483,7 +483,7 @@ var products =[
                "@style": "width:204px"
             },
             {
-               "@src": "img/Boody/7._Boody.PNG",
+               "@src": "img/Boody/7._Boxers.PNG",
                "@style": "width:204px"
             }
          ]
@@ -543,7 +543,7 @@ var products =[
                "@style": "width:204px"
             },
             {
-               "@src": "img/WW_tencel/bluse.svg"
+               "@src": "img/WW_tencel/bluse.jpg"
             }
          ]
       },
@@ -604,7 +604,7 @@ var products =[
                "@style": "width:204px"
             },
             {
-               "@src": "img/KCA/yarn.jpa",
+               "@src": "img/KCA/yarn.jpg",
                "@style": "width:204px"
             },
             {

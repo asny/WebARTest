@@ -170,13 +170,20 @@ $(function() {
 		productName.html(product.ProductName);	
 		teaser.html(product.Teaser);	
 		productImage.attr("src", IMG_FOLDER + product.img["@src"]);
-		var MAX_PROCESSES = 1;
+		var MAX_PROCESSES = 10;
+		var length = product.ProcessLine.Process.length;
 		for(var i=0; i < MAX_PROCESSES; i++) {
+
 			var process = processLine.find("div#Process" + i);
 			var description = process.find("span.ProcessDescription");
 			var image = process.find("img.ProcessImg");
-			description.html(product.ProcessLine.Process[i]["@name"]);
-			image.attr("src", IMG_FOLDER + product.ProcessLine.img[i]["@src"]);
+			if( i >= length) {
+				process.hide();
+			} else {
+				process.show();
+				description.html(product.ProcessLine.Process[i]["@name"]);
+				image.attr("src", IMG_FOLDER + product.ProcessLine.img[i]["@src"]);
+			}
 		}
 	}
 	
