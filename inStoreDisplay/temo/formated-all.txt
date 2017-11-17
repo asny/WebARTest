@@ -1,0 +1,250 @@
+#changes
+# add real quotes
+'<,'>s/"/"/ge
+# close image tags
+'<,'>s/<img\(.*\)>/<img\1><\/img>/ge
+# move everything in one indent
+Add product enclosing tags
+'<,'>s/<ProductName>\(\_.*\)EnvironmentalEffects>/<Product>\r\t<ProductName>\1EnvironmentalEffects>\r<\/Product>/ge
+#indent product one back
+'<,'>s/\t\(<Product>\)/\1/ge
+
+	Boody boxers
+<Product>
+	<ProductName>Boody</ProductName>
+	<img src="img/Boody/boody.png"></img>
+	<Teaser>Boody Boxers er lavet af bambus og er både allergivenlig og god for miljøet!</Teaser>
+	<ProcessLine>
+		<Process name="1. Dyrkning"></Process>
+		<img class="img-circle" src="img/Boody/1._Grown.PNG" style="width:204px"></img>
+		<Process name="2. Høst"></Process>
+		<img class="img-circle" src="img/Boody/2._Harvest.PNG" style="width:204px"></img>
+		<Process name="3. Processen"></Process>
+		<img class="img-circle" src="img/Boody/3._Process.PNG" style="width:204px"></img>
+		<Process name="4. Tørring"></Process>
+		<img class="img-circle" src="img/Boody/4._Dry.PNG" style="width:204px"></img>
+		<Process name="5. Knusning"></Process>
+		<img class="img-circle" src="img/Boody/5._Mill.PNG" style="width:204px"></img>
+		<Process name="6. Syning"></Process>
+		<img class="img-circle" src="img/Boody/6._Sew.PNG" style="width:204px"></img>
+		<Process name="7. Boxers"></Process>
+		<img class="img-circle" src="img/Boody/7._Boxers.PNG" style="width:204px"></img>
+	</ProcessLine>
+	<Certification>
+		<Certificate>Ingen kunstig vanding</Certificate>
+		<Certificate>Ingen pesticider</Certificate>
+		<Certificate>Ingen gødning</Certificate>
+	</Certification>
+	<EnvironmentalEffects>
+		<img src="img/Boody/chart_boody.svg"></img>
+		<effect name="Vand forbrug">66%</effect>
+	<effect name="Forhøjet iltproduktion">30%</effect>
+		<effect name="pesticider">0%</effect>
+	</EnvironmentalEffects>
+	Boody BH
+	<ProductName>Boody</ProductName>
+	<img src="img/Boody/boody.png"></img>
+	<Teaser>Boody BH er lavet af bambus og er både allergivenlig og god for miljøet!</Teaser>
+	<ProcessLine>
+		<Process name="1. Dyrkning"></Process>
+		<img class="img-circle" src="img/Boody/1._Grown.PNG" style="width:204px"></img>
+		<Process name="2. Høst"></Process>
+		<img class="img-circle" src="img/Boody/2._Harvest.PNG" style="width:204px"></img>
+		<Process name="3. Processen"></Process>
+		<img class="img-circle" src="img/Boody/3._Process.PNG" style="width:204px"></img>
+		<Process name="4. Tørring"></Process>
+		<img class="img-circle" src="img/Boody/4._Dry.PNG" style="width:204px"></img>
+		<Process name="5. Knusning"></Process>
+		<img class="img-circle" src="img/Boody/5._Mill.PNG" style="width:204px"></img>
+		<Process name="6. Syning"></Process>
+		<img class="img-circle" src="img/Boody/6._Sew.PNG" style="width:204px"></img>
+		<Process name="7. BH"></Process>
+		<img class="img-circle" src="img/Boody/7._BH.PNG" style="width:204px"></img>
+	</ProcessLine>
+	<Certification>
+		<Certificate>Ingen kunstig vanding</Certificate>
+		<Certificate>Ingen pesticider</Certificate>
+		<Certificate>Ingen gødning</Certificate>
+	</Certification>
+	<EnvironmentalEffects>
+		<img src="img/Boody/chart_boody.svg"></img>
+		<effect name="Vand forbrug">66%</effect>
+	<effect name="Forhøjet iltproduktion">30%</effect>
+		<effect name="pesticider">0%</effect>
+	</EnvironmentalEffects>
+	Neutral T shirt Herre og Dame
+	<ProductName>Boody</ProductName>
+	<img src="img/Neutral/Logo.eps"></img>
+	<Teaser>Boody Boxers er lavet af bambus og er både allergivenlig og god for miljøet!</Teaser>
+	<ProcessLine>
+		<Process name="100% Økologisk dyrket"></Process>
+		<img src="img/Neutral/Dyrkning.png"></img>
+		<Process name="Fairtrade handel"></Process>
+		<img src="img/Neutral/Fairtrade.png"></img>
+		<Process name="Certificeret arbejdsforhold"></Process>
+		<img src="img/Neutral/Arbejdsforhold.png"></img>
+		<Process name="En bæredygtig T-shirt på alle parametre!"></Process>
+		<img src="img/Neutral/Sustainable.png"></img>
+	</ProcessLine>
+	<Certification>
+		<Certificate>Bæredygtig bomuld</Certificate>
+		<Certificate>Ingen pesticider</Certificate>
+		<Certificate>Ingen gødning</Certificate>
+	</Certification>
+	<EnvironmentalEffects>
+		<img class="img-circle" src="img/Boody/chart_Neutral.svg"></img>
+		<effect name="Pesticide forbrug globalt">24%</effect>
+	<effect name="Insekticide forbrug globalt">11%</effect>
+		<effect name="Dyrket jord globalt">2%</effect>
+	</EnvironmentalEffects>
+	Underprotection undertøjssæt
+	<ProductName>Underprotection</ProductName>
+	<img src="img/Underprotection/logo.jpg"></img>
+	<Teaser>Underprotection undertøjssæt er lavet af genanvendt PET plast fra flasker!</Teaser>
+	<ProcessLine>
+		<Process name="PET plast"></Process>
+		<img src="img/Underprotection/Recycle_plastic.PNG"></img>
+		<Process name="Design af tøj"></Process>
+		<img class="img-circle" src="img/Underprotection/UP_Designer.jpg" style="width:204px"></img>
+		<Process name="Ordentlige arbejdsforhold"></Process>
+		<img class="img-circle" src="img/Underprotection/UP_production.jpg" style="width:204px"></img>
+		<Process name="Undertøjssæt af genbrugt plast"></Process>
+		<img class="img-circle" src="img/Underprotection/UP_top.jpg" style="width:204px"></img>
+		<img class="img-circle" src="img/Underprotection/UP_down.jpg" style="width:204px"></img>
+	</ProcessLine>
+	<Certification>
+		<Certificate>Genbrugt PET</Certificate>
+	</Certification>
+	<EnvironmentalEffects>
+		<img src="img/Underprotection/Chart_UP.svg"></img>
+		<effect name="Energi forbrug">50%</effect>
+	<effect name="CO2 udledning">25%</effect>
+		<effect name="Vand forbrug">10%</effect>
+	</EnvironmentalEffects>
+	Pinqponq taske
+	<ProductName>Pinqponq</ProductName>
+	<img src="img/Pinqponq/Logo_vector.png"></img>
+	<Teaser>Pinqponq tasken er lavet af genbrugte plastflasker samlet fra havet om Taiwan</Teaser>
+	<ProcessLine>
+		<Process name="Plast fra havet"></Process>
+		<img class="img-circle" src="img/Pinqponq/Transport.PNG" style="width:204px"></img>
+		<Process name="PET genbrug"></Process>
+		<img class="img-circle" src="img/Pinqponq/bottle_Man.PNG" style="width:204px"></img>
+		<Process name="Bearbejdning af plast"></Process>
+		<img class="img-circle" src="img/Pinqponq/colouring.PNG" style="width:204px"></img>
+		<Process name="Taske"></Process>
+		<img class="img-circle" src="img/Pinqponq/taske.PNG" style="width:204px"></img>
+	</ProcessLine>
+	<Certification>
+		<Certificate>PET genbrug</Certificate>
+	</Certification>
+	<EnvironmentalEffects>
+		<img src="img/Pinqponq/Pinqponq_chart.svg"></img>
+		<effect name="Energi forbrug">50%</effect>
+	<effect name="CO2 udledning">25%</effect>
+		<effect name="Vand forbrug">10%</effect>
+	</EnvironmentalEffects>
+	Swedish stockings – strømpebukser
+	<ProductName>Swedish Stockings</ProductName>
+	<img src="img/SS/SS.jpg"></img>
+	<Teaser>Swedish stocking laves af genbrugt PA nylon og kan sendes til genbrug igen!</Teaser>
+	<ProcessLine>
+		<Process name="Solcelle dreven produktion"></Process>
+		<img class="img-circle" src="img/SS/solar_power.png"
+		<Process name="Mindre vandspild"></Process>
+		<img class="img-circle" src="img/SS/Water.png"></img>
+		<Process name="Cirkulært genbrug"></Process>
+		<img class="img-circle" src="img/SS/Recycling.svg"></img>
+		<Process name="Strømpebukser af genbrug"></Process>
+		<img class="img-circle" src="img/SS/Stocking.PNG"></img>
+	</ProcessLine>
+	<Certification>
+		<Certificate>Genbrug af strømpebukser</Certificate>
+	</Certification>
+	<EnvironmentalEffects>
+		<img src="img/Boody/PA_chart-png"></img>
+		<effect name="Vand forbrug">24%</effect>
+	<effect name="Almindelig energi">13%</effect>
+		<effect name="Virgin material">10%</effect>
+	</EnvironmentalEffects>
+	Wunderwerk Jeans
+	<ProductName>Boody</ProductName>
+	<img src="img/Boody/Boody.jpg"></img>
+	<Teaser>Boody Boxers er lavet af bambus og er både allergivenlig og god for miljøet!</Teaser>
+	<ProcessLine>
+		<Process name="1. Dyrkning"></Process>
+		<img class="img-circle" src="img/Boody/1._Grown.PNG" style="width:204px"></img>
+		<Process name="1. Dyrkning"></Process>
+		<img class="img-circle" src="img/Boody/2._Harvest.PNG" style="width:204px"></img>
+		<Process name="1. Dyrkning"></Process>
+		<img class="img-circle" src="img/Boody/3._Process.PNG" style="width:204px"></img>
+		<Process name="1. Dyrkning"></Process>
+		<img class="img-circle" src="img/Boody/4._Dry.PNG" style="width:204px"></img>
+		<Process name="1. Dyrkning"></Process>
+		<img class="img-circle" src="img/Boody/5._Mill.PNG" style="width:204px"></img>
+		<Process name="1. Dyrkning"></Process>
+		<img class="img-circle" src="img/Boody/6._Sew.PNG" style="width:204px"></img>
+		<Process name="1. Dyrkning"></Process>
+		<img class="img-circle" src="img/Boody/7._Boody.PNG" style="width:204px"></img>
+	</ProcessLine>
+	<Certification>
+		<Certificate>Bæredygtig bomuld</Certificate>
+		<Certificate>Ingen pesticider</Certificate>
+		<Certificate>Ingen gødning</Certificate>
+	</Certification>
+	<EnvironmentalEffects>
+		<img class="img-circle" src="img/Boody/bamboo_icon.svg" style="width:204px"></img>
+		<effect name="Vand forbrug">66%</effect>
+	<effect name="Forhøjet iltproduktion">30%</effect>
+		<effect name="pesticider">0%</effect>
+	</EnvironmentalEffects>
+	Wunderwerk Tencel bluse
+	<ProductName>Wunderwerk</ProductName>
+	<img src="img/WW_Tencel/Wunderwerk.png"></img>
+	<img src="img/WW_Tencel/tencel.jpg"></img>
+	<Teaser>Wunderwerk bluse er lavet af Tencel, som laves af bøge- og eukalyptus trærer!</Teaser>
+	<ProcessLine>
+		<Process name="Tencel proces"></Process>
+		<img class="img-circle" src="img/WW_Tencel/process.PNG"></img>
+		<Process name="Bæredygtigt stof"></Process>
+		<img class="img-circle" src="img/WW_Tencel/tencel.jpg" style="width:204px"></img>
+		<Process name="Luksuriøs og bæredygtig bluse"></Process>
+		<img class="img-circle" src="img/WW_tencel/bluse.svg"></img>
+	</ProcessLine>
+	<Certification>
+		<Certificate>Eocotex</Certificate>
+		<Certificate>Europæisk certificeret</Certificate>
+		<Certificate>Prisvindende stof</Certificate>
+	</Certification>
+	<EnvironmentalEffects>
+		<img class="img-circle" src="img/WW_tencel/Tencel_chart.svg"></img>
+		<effect name="Vand forbrug">66%</effect>
+	<effect name="Forhøjet iltproduktion">30%</effect>
+		<effect name="pesticider">0%</effect>
+	</EnvironmentalEffects>
+	Knowledge cotton apparel – uld hue
+	<ProductName>Knowledge Cotton Apparel</ProductName>
+	<img src="img/KCA/KCA.jpg"></img>
+	<Teaser>Knowledge cotton apparel uld hue er lavet af økologisk uld af får på græs!!</Teaser>
+	<ProcessLine>
+		<Process name="Glade får"></Process>
+		<img class="img-circle" src="img/KCA/Happy_sheep1.jpg" style="width:204px"></img>
+		<Process name="100% økologisk uld"></Process>
+		<img class="img-circle" src="img/KCA/wool_sheared.jpg" style="width:204px"></img>
+		<Process name="Allergivenlig og blødt"></Process>
+		<img class="img-circle" src="img/KCA/yarn.jpa" style="width:204px"></img>
+		<Process name="Komfort i hue"></Process>
+		<img class="img-circle" src="img/KCA/Hue.jpg"></img>
+	</ProcessLine>
+	<Certification>
+		<Certificate>Bæredygtig fårproduktion</Certificate>
+		<Certificate>Ingen mulesing</Certificate>
+		<Certificate>Ingen insekticider</Certificate>
+	</Certification>
+	<EnvironmentalEffects>
+		<img class="img-circle" src="img/KCA/KCA_chart.svg"></img>
+		<effect name="Merino får med mulesing">50%</effect>
+		<effect name="Økologisk uld">10%</effect>
+		<effect name="Insekticider">0%</effect>
+	</EnvironmentalEffects>
+</Product>
