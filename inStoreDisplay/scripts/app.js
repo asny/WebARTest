@@ -25,6 +25,9 @@ $(function() {
 	var activeView;
 	var animationLock = null;
 
+	// PRODUCT INFO
+	var productName = $("#ProductName");
+
 	function update() {
 	}
 
@@ -157,9 +160,17 @@ $(function() {
 	welcome.hide();
 	
 	showWelcomeScreen();
+
+	function loadProductToView(product) {
+		console.log(product);
+		productName.html(product.ProductName);	
+
+	}
 	
 	function showProduct(id) {
 		console.log("requesting product " + id);
+		var product = products[id];
+		loadProductToView(product);
 	}
 
 	document.addEventListener('keydown', 
