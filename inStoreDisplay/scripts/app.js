@@ -27,6 +27,7 @@ $(function() {
 
 	// PRODUCT INFO
 	var productName = $("#ProductName");
+	var teaser = $("#Teaser");
 
 	function update() {
 	}
@@ -164,6 +165,7 @@ $(function() {
 	function loadProductToView(product) {
 		console.log(product);
 		productName.html(product.ProductName);	
+		teaser.html(product.Teaser);	
 
 	}
 	
