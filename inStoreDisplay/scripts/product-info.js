@@ -239,7 +239,7 @@ var products =[
       "ProductTitle": "Underprotection undertøjssæt",
       "ProductName": "Underprotection",
       "img": {
-         "@src": "img/Underprotection/logo.jpg"
+         "@src": "img/Underprotection/logo.png"
       },
       "Teaser": "Underprotection undertøjssæt er lavet af genanvendt PET plast fra flasker!",
       "ProcessLine": {
@@ -370,7 +370,7 @@ var products =[
       "ProductTitle": "Swedish stockings – strømpebukser",
       "ProductName": "Swedish Stockings",
       "img": {
-         "@src": "img/SS/SS.jpg"
+         "@src": "img/SS/SS.png"
       },
       "Teaser": "Swedish stocking laves af genbrugt PA nylon og kan sendes til genbrug igen!",
       "ProcessLine": {

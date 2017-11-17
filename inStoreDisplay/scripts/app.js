@@ -28,6 +28,7 @@ $(function() {
 	// PRODUCT INFO
 	var productName = $("#ProductName");
 	var teaser = $("#Teaser");
+	var productImage = $("#ProductImage");
 
 	function update() {
 	}
@@ -164,8 +165,10 @@ $(function() {
 
 	function loadProductToView(product) {
 		console.log(product);
+		var IMG_FOLDER = "css/";
 		productName.html(product.ProductName);	
 		teaser.html(product.Teaser);	
+		productImage.attr("src", IMG_FOLDER + product.img["@src"]);
 
 	}
 	
