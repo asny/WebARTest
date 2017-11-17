@@ -29,7 +29,6 @@ Boody boxers
 <effect name=”Forhøjet iltproduktion”>30%</effect>
 	<effect name=”pesticider”>0%</effect>
 </EnvironmentalEffects>
-
 Boody BH
 <ProductName>Boody</ProductName>
 <img src=”img/Boody/boody.png”>
@@ -86,8 +85,7 @@ Boody BH
 <effect name=”Insekticide forbrug globalt”>11%</effect>
 	<effect name=”Dyrket jord globalt”>2%</effect>
 </EnvironmentalEffects>
-
-Underprotection undertøjssæt
+Underprotection undertøjssæt
 <ProductName>Underprotection</ProductName>
 <img src=”img/Underprotection/logo.jpg”>
 <Teaser>Underprotection undertøjssæt er lavet af genanvendt PET plast fra flasker!</Teaser>
@@ -111,7 +109,7 @@ Boody BH
 <effect name=”CO2 udledning”>25%</effect>
 	<effect name=”Vand forbrug”>10%</effect>
 </EnvironmentalEffects>
-Pinqponq taske
+Pinqponq taske
 <ProductName>Pinqponq</ProductName>
 <img src=”img/Pinqponq/Logo_vector.png”>
 <Teaser>Pinqponq tasken er lavet af genbrugte plastflasker samlet fra havet om Taiwan</Teaser>
@@ -134,7 +132,7 @@ Boody BH
 <effect name=”CO2 udledning”>25%</effect>
 	<effect name=”Vand forbrug”>10%</effect>
 </EnvironmentalEffects>
-Swedish stockings – strømpebukser
+Swedish stockings – strømpebukser
 <ProductName>Swedish Stockings</ProductName>
 <img src=”img/SS/SS.jpg”>
 <Teaser>Swedish stocking laves af genbrugt PA nylon og kan sendes til genbrug igen!</Teaser>
@@ -157,7 +155,7 @@ Boody BH
 <effect name=”Almindelig energi”>13%</effect>
 	<effect name=”Virgin material”>10%</effect>
 </EnvironmentalEffects>
-Wunderwerk Jeans
+Wunderwerk Jeans
 <ProductName>Boody</ProductName>
 <img src=”img/Boody/Boody.jpg”>
 <Teaser>Boody Boxers er lavet af bambus og er både allergivenlig og god for miljøet!</Teaser>
@@ -188,7 +186,7 @@ Boody BH
 <effect name=”Forhøjet iltproduktion”>30%</effect>
 	<effect name=”pesticider”>0%</effect>
 </EnvironmentalEffects>
-Wunderwerk Tencel bluse
+Wunderwerk Tencel bluse
 <ProductName>Wunderwerk</ProductName>
 <img src=”img/WW_Tencel/Wunderwerk.png”>
 <img src=”img/WW_Tencel/tencel.jpg”>
@@ -212,7 +210,7 @@ Boody BH
 <effect name=”Forhøjet iltproduktion”>30%</effect>
 	<effect name=”pesticider”>0%</effect>
 </EnvironmentalEffects>
-Knowledge cotton apparel – uld hue
+Knowledge cotton apparel – uld hue
 <ProductName>Knowledge Cotton Apparel</ProductName>
 <img src=”img/KCA/KCA.jpg”>
 <Teaser>Knowledge cotton apparel uld hue er lavet af økologisk uld af får på græs!!</Teaser>
@@ -237,4 +235,3 @@ Boody BH
 	<effect name=”Økologisk uld”>10%</effect>
 	<effect name=”Insekticider”>0%</effect>
 </EnvironmentalEffects>
-
