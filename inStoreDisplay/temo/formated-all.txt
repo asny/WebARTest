@@ -9,14 +9,14 @@ Add product enclosing tags
 #indent product one back
 '<,'>s/\t\(<Product>\)/\1/ge
 
-	Boody boxers
 <Product>
+	<ProductTitle>Boody boxers</ProductTitle>
 	<ProductName>Boody</ProductName>
 	<img src="img/Boody/boody.png"></img>
 	<Teaser>Boody Boxers er lavet af bambus og er både allergivenlig og god for miljøet!</Teaser>
 	<ProcessLine>
 		<Process name="1. Dyrkning"></Process>
-		<img class="img-circle" src="img/Boody/1._Grown.PNG" style="width:204px"></img>
+	<img class="img-circle" src="img/Boody/1._Grown.PNG" style="width:204px"></img>
 		<Process name="2. Høst"></Process>
 		<img class="img-circle" src="img/Boody/2._Harvest.PNG" style="width:204px"></img>
 		<Process name="3. Processen"></Process>
@@ -41,7 +41,9 @@ Add product enclosing tags
 	<effect name="Forhøjet iltproduktion">30%</effect>
 		<effect name="pesticider">0%</effect>
 	</EnvironmentalEffects>
-	Boody BH
+</Product>
+<Product>
+	<ProductTitle>Boody BH</ProductTitle>
 	<ProductName>Boody</ProductName>
 	<img src="img/Boody/boody.png"></img>
 	<Teaser>Boody BH er lavet af bambus og er både allergivenlig og god for miljøet!</Teaser>
@@ -72,7 +74,9 @@ Add product enclosing tags
 	<effect name="Forhøjet iltproduktion">30%</effect>
 		<effect name="pesticider">0%</effect>
 	</EnvironmentalEffects>
-	Neutral T shirt Herre og Dame
+</Product>
+<Product>
+	<ProductTitle>Neutral T shirt Herre og Dame</ProductTitle>
 	<ProductName>Boody</ProductName>
 	<img src="img/Neutral/Logo.eps"></img>
 	<Teaser>Boody Boxers er lavet af bambus og er både allergivenlig og god for miljøet!</Teaser>
@@ -97,7 +101,9 @@ Add product enclosing tags
 	<effect name="Insekticide forbrug globalt">11%</effect>
 		<effect name="Dyrket jord globalt">2%</effect>
 	</EnvironmentalEffects>
-	Underprotection undertøjssæt
+</Product>
+<Product>
+	<ProductTitle>Underprotection undertøjssæt</ProductTitle>
 	<ProductName>Underprotection</ProductName>
 	<img src="img/Underprotection/logo.jpg"></img>
 	<Teaser>Underprotection undertøjssæt er lavet af genanvendt PET plast fra flasker!</Teaser>
@@ -121,7 +127,9 @@ Add product enclosing tags
 	<effect name="CO2 udledning">25%</effect>
 		<effect name="Vand forbrug">10%</effect>
 	</EnvironmentalEffects>
-	Pinqponq taske
+</Product>
+<Product>
+	<ProductTitle>Pinqponq taske</ProductTitle>
 	<ProductName>Pinqponq</ProductName>
 	<img src="img/Pinqponq/Logo_vector.png"></img>
 	<Teaser>Pinqponq tasken er lavet af genbrugte plastflasker samlet fra havet om Taiwan</Teaser>
@@ -144,7 +152,9 @@ Add product enclosing tags
 	<effect name="CO2 udledning">25%</effect>
 		<effect name="Vand forbrug">10%</effect>
 	</EnvironmentalEffects>
-	Swedish stockings – strømpebukser
+</Product>
+<Product>
+	<ProductTitle>Swedish stockings – strømpebukser</ProductTitle>
 	<ProductName>Swedish Stockings</ProductName>
 	<img src="img/SS/SS.jpg"></img>
 	<Teaser>Swedish stocking laves af genbrugt PA nylon og kan sendes til genbrug igen!</Teaser>
@@ -167,7 +177,9 @@ Add product enclosing tags
 	<effect name="Almindelig energi">13%</effect>
 		<effect name="Virgin material">10%</effect>
 	</EnvironmentalEffects>
-	Wunderwerk Jeans
+</Product>
+<Product>
+	<ProductTitle>Wunderwerk Jeans</ProductTitle>
 	<ProductName>Boody</ProductName>
 	<img src="img/Boody/Boody.jpg"></img>
 	<Teaser>Boody Boxers er lavet af bambus og er både allergivenlig og god for miljøet!</Teaser>
@@ -198,7 +210,9 @@ Add product enclosing tags
 	<effect name="Forhøjet iltproduktion">30%</effect>
 		<effect name="pesticider">0%</effect>
 	</EnvironmentalEffects>
-	Wunderwerk Tencel bluse
+</Product>
+<Product>
+	<ProductTitle>Wunderwerk Tencel bluse</ProductTitle>
 	<ProductName>Wunderwerk</ProductName>
 	<img src="img/WW_Tencel/Wunderwerk.png"></img>
 	<img src="img/WW_Tencel/tencel.jpg"></img>
@@ -222,7 +236,9 @@ Add product enclosing tags
 	<effect name="Forhøjet iltproduktion">30%</effect>
 		<effect name="pesticider">0%</effect>
 	</EnvironmentalEffects>
-	Knowledge cotton apparel – uld hue
+</Product>
+<Product>
+	<ProductTitle>Knowledge cotton apparel – uld hue</ProductTitle>
 	<ProductName>Knowledge Cotton Apparel</ProductName>
 	<img src="img/KCA/KCA.jpg"></img>
 	<Teaser>Knowledge cotton apparel uld hue er lavet af økologisk uld af får på græs!!</Teaser>
