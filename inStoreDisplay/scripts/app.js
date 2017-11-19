@@ -28,6 +28,7 @@ $(function() {
 
 	// PRODUCT INFO
 	var productName = $("#ProductName");
+	var productTitle = $("#ProductTitle");
 	var teaser = $("#Teaser");
 	var productImage = $("#ProductImage");
 	var processLine = $("#ProcessLine");
@@ -130,7 +131,6 @@ $(function() {
 
 	function showProductInfo() {
 		var alreadyAtProductInfo = activeView === productInfo;
-		console.log(alreadyAtProductInfo + "OMGOMGOMG");
 		if(!canLockAnimation(productInfo)) return;
 		activeView = productInfo;
 		console.log("showProductInfo");
@@ -203,8 +203,8 @@ $(function() {
 	
 
 	function loadProductToView(product) {
-		console.log(product);
 		var IMG_FOLDER = "css/";
+		productTitle.html(product.ProductTitle);
 		productName.html(product.ProductName);	
 		teaser.html(product.Teaser);	
 		productImage.attr("src", IMG_FOLDER + product.img["@src"]);
@@ -237,7 +237,7 @@ $(function() {
 			certificationsData = product.Certification;
 		}
 		length = certificationsData.length;
-		console.log(length);
+
 		for(var i=0; i < MAX_CERTIFICATIONS; i++) {
 			var certification = certifications.find("div#Certification" + i);
 			if(i >= length) {
@@ -245,7 +245,6 @@ $(function() {
 			} else {
 				certification.show();
 				certification.html(certificationsData[i]);	
-				console.log(certificationsData[i]);
 			}
 		}
 
