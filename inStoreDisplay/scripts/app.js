@@ -45,21 +45,32 @@ $(function() {
 	}
 
 
-	function canChangeView(view) {
+	function canLockAnimation(view) {
 		if(animationLock !== null) return false;  
 
 		// dont animate view if already shown
-		if(activeView === view) return false;
+		//if(activeView === view) return false;
 
 		// register view as active
-		activeView = view;
+	//	activeView = view;
 		// set animation lock
 		animationLock = view;
 		return true;
 	}
 
+	function freeAnimationLock(view) {
+		if(animationLock !== view) {
+			console.log("trying to free lock that is not owned. Not cool.");
+		}
+		animationLock = null;
+
+
+
+	}
+
 	function showWelcomeScreen() {
-		if(!canChangeView(welcome)) return;
+		console.log("want to show welcome screen");
+		if(!canLockAnimation(welcome)) return;
 		console.log("showWelcomeScreen");
 
 		hideProductInfo(function() {
@@ -82,7 +93,7 @@ $(function() {
 				},
 				complete: function() {
 					background.css('filter', getBlur(0)); 
-					animationLock = null;
+					freeAnimationLock(welcome);
 				}
 			});
 		});
@@ -107,7 +118,6 @@ $(function() {
 			},
 			complete: function() {
 				background.css('filter', getBlur(1)); 
-				animationLock = null;
 				welcome.hide();
 				onComplete();
 			}
@@ -115,12 +125,11 @@ $(function() {
 	}
 
 	function showProductInfo() {
-		if(!canChangeView(productInfo)) return;
+		var alreadyAtProductInfo = activeView === productInfo;
+		if(!canLockAnimation(productInfo)) return;
 		console.log("showProductInfo");
 
-		// hacky and hardcoded stuff
-		HideWelcomeScreen( function() {
-
+		var doShowProductView = function() {
 			productInfo.show();
 			chart.show();
 
@@ -132,10 +141,19 @@ $(function() {
 			productInfo.panel.css('margin-left', "-" + panelSize);
 			
 			$(productInfo.panel).animate({
-				marginLeft: getPixels(0)
-			}, panelDuration, null);
+				marginLeft: getPixels(0)}, 
+				panelDuration, 
+				function() { freeAnimationLock(productInfo);  } );
+		}
 
-		});
+		// hacky and hardcoded stuff
+		if(alreadyAtProductInfo) {
+			console.log("todo");
+		} else {
+			HideWelcomeScreen( doShowProductView );
+		}
+
+
 	}
 
 	function hideProductInfo(onComplete) {
@@ -228,8 +246,7 @@ $(function() {
 			chart.entries[i] = new ChartEntry(percentage, "omg");
 		}
 
-		console.log(chart.entries);
-		
+			
 
 	}
 	
