@@ -259,10 +259,11 @@ $(function() {
 		for(var i=0; i < length; i++) {
 			// has a percentage at the end, which we slice away
 			var percentage = effects[i]["#text"].slice(0,-1);
+			var name = effects[i]["@name"];
 			// we need normalized value
 			percentage /= 100;
 
-			chart.entries[i] = new ChartEntry(percentage, "omg");
+			chart.entries[i] = new ChartEntry(percentage, name);
 		}
 
 			

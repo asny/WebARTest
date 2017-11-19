@@ -33,6 +33,11 @@ function Chart () {
 	this.show = function() {
 		this.animate(0,1);
 
+		this.label0.html(this.entries[0].title);
+		this.label1.html(this.entries[1].title);
+		this.label2.html(this.entries[2].title);
+
+
 		var duration = 200;
 		var offset = 500;
 		var total = 400;
