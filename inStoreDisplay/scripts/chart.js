@@ -14,19 +14,42 @@ function Chart () {
 	];
 	
 	this.init = function() {
+		this.label0 = $("div#chart li.0");	
+		this.label1 = $("div#chart li.1");	
+		this.label2 = $("div#chart li.2");	
+
+		this.label0.hide();
+		this.label1.hide();
+		this.label2.hide();
 
 	};
 
+	this.hideLabels = function(){
+		this.label0.fadeOut(0);
+		this.label1.fadeOut(0);
+		this.label2.fadeOut(0);
+	}
+
 	this.show = function() {
 		this.animate(0,1);
+
+		var duration = 200;
+		var offset = 500;
+		var total = 400;
+		this.label0.delay(offset + 0).fadeIn(200);
+		this.label1.delay(offset + 200).fadeIn(200);
+		this.label2.delay(offset + 400).fadeIn(200);
 	};
 
 	this.hide = function(duration) {
 		this.animate(1,0, duration);
+		this.hideLabels();
 	};
 
 	this.animate = function(from, to, duration) {
 		var o = this;
+
+
 
 		$({ t:from }).animate( { t:to }, {
 			duration: duration,
@@ -56,7 +79,6 @@ function Chart () {
 			this.drawArc(context, centerX, centerY, radius, lineWidth, magnitude, t);
 			radius += radiusDelta;
 		}
-
 	}
 
 	this.drawArc = function(context, centerX, centerY, radius, lineWidth, magnitude, t) {
@@ -80,8 +102,6 @@ function Chart () {
 		context.stroke();
 
 	};
-
-	
 }
 
 

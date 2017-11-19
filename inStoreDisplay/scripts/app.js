@@ -174,9 +174,11 @@ $(function() {
 		// effects
 		chart.hide(config['changePageDuration'] * 0.5);
 
+		var duration = config['hideProductViewDuration'];
+
 		// main animation
 		$({ t:0 }).animate( { t:1 }, {
-			duration: config['changePageDuration'],
+			duration: duration,
 			step: function(now,fx) {
 				productInfo.css('opacity', 1-now);
 			},
@@ -260,9 +262,11 @@ $(function() {
 	}
 	
 	function showProduct(id) {
+		if(animationLock 
 		console.log("requesting product " + id);
 		var product = products[id];
 		loadProductToView(product);
+		showProductInfo();
 	}
 
 	document.addEventListener('keydown', 
