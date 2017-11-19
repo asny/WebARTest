@@ -44,7 +44,6 @@ $(function() {
 		return t + "px";
 	}
 
-
 	function canLockAnimation(view) {
 		if(animationLock !== null) return false;  
 
@@ -72,6 +71,7 @@ $(function() {
 		console.log("want to show welcome screen");
 		if(!canLockAnimation(welcome)) return;
 		console.log("showWelcomeScreen");
+		activeView = welcome;
 
 		hideProductInfo(function() {
 
@@ -85,7 +85,6 @@ $(function() {
 				marginTop: logoMarginTop
 			}, logoOutDuration, null);
 
-
 			$({ t:0 }).animate( { t:1 }, {
 				duration: config['changePageDuration'],
 				step: function(now,fx) {
@@ -97,8 +96,6 @@ $(function() {
 				}
 			});
 		});
-
-
 	}
 
 	function HideWelcomeScreen(onComplete) {
@@ -126,7 +123,9 @@ $(function() {
 
 	function showProductInfo() {
 		var alreadyAtProductInfo = activeView === productInfo;
+		console.log(alreadyAtProductInfo + "OMGOMGOMG");
 		if(!canLockAnimation(productInfo)) return;
+		activeView = productInfo;
 		console.log("showProductInfo");
 
 		var doShowProductView = function() {
