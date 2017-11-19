@@ -21,13 +21,11 @@ function Chart () {
 		this.animate(0,1);
 	};
 
-	this.hide = function() {
-		this.animate(1,0);
+	this.hide = function(duration) {
+		this.animate(1,0, duration);
 	};
 
-	this.animate = function(from, to) {
-
-		var duration = 1000;
+	this.animate = function(from, to, duration) {
 		var o = this;
 
 		$({ t:from }).animate( { t:to }, {
@@ -36,7 +34,7 @@ function Chart () {
 				o.drawEntries(o.entries, now);
 			},
 			complete: function() {
-				o.drawEntries(o.entries, 1);
+				o.drawEntries(o.entries, to);
 			}
 		});
 	}

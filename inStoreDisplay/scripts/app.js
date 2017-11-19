@@ -121,6 +121,12 @@ $(function() {
 		});
 	}
 
+	function hideProductInfoWithLeftMarginOffset() {
+		var panelSize = productInfo.panel.css('width');
+		// hide panel
+		productInfo.panel.css('margin-left', "-" + panelSize);
+	}
+
 	function showProductInfo() {
 		var alreadyAtProductInfo = activeView === productInfo;
 		console.log(alreadyAtProductInfo + "OMGOMGOMG");
@@ -130,14 +136,12 @@ $(function() {
 
 		var doShowProductView = function() {
 			productInfo.show();
+			productInfo.css('opacity', 1);
 			chart.show();
 
 			// effects 
-			var panelSize = productInfo.panel.css('width');
-			console.log(panelSize);
-			var panelDuration = 200;
-			// hide panel
-			productInfo.panel.css('margin-left', "-" + panelSize);
+			var panelDuration = config['showProductViewDuration'];
+			hideProductInfoWithLeftMarginOffset();
 			
 			$(productInfo.panel).animate({
 				marginLeft: getPixels(0)}, 
@@ -147,13 +151,18 @@ $(function() {
 
 		// hacky and hardcoded stuff
 		if(alreadyAtProductInfo) {
-			console.log("todo");
+			flipProductInfo( doShowProductView );
 		} else {
 			HideWelcomeScreen( doShowProductView );
 		}
 
 
 	}
+
+	function flipProductInfo(callback) {
+		hideProductInfo(callback);
+	}
+
 
 	function hideProductInfo(onComplete) {
 		console.log("hide product info");
@@ -163,12 +172,13 @@ $(function() {
 		}
 
 		// effects
-		chart.hide();
+		chart.hide(config['changePageDuration'] * 0.5);
 
 		// main animation
 		$({ t:0 }).animate( { t:1 }, {
 			duration: config['changePageDuration'],
 			step: function(now,fx) {
+				productInfo.css('opacity', 1-now);
 			},
 			complete: function() {
 				productInfo.hide();
