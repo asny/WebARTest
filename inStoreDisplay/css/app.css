@@ -90,3 +90,6 @@ img#ProductImage {
 	height:auto;
 }
 
+img.ProcessImg {
+	width:204px;
+}
