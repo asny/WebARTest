@@ -200,6 +200,7 @@ $(function() {
 	welcome.hide();
 	
 	showWelcomeScreen();
+	
 
 	function loadProductToView(product) {
 		console.log(product);
