@@ -30,6 +30,7 @@ $(function() {
 	var teaser = $("#Teaser");
 	var productImage = $("#ProductImage");
 	var processLine = $("#ProcessLine");
+	var certifications = $("#Certifications");
 
 	function update() {
 	}
@@ -170,6 +171,8 @@ $(function() {
 		productName.html(product.ProductName);	
 		teaser.html(product.Teaser);	
 		productImage.attr("src", IMG_FOLDER + product.img["@src"]);
+
+		// process
 		var MAX_PROCESSES = 10;
 		var length = product.ProcessLine.Process.length;
 		for(var i=0; i < MAX_PROCESSES; i++) {
@@ -185,6 +188,49 @@ $(function() {
 				image.attr("src", IMG_FOLDER + product.ProcessLine.img[i]["@src"]);
 			}
 		}
+
+		// certifications
+		var MAX_CERTIFICATIONS = 5;
+		var certificationsData;
+		// sometimes product.Certification is an object, sometimes  a list. This is a hacky
+		// chaos that deals with this madness. yes . 
+		if(product.Certification.length === undefined) {
+			certificationsData = [ product.Certification.Certificate];
+		} else { 
+			certificationsData = product.Certification;
+		}
+		length = certificationsData.length;
+		console.log(length);
+		for(var i=0; i < MAX_CERTIFICATIONS; i++) {
+			var certification = certifications.find("div#Certification" + i);
+			if(i >= length) {
+				certification.hide();
+			} else {
+				certification.show();
+				certification.html(certificationsData[i]);	
+				console.log(certificationsData[i]);
+			}
+		}
+
+		// chart entries
+		var MAX_ENTRIES = 3;
+		var effects = product.EnvironmentalEffects.effect; 
+		var length = effects.length;
+		// clear current entries
+		chart.entries = [];
+
+		for(var i=0; i < length; i++) {
+			// has a percentage at the end, which we slice away
+			var percentage = effects[i]["#text"].slice(0,-1);
+			// we need normalized value
+			percentage /= 100;
+
+			chart.entries[i] = new ChartEntry(percentage, "omg");
+		}
+
+		console.log(chart.entries);
+		
+
 	}
 	
 	function showProduct(id) {
