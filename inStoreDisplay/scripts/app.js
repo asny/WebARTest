@@ -24,6 +24,7 @@ $(function() {
 
 	var activeView;
 	var animationLock = null;
+	var currentProductId = 0;
 
 	// PRODUCT INFO
 	var productName = $("#ProductName");
@@ -134,6 +135,8 @@ $(function() {
 		activeView = productInfo;
 		console.log("showProductInfo");
 
+		var product = products[currentProductId];
+
 		var doShowProductView = function() {
 			productInfo.show();
 			productInfo.css('opacity', 1);
@@ -151,8 +154,12 @@ $(function() {
 
 		// hacky and hardcoded stuff
 		if(alreadyAtProductInfo) {
-			flipProductInfo( doShowProductView );
+			flipProductInfo( function() {
+				loadProductToView(product);
+				doShowProductView();
+			});
 		} else {
+			loadProductToView(product);
 			HideWelcomeScreen( doShowProductView );
 		}
 
@@ -260,12 +267,14 @@ $(function() {
 			
 
 	}
+
 	
 	function showProduct(id) {
-		if(animationLock 
+		if(animationLock !== null || currentProductId == id) {
+			return;
+		}
 		console.log("requesting product " + id);
-		var product = products[id];
-		loadProductToView(product);
+		currentProductId = id;
 		showProductInfo();
 	}
 
