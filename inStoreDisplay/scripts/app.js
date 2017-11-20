@@ -145,8 +145,9 @@ $(function() {
 
 			// effects, hacky, should use futures
 			var totalDuration = config['showProductViewDuration'];
-			var panelDuration = totalDuration / 2;
-			var chartDuration = totalDuration / 2;
+			var panelDuration = totalDuration * 0.25;
+			var chartDuration = totalDuration * 0.25;
+			var processDuration = totalDuration * 0.5;
 			hideProductInfoWithLeftMarginOffset();
 
 			var finalize = function() {
@@ -157,6 +158,33 @@ $(function() {
 				chart.show(chartDuration);
 			};
 
+
+
+			for(var i = 0; i < activeProcesses.length; i++) {
+				activeProcesses[i].css('opacity', '0.0');
+			}
+
+			var showProcessLine = function() {
+				var fadeIn = processDuration * 0.5;
+				var delta = fadeIn / activeProcesses.length;
+				console.log("this is delta " + delta);
+
+				var showProcess = function(delayVal, process) {
+					$(process).delay(delayVal).animate( {
+						opacity:1.00
+					}, fadeIn, null);
+				}
+
+				for(var i = 0; i < activeProcesses.length; i++) {
+					var process = activeProcesses[i];
+					var delay = delta * i;
+					showProcess(delay, process);
+				} 				
+			};
+
+
+
+
 			setTimeout(finalize, totalDuration);
 
 			var animationOffset = 0;
@@ -166,8 +194,11 @@ $(function() {
 				marginLeft: getPixels(0)}, 
 				panelDuration, null);
 
-			setTimeout(animationOffset, showChart);
+			animationOffset += chartDuration; 
+			setTimeout(showChart, animationOffset);
 			
+			animationOffset += processDuration; 
+			setTimeout(showProcessLine, animationOffset);
 
 			
 			$(productInfo.panel).animate({
@@ -222,8 +253,8 @@ $(function() {
 
 	productInfo.hide();
 	welcome.hide();
-	
 	showWelcomeScreen();
+	var activeProcesses = [];
 	
 
 	function loadProductToView(product) {
@@ -236,6 +267,9 @@ $(function() {
 		// process
 		var MAX_PROCESSES = 10;
 		var length = product.ProcessLine.Process.length;
+
+		activeProcesses.length = 0;
+
 		for(var i=0; i < MAX_PROCESSES; i++) {
 
 			var process = processLine.find("div#Process" + i);
@@ -244,6 +278,7 @@ $(function() {
 			if( i >= length) {
 				process.hide();
 			} else {
+				activeProcesses.push(process);
 				process.show();
 				description.html(product.ProcessLine.Process[i]["@name"]);
 				image.attr("src", IMG_FOLDER + product.ProcessLine.img[i]["@src"]);
