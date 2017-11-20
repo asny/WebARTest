@@ -142,16 +142,25 @@ $(function() {
 		var doShowProductView = function() {
 			productInfo.show();
 			productInfo.css('opacity', 1);
-			chart.show();
 
-			// effects 
-			var panelDuration = config['showProductViewDuration'];
+			// effects, hacky, should use futures
+			var totalDuration = config['showProductViewDuration'];
+			var panelDuration = totalDuration / 2;
+			var chartDuration = totalDuration / 2;
 			hideProductInfoWithLeftMarginOffset();
+
+			var finalize = function() {
+				freeAnimationLock();
+			}
+
+			var showChart = function() {
+				chart.show(chartDuration, finalize);
+			};
 			
 			$(productInfo.panel).animate({
 				marginLeft: getPixels(0)}, 
 				panelDuration, 
-				function() { freeAnimationLock(productInfo);  } );
+				showChart);
 		}
 
 		// hacky and hardcoded stuff
