@@ -84,7 +84,8 @@ $(function() {
 			var logoMarginTop = config['logoMarginTop'];
 
 			$(welcome.logo).animate({
-				marginTop: logoMarginTop
+				marginTop: logoMarginTop,
+				zoom : "1"
 			}, logoOutDuration, null);
 
 			$({ t:0 }).animate( { t:1 }, {
@@ -105,7 +106,8 @@ $(function() {
 
 		// effects
 		$(welcome.logo).animate({
-			marginTop: "-500px"
+			marginTop: "100px",
+			zoom: "0.5"
 		}, logoOutDuration, null);
 
 
@@ -117,7 +119,7 @@ $(function() {
 			},
 			complete: function() {
 				background.css('filter', getBlur(1)); 
-				welcome.hide();
+				//welcome.hide();
 				onComplete();
 			}
 		});
