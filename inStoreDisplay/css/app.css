@@ -37,10 +37,15 @@ div.content.page {
 	display:none;
 }
 
+div#Certifications  {
+	padding-top:40px;
+}
+
 div#Certifications div {
-	float:left;
+	text-align:center;
 	font-size:30px;
-	font-weight:100;
+	font-weight:700;
+	margin-top:15px;
 } 
 
 div#background {
