@@ -150,12 +150,25 @@ $(function() {
 			hideProductInfoWithLeftMarginOffset();
 
 			var finalize = function() {
-				freeAnimationLock();
+				freeAnimationLock(productInfo);
 			}
 
 			var showChart = function() {
-				chart.show(chartDuration, finalize);
+				chart.show(chartDuration);
 			};
+
+			setTimeout(finalize, totalDuration);
+
+			var animationOffset = 0;
+
+			animationOffset += panelDuration;
+			$(productInfo.panel).animate({
+				marginLeft: getPixels(0)}, 
+				panelDuration, null);
+
+			setTimeout(animationOffset, showChart);
+			
+
 			
 			$(productInfo.panel).animate({
 				marginLeft: getPixels(0)}, 

@@ -35,7 +35,7 @@ function Chart () {
 			console.log(duration);
 			console.log("No duration for graph.show!");
 		}
-		this.animate(0,1, callback);
+		this.animate(0,1, duration, callback);
 
 		this.label0.html(this.entries[0].title);
 		this.label1.html(this.entries[1].title);
