@@ -295,9 +295,16 @@ $(function() {
 
 	
 	function showProduct(id) {
-		if(animationLock !== null || currentProductId == id) {
+		// if something else is currently animation, do nothing
+		if(animationLock !== null) {
 			return;
 		}
+		// if we are already at the productInfo screen AND showing
+		// the requested product id, we also do nothin
+		if(activeView === productInfo && currentProductId == id) {
+			return;
+		}
+
 		console.log("requesting product " + id);
 		currentProductId = id;
 		showProductInfo();
