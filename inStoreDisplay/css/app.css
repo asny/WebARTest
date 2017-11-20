@@ -76,9 +76,11 @@ div#productInfo div#panel {
 }
 
 div#chart {
+	/*
 	position:absolute;
 	top:0px;
 	left:1200px;
+	*/
 }
 
 div#chart canvas {
