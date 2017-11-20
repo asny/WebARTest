@@ -76,9 +76,9 @@ function Chart () {
 		var centerX = canvas.width / 2;
 		var centerY = canvas.height / 2;
 
-		var radius = 30;
+		var radius = 60;
 		var radiusDelta = 60;
-		var lineWidth = 20;
+		var lineWidth = 40;
 		for(var entry in entries) {
 			var magnitude = entries[entry].magnitude * t;
 			this.drawArc(context, centerX, centerY, radius, lineWidth, magnitude, t);
