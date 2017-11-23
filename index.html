@@ -330,15 +330,15 @@ function createProduct(position, localToWorld, productInfo)
   context.drawImage(image, 0, 0, bitmap.width, bitmap.height);
 
   // Draw product title
-  var titleHeight = 60;
-  var marginX = titleHeight * 2;
-  var marginY = titleHeight * 2;
+  var lineHeight = 60;
+  var marginX = lineHeight * 2;
+  var marginY = lineHeight * 2;
   context.font = '56px Open Sans';
   context.fillStyle = 'black';
-  wrapText(context, productInfo.ProductTitle, marginX, marginY + titleHeight, bitmap.width - 2 * marginX, titleHeight);
+  wrapText(context, productInfo.ProductTitle, marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
 
   // Draw teaser
-  var lineHeight = 40;
+  lineHeight = 40;
   marginY += lineHeight * 2;
   context.font = '28px Open Sans';
   context.fillStyle = 'black';
@@ -346,18 +346,22 @@ function createProduct(position, localToWorld, productInfo)
 
   // Draw certifications
   marginX += lineHeight * 0.25;
+  marginY += lineHeight;
   for(var i = 0; i < productInfo.Certification.length; i++)
   {
-    marginY += lineHeight * 2;
+    marginY += lineHeight;
     wrapText(context, " - " + productInfo.Certification[i], marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
   }
 
   // Draw environmental effects
+  context.font = '18px bold Open Sans';
+  marginY += lineHeight;
+  lineHeight = 20;
   for(var i = 0; i < productInfo.EnvironmentalEffects.effect.length; i++)
   {
-    marginY += lineHeight * 2;
+    marginY += lineHeight;
     var effect = productInfo.EnvironmentalEffects.effect[i];
-    wrapText(context, " - " + effect["@name"] + ": " + effect["#text"], marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
+    wrapText(context, effect["@name"] + ": " + effect["#text"], marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
   }
 
   // Create a texture
