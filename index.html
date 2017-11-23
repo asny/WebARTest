@@ -236,11 +236,11 @@ function createProducts()
   videoContext.fillRect( 0, 0, 480, 204 );
 
   videoTexture = new THREE.Texture( videoImage );
-  var material = new THREE.MeshBasicMaterial( { map: texture, overdraw: 0.5 } );
+  var material = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: 0.5 } );
 
 	var plane = new THREE.PlaneGeometry( 480, 204, 4, 4 );
 
-	mesh = new THREE.Mesh( plane, material );
+	var mesh = new THREE.Mesh( plane, material );
 	mesh.scale.x = mesh.scale.y = mesh.scale.z = 1.5;
 	scene.add(mesh);
 }
