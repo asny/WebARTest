@@ -425,6 +425,7 @@ function update() {
     if ( video.readyState === video.HAVE_ENOUGH_DATA ) {
 
       videoContext.drawImage( video, 0, 0 );
+      console.log("HAHa");
 
       if ( videoTexture ) videoTexture.needsUpdate = true;
 
