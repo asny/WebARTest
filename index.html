@@ -70,6 +70,10 @@
     <img id="source" src="assets/hero-img.jpg"
          width="300" height="227">
   </div>
+
+	<video id="video" autoplay loop webkit-playsinline style="display:none">
+		<source src="assets/t_shirt.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+	</video>
 <!--<div id="info">
   <span class="title">Render detected surfaces.</span><br/>
   <span class="links">
@@ -87,6 +91,8 @@ var vrDisplay, vrControls, vrFrameData, arView;
 var canvas, camera, scene, renderer;
 var products = [];
 var recordedHits = [];
+var texture, videoContext;
+var video;
 
 /**
  * Use the `getARDisplay()` utility to leverage the WebVR API
@@ -121,6 +127,8 @@ function init() {
     showPlanes: true,
   });
   document.body.appendChild(arDebug.getElement());
+
+  video = document.getElementById( 'video' );
 
   // Creating the ARView, which is the object that handles
   // the rendering of the camera stream behind the three.js
@@ -289,6 +297,7 @@ function createProduct(position, localToWorld, text)
   // Create image
   var bitmap = document.createElement('canvas');
   var context = bitmap.getContext('2d');
+  videoContext = context;
   bitmap.width = 800;
   bitmap.height = 800;
 
@@ -305,7 +314,7 @@ function createProduct(position, localToWorld, text)
   wrapText(context, text, marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
 
   // Create a texture
-  var texture = new THREE.Texture(bitmap);
+  texture = new THREE.Texture(bitmap);
   texture.needsUpdate = true;
   texture.magFilter = THREE.NearestFilter;
   texture.minFilter = THREE.NearestFilter;
@@ -364,6 +373,15 @@ function update() {
       pose.position[2]
     );
     updateProducts(pos);
+  }
+
+  // Update video
+  if ( video.readyState === video.HAVE_ENOUGH_DATA ) {
+
+    videoContext.drawImage( video, 0, 0 );
+
+    if ( texture ) texture.needsUpdate = true;
+
   }
 
   // Render our three.js virtual scene
