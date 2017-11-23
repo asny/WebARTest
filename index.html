@@ -425,8 +425,9 @@ function update() {
     );
     updateProducts(pos);
 
+    console.log("Damn " + video.readyState + ": " + video.HAVE_ENOUGH_DATA);
     // Update video
-    if ( video.readyState === video.HAVE_ENOUGH_DATA ) {
+    if ( video.readyState == video.HAVE_ENOUGH_DATA ) {
 
       videoContext.drawImage( video, 0, 0 );
       console.log("HAHa");
