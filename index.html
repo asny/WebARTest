@@ -357,7 +357,7 @@ function createProduct(position, localToWorld, productInfo)
   {
     marginY += lineHeight * 2;
     var effect = productInfo.EnvironmentalEffects.effect[i];
-    wrapText(context, " - " + effect.@name + ": " + effect.#text, marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
+    wrapText(context, " - " + effect["@name"] + ": " + effect["#text"], marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
   }
 
   // Create a texture
