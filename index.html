@@ -85,6 +85,7 @@
 <script src="./VRControls.js"></script>
 <script src="./three.ar.js"></script>
 <script src="./numeric.js"></script>
+<script src="./product-info.js"></script>
 <script>
 
 var vrDisplay, vrControls, vrFrameData, arView;
@@ -216,13 +217,10 @@ function createProducts()
 
   var localToWorld = estimateTransformation([x1, x2, x3], recordedHits);
 
-  createProduct(new THREE.Vector3(-0.3, 0.5, 0.0), localToWorld, 'Fundamentally, ARCore is doing two things: \ntracking the position of the mobile device as it moves,'+
-'and building its own understanding of the real world. \nARCores motion tracking technology uses the phones camera to identify interesting points,' +
-'called features, and tracks how those points move over time. With a combination of the movement of these points and readings from the phones' +
-'inertial sensors, ARCore determines both the position and orientation of the phone as it moves through space.');
-  createProduct(new THREE.Vector3(-0.3, 0.0, 0.0), localToWorld, 'Jeans');
-  createProduct(new THREE.Vector3(0.3, 0.0, 0.0), localToWorld, 'Shoes');
-  createProduct(new THREE.Vector3(0.3, 0.5, 0.0), localToWorld, 'Dress');
+  createProduct(new THREE.Vector3(-0.3, 0.5, 0.0), localToWorld, productInfos[0]);
+  createProduct(new THREE.Vector3(-0.3, 0.0, 0.0), localToWorld, productInfos[1]);
+  createProduct(new THREE.Vector3(0.3, 0.0, 0.0), localToWorld, productInfos[2]);
+  createProduct(new THREE.Vector3(0.3, 0.5, 0.0), localToWorld, productInfos[3]);
 
   // Video
   video = document.getElementById( 'video' );
@@ -293,7 +291,7 @@ function estimateTransformation(X, Y)
   return localToWorld;
 }
 
-function createProduct(position, localToWorld, text)
+function createProduct(position, localToWorld, productInfo)
 {
   var trans = new THREE.Vector3();
   var rot = new THREE.Quaternion();
@@ -333,7 +331,7 @@ function createProduct(position, localToWorld, text)
   var marginY = lineHeight * 2;
   context.font = '36px Open Sans';
   context.fillStyle = 'black';
-  wrapText(context, text, marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
+  wrapText(context, productInfo.ProductTitle, marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
 
   // Create a texture
   var texture = new THREE.Texture(bitmap);

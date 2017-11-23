@@ -1,4 +1,4 @@
-var products =[
+var productInfos =[
    {
       "ProductTitle": "Boody boxers",
       "ProductName": "Boody",
@@ -517,7 +517,7 @@ var products =[
    {
       "ProductTitle": "Wunderwerk Tencel bluse",
       "ProductName": "Wunderwerk",
-      "img": 
+      "img":
          {
             "@src": "img/WW_Tencel/tencel.jpg"
          },
