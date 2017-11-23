@@ -91,8 +91,7 @@ var vrDisplay, vrControls, vrFrameData, arView;
 var canvas, camera, scene, renderer;
 var products = [];
 var recordedHits = [];
-var texture, videoContext;
-var video;
+var videoTexture, videoContext, video, image;
 
 /**
  * Use the `getARDisplay()` utility to leverage the WebVR API
@@ -128,7 +127,25 @@ function init() {
   });
   document.body.appendChild(arDebug.getElement());
 
+  // Video
   video = document.getElementById( 'video' );
+
+  image = document.createElement( 'canvas' );
+  image.width = 480;
+  image.height = 204;
+
+  videoContext = image.getContext( '2d' );
+  videoContext.fillStyle = '#000000';
+  videoContext.fillRect( 0, 0, 480, 204 );
+
+  videoTexture = new THREE.Texture( image );
+  var material = new THREE.MeshBasicMaterial( { map: texture, overdraw: 0.5 } );
+
+	var plane = new THREE.PlaneGeometry( 480, 204, 4, 4 );
+
+	mesh = new THREE.Mesh( plane, material );
+	mesh.scale.x = mesh.scale.y = mesh.scale.z = 1.5;
+	scene.add(mesh);
 
   // Creating the ARView, which is the object that handles
   // the rendering of the camera stream behind the three.js
@@ -297,7 +314,6 @@ function createProduct(position, localToWorld, text)
   // Create image
   var bitmap = document.createElement('canvas');
   var context = bitmap.getContext('2d');
-  videoContext = context;
   bitmap.width = 800;
   bitmap.height = 800;
 
@@ -314,7 +330,7 @@ function createProduct(position, localToWorld, text)
   wrapText(context, text, marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
 
   // Create a texture
-  texture = new THREE.Texture(bitmap);
+  var texture = new THREE.Texture(bitmap);
   texture.needsUpdate = true;
   texture.magFilter = THREE.NearestFilter;
   texture.minFilter = THREE.NearestFilter;
@@ -380,7 +396,7 @@ function update() {
 
     videoContext.drawImage( video, 0, 0 );
 
-    if ( texture ) texture.needsUpdate = true;
+    if ( videoTexture ) videoTexture.needsUpdate = true;
 
   }
 
