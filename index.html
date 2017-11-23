@@ -240,8 +240,14 @@ function createProducts()
 
 	var plane = new THREE.PlaneGeometry( 480, 204, 4, 4 );
 
+  var trans = new THREE.Vector3();
+  var rot = new THREE.Quaternion();
+  var scale = new THREE.Vector3();
+  localToWorld.decompose(trans, rot, scale);
+
 	var mesh = new THREE.Mesh( plane, material );
-	mesh.scale.x = mesh.scale.y = mesh.scale.z = 1.5;
+  mesh.position.copy(trans);
+  mesh.quaternion.copy(rot);
 	scene.add(mesh);
 }
 
