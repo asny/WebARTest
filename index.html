@@ -337,13 +337,28 @@ function createProduct(position, localToWorld, productInfo)
   context.fillStyle = 'black';
   wrapText(context, productInfo.ProductTitle, marginX, marginY + titleHeight, bitmap.width - 2 * marginX, titleHeight);
 
-  // Draw text
+  // Draw teaser
   var lineHeight = 40;
-  marginX += lineHeight * 0.25;
-  marginY += lineHeight * 0.25;
+  marginY += lineHeight * 2;
   context.font = '28px Open Sans';
   context.fillStyle = 'black';
   wrapText(context, productInfo.Teaser, marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
+
+  // Draw certifications
+  marginX += lineHeight * 0.25;
+  for(var i = 0; i < productInfo.Certification.length; i++)
+  {
+    marginY += lineHeight * 2;
+    wrapText(context, " - " + productInfo.Certification[i], marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
+  }
+
+  // Draw environmental effects
+  for(var i = 0; i < productInfo.EnvironmentalEffects.effect.length; i++)
+  {
+    marginY += lineHeight * 2;
+    var effect = productInfo.EnvironmentalEffects.effect[i];
+    wrapText(context, " - " + effect.@name + ": " + effect.#text, marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
+  }
 
   // Create a texture
   var texture = new THREE.Texture(bitmap);
