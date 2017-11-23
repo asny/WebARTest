@@ -91,7 +91,7 @@ var vrDisplay, vrControls, vrFrameData, arView;
 var canvas, camera, scene, renderer;
 var products = [];
 var recordedHits = [];
-var videoTexture, videoContext, video, image;
+var videoTexture, videoContext, video, videoImage;
 
 /**
  * Use the `getARDisplay()` utility to leverage the WebVR API
@@ -126,26 +126,6 @@ function init() {
     showPlanes: true,
   });
   document.body.appendChild(arDebug.getElement());
-
-  // Video
-  video = document.getElementById( 'video' );
-
-  image = document.createElement( 'canvas' );
-  image.width = 480;
-  image.height = 204;
-
-  videoContext = image.getContext( '2d' );
-  videoContext.fillStyle = '#000000';
-  videoContext.fillRect( 0, 0, 480, 204 );
-
-  videoTexture = new THREE.Texture( image );
-  var material = new THREE.MeshBasicMaterial( { map: texture, overdraw: 0.5 } );
-
-	var plane = new THREE.PlaneGeometry( 480, 204, 4, 4 );
-
-	mesh = new THREE.Mesh( plane, material );
-	mesh.scale.x = mesh.scale.y = mesh.scale.z = 1.5;
-	scene.add(mesh);
 
   // Creating the ARView, which is the object that handles
   // the rendering of the camera stream behind the three.js
@@ -243,6 +223,26 @@ function createProducts()
   createProduct(new THREE.Vector3(-0.3, 0.0, 0.0), localToWorld, 'Jeans');
   createProduct(new THREE.Vector3(0.3, 0.0, 0.0), localToWorld, 'Shoes');
   createProduct(new THREE.Vector3(0.3, 0.5, 0.0), localToWorld, 'Dress');
+
+  // Video
+  video = document.getElementById( 'video' );
+
+  videoImage = document.createElement( 'canvas' );
+  videoImage.width = 480;
+  videoImage.height = 204;
+
+  videoContext = videoImage.getContext( '2d' );
+  videoContext.fillStyle = '#000000';
+  videoContext.fillRect( 0, 0, 480, 204 );
+
+  videoTexture = new THREE.Texture( videoImage );
+  var material = new THREE.MeshBasicMaterial( { map: texture, overdraw: 0.5 } );
+
+	var plane = new THREE.PlaneGeometry( 480, 204, 4, 4 );
+
+	mesh = new THREE.Mesh( plane, material );
+	mesh.scale.x = mesh.scale.y = mesh.scale.z = 1.5;
+	scene.add(mesh);
 }
 
 function estimateTransformation(X, Y)
@@ -389,15 +389,15 @@ function update() {
       pose.position[2]
     );
     updateProducts(pos);
-  }
 
-  // Update video
-  if ( video.readyState === video.HAVE_ENOUGH_DATA ) {
+    // Update video
+    if ( video.readyState === video.HAVE_ENOUGH_DATA ) {
 
-    videoContext.drawImage( video, 0, 0 );
+      videoContext.drawImage( video, 0, 0 );
 
-    if ( videoTexture ) videoTexture.needsUpdate = true;
+      if ( videoTexture ) videoTexture.needsUpdate = true;
 
+    }
   }
 
   // Render our three.js virtual scene
