@@ -325,13 +325,21 @@ function createProduct(position, localToWorld, productInfo)
   var image = document.getElementById('source');
   context.drawImage(image, 0, 0, bitmap.width, bitmap.height);
 
+  // Draw product title
+  var titleHeight = 60;
+  var marginX = titleHeight * 2;
+  var marginY = titleHeight * 2;
+  context.font = '56px Open Sans';
+  context.fillStyle = 'black';
+  wrapText(context, productInfo.ProductTitle, marginX, marginY + titleHeight, bitmap.width - 2 * marginX, titleHeight);
+
   // Draw text
   var lineHeight = 40;
-  var marginX = lineHeight * 2;
-  var marginY = lineHeight * 2;
-  context.font = '36px Open Sans';
+  marginX += lineHeight * 0.25;
+  marginY += lineHeight * 0.25;
+  context.font = '28px Open Sans';
   context.fillStyle = 'black';
-  wrapText(context, productInfo.ProductTitle, marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
+  wrapText(context, productInfo.Teaser, marginX, marginY + lineHeight, bitmap.width - 2 * marginX, lineHeight);
 
   // Create a texture
   var texture = new THREE.Texture(bitmap);
