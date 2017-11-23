@@ -236,7 +236,7 @@ function createProducts()
   videoTexture = new THREE.Texture( videoImage );
   var material = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: 0.5 } );
 
-	var plane = new THREE.PlaneGeometry( 480, 204, 4, 4 );
+	var plane = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
 
   var trans = new THREE.Vector3();
   var rot = new THREE.Quaternion();
