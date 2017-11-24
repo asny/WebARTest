@@ -353,7 +353,7 @@ function createProducts()
   var rot = new THREE.Quaternion();
   var scale = new THREE.Vector3();
   localToWorld.decompose(trans, rot, scale);
-  var position = new THREE.Vector3(0.0, -0.5, 0.0;);
+  var position = new THREE.Vector3(0.0, -0.5, 0.0);
   var p = trans.clone().add(xAxis.clone().multiplyScalar(position.x).add(yAxis.clone().multiplyScalar(position.y)).add(zAxis.clone().multiplyScalar(position.z)));
 
 	var mesh = new THREE.Mesh( plane, material );
