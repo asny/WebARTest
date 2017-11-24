@@ -236,22 +236,23 @@ function initParticle( particle, delay, pos ) {
 
   particle.visible = true;
 	particle.position.copy(pos);
-	particle.scale.x = particle.scale.y = 0.005 + 0.01 * Math.random();
+	particle.scale.x = particle.scale.y = 0.01 + 0.02 * Math.random();
 
+  var time = 1000;
 	new TWEEN.Tween( particle )
 		.delay( delay )
-		.to( {}, 10000 )
+		.to( {}, time )
 		.onComplete( function(){particle.visible = false;} )
 		.start();
 
 	new TWEEN.Tween( particle.position )
 		.delay( delay )
-		.to( { x: Math.random() - 0.5, y: Math.random() - 0.5, z: Math.random() - 0.5 }, 10000 )
+		.to( { x: pos.x + Math.random() - 0.5, y: pos.y + Math.random() - 0.5, z: pos.z + Math.random() - 0.5 }, time )
 		.start();
 
 	new TWEEN.Tween( particle.scale )
 		.delay( delay )
-		.to( { x: 0.0001, y: 0.0001 }, 10000 )
+		.to( { x: 0.0001, y: 0.0001 }, time )
 		.start();
 
 }
