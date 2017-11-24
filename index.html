@@ -100,6 +100,7 @@ var products = [];
 var recordedHits = [];
 var videoTexture, videoContext, video, videoImage;
 var anchorModel;
+var particles = [];
 
 /**
  * Use the `getARDisplay()` utility to leverage the WebVR API
@@ -195,12 +196,11 @@ function init() {
     blending: THREE.AdditiveBlending
   } );
 
-  var p = new THREE.Vector3(0.0, -0.5, 0);
   for ( var i = 0; i < 100; i++ ) {
 
     particle = new THREE.Sprite( material );
-
-    initParticle( particle, i * 10, p );
+    particle.visible = false;
+    particles.push(particle);
 
     scene.add( particle );
   }
@@ -294,6 +294,12 @@ function onClick (e)
     var hitMesh = new THREE.Mesh( geometry, material );
     scene.add(hitMesh);
     hitMesh.position.set(pos.x, pos.y, pos.z);
+
+    // Show particles
+    for(var i = 0; i < particles.length; i++)
+    {
+      initParticle( particle, i * 10, pos );
+    }
 
     if(isInitialized())
     {
