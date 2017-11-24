@@ -195,11 +195,12 @@ function init() {
     blending: THREE.AdditiveBlending
   } );
 
-  for ( var i = 0; i < 1000; i++ ) {
+  var p = new THREE.Vector3(0.0, -0.5, 0);
+  for ( var i = 0; i < 100; i++ ) {
 
     particle = new THREE.Sprite( material );
 
-    initParticle( particle, i * 10 );
+    initParticle( particle, i * 10, p );
 
     scene.add( particle );
   }
@@ -228,18 +229,19 @@ function generateSprite() {
 
 }
 
-function initParticle( particle, delay ) {
+function initParticle( particle, delay, pos ) {
 
 	var particle = this instanceof THREE.Sprite ? this : particle;
 	var delay = delay !== undefined ? delay : 0;
 
-	particle.position.set( 0, 0, 0 );
-	particle.scale.x = particle.scale.y = 0.01 * (Math.random() * 32 + 16);
+  particle.visible = true;
+	particle.position.copy(pos);
+	particle.scale.x = particle.scale.y = 0.005 + 0.01 * Math.random();
 
 	new TWEEN.Tween( particle )
 		.delay( delay )
 		.to( {}, 10000 )
-		.onComplete( initParticle )
+		.onComplete( function(){particle.visible = false;} )
 		.start();
 
 	new TWEEN.Tween( particle.position )
