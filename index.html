@@ -264,7 +264,7 @@ function onClick (e)
 {
   // If we don't have a touches object, abort
   // TODO: is this necessary?
-  if (isInitialized() || !e.touches[0]) {
+  if (!e.touches[0]) {
     return;
   }
 
@@ -286,20 +286,24 @@ function onClick (e)
     modelMatrix.fromArray(hit.modelMatrix);
     var pos = new THREE.Vector3();
     pos.setFromMatrixPosition( modelMatrix );
-    recordedHits.push(pos);
-
-    // Add hit geometry
-    var geometry = new THREE.SphereGeometry( 0.01, 32, 32 );
-    var material = new THREE.MeshStandardMaterial();
-    var hitMesh = new THREE.Mesh( geometry, material );
-    scene.add(hitMesh);
-    hitMesh.position.set(pos.x, pos.y, pos.z);
 
     initParticleEffect(pos);
 
-    if(isInitialized())
+    if(!isInitialized())
     {
-      createProducts();
+      recordedHits.push(pos);
+
+      // Add hit geometry
+      var geometry = new THREE.SphereGeometry( 0.01, 32, 32 );
+      var material = new THREE.MeshStandardMaterial();
+      var hitMesh = new THREE.Mesh( geometry, material );
+      scene.add(hitMesh);
+      hitMesh.position.set(pos.x, pos.y, pos.z);
+
+      if(isInitialized())
+      {
+        createProducts();
+      }
     }
   }
 }
