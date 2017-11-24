@@ -353,9 +353,12 @@ function createProducts()
   var rot = new THREE.Quaternion();
   var scale = new THREE.Vector3();
   localToWorld.decompose(trans, rot, scale);
+  var position = new THREE.Vector3(0.0, -0.5, 0.0;);
+  var p = trans.clone().add(xAxis.clone().multiplyScalar(position.x).add(yAxis.clone().multiplyScalar(position.y)).add(zAxis.clone().multiplyScalar(position.z)));
 
 	var mesh = new THREE.Mesh( plane, material );
-  mesh.position.copy(trans);
+  mesh.position.copy(p);
+  mesh.rotation.x -= 0.5 * Math.PI;
   mesh.quaternion.copy(rot);
 	scene.add(mesh);
 }
@@ -421,8 +424,8 @@ function createProduct(position, localToWorld, productInfo)
 	mesh.material.roughness = 0.5;
 	mesh.material.metalness = 0.5;
   mesh.position.copy(p);
-  mesh.quaternion.copy(rot);
   mesh.rotation.x -= 0.5 * Math.PI;
+  mesh.quaternion.copy(rot);
   mesh.scale.set(0.0001, 0.0001, 0.0001);
   scene.add( mesh );
 
