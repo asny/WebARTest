@@ -289,7 +289,7 @@ function onClick (e)
     recordedHits.push(pos);
 
     // Add hit geometry
-    var geometry = new THREE.SphereGeometry( 0.05, 32, 32 );
+    var geometry = new THREE.SphereGeometry( 0.01, 32, 32 );
     var material = new THREE.MeshStandardMaterial();
     var hitMesh = new THREE.Mesh( geometry, material );
     scene.add(hitMesh);
