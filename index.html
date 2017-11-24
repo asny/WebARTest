@@ -97,6 +97,7 @@ var canvas, camera, scene, renderer;
 var products = [];
 var recordedHits = [];
 var videoTexture, videoContext, video, videoImage;
+var anchorModel;
 
 /**
  * Use the `getARDisplay()` utility to leverage the WebVR API
@@ -162,6 +163,32 @@ function init() {
   // Add lights
   scene.add( new THREE.DirectionalLight( 0xffffff, 0.5 ) );
   scene.add(new THREE.AmbientLight( 0x555555 ));
+
+  var loader = new THREE.OBJLoader();
+
+  // load a resource
+  loader.load(
+  	// resource URL
+  	'assets/logo.obj',
+  	// called when resource is loaded
+  	function ( object ) {
+
+  		anchorModel = object;
+
+  	},
+  	// called when loading is in progresses
+  	function ( xhr ) {
+
+  		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+  	},
+  	// called when loading has errors
+  	function ( error ) {
+
+  		console.log( 'An error happened' );
+
+  	}
+  );
 
   // Kick off the render loop!
   update();
@@ -311,11 +338,10 @@ function createProduct(position, localToWorld, productInfo)
 
   // ANCHOR
   // Create anchor
-  var geometry = new THREE.TorusKnotGeometry( 0.02, 0.005, 100, 16 );
-  var material = new THREE.MeshStandardMaterial();
-	material.roughness = 0.5;
-	material.metalness = 0.5;
-  var mesh = new THREE.Mesh( geometry, material );
+  var mesh = anchorModel.clone();
+  mesh.material = new THREE.MeshStandardMaterial();
+	mesh.material.roughness = 0.5;
+	mesh.material.metalness = 0.5;
   mesh.position.copy(p);
   mesh.quaternion.copy(rot);
   scene.add( mesh );
