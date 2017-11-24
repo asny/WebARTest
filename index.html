@@ -67,7 +67,7 @@
 <body>
   <canvas id="canvas"></canvas>
   <div style="display:none;">
-    <img id="source" src="assets/bAw-logo-logoform-hvid.png"
+    <img id="source" src="assets/bAw-logoform-pantone-108-13C.png"
          width="800" height="800">
   </div>
 
@@ -409,6 +409,8 @@ function update() {
 
   // Update our perspective camera's positioning
   vrControls.update();
+
+  console.log("Damn " + video.readyState + ": " + video.HAVE_ENOUGH_DATA);
 
   if(isInitialized())
   {
