@@ -276,8 +276,6 @@ function createProducts()
   localToWorld.decompose(trans, rot, scale);
 
 	var mesh = new THREE.Mesh( plane, material );
-  var vec = new THREE.Vector3(0.001, 0.001, 0.001);
-  mesh.scale.copy(vec);
   mesh.position.copy(trans);
   mesh.quaternion.copy(rot);
 	scene.add(mesh);
@@ -345,6 +343,7 @@ function createProduct(position, localToWorld, productInfo)
 	mesh.material.metalness = 0.5;
   mesh.position.copy(p);
   mesh.quaternion.copy(rot);
+  mesh.scale.set(0.001, 0.001, 0.001);
   scene.add( mesh );
 
   // TEXT
