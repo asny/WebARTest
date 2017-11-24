@@ -322,8 +322,8 @@ function createProduct(position, localToWorld, productInfo)
   // Create image
   var bitmap = document.createElement('canvas');
   var context = bitmap.getContext('2d');
-  bitmap.width = 800;
-  bitmap.height = 800;
+  bitmap.width = 512;
+  bitmap.height = 512;
 
   // Create background
   var image = document.getElementById('source');
@@ -368,7 +368,7 @@ function createProduct(position, localToWorld, productInfo)
   texture.minFilter = THREE.NearestFilter;
 
   // Create text geometry
-  var geometry = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
+  var geometry = new THREE.PlaneGeometry( 0.25, 0.25, 8, 8 );
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
   var textGeometry = new THREE.Mesh( geometry, material );
   var p2 = p.clone().addScaledVector(zAxis, 0.04);
