@@ -165,31 +165,23 @@ function init() {
   scene.add( new THREE.DirectionalLight( 0xffffff, 0.5 ) );
   scene.add(new THREE.AmbientLight( 0x555555 ));
 
-  var loader = new THREE.OBJLoader();
+  // model
+  var onProgress = function ( xhr ) {
+    if ( xhr.lengthComputable ) {
+      var percentComplete = xhr.loaded / xhr.total * 100;
+      console.log( Math.round(percentComplete, 2) + '% downloaded' );
+    }
+  };
 
-  // load a resource
-  loader.load(
-  	// resource URL
-  	'assets/logo.obj',
-  	// called when resource is loaded
-  	function ( object ) {
+  var onError = function ( xhr ) {
+  };
 
-  		anchorModel = object;
+  var loader = new THREE.OBJLoader( manager );
+  loader.load( 'assets/logo.obj', function ( object ) {
 
-  	},
-  	// called when loading is in progresses
-  	function ( xhr ) {
+    anchorModel.copy(object);
 
-  		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-
-  	},
-  	// called when loading has errors
-  	function ( error ) {
-
-  		console.log( 'An error happened' );
-
-  	}
-  );
+  }, onProgress, onError );
 
   // Kick off the render loop!
   update();
@@ -440,8 +432,6 @@ function update() {
 
   // Update our perspective camera's positioning
   vrControls.update();
-
-  console.log("Damn ");
 
   if(isInitialized())
   {
