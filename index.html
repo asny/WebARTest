@@ -162,8 +162,7 @@ function init() {
   canvas.addEventListener('touchstart', onClick, false);
 
   // Add lights
-  scene.add( new THREE.DirectionalLight( 0xffffff, 0.5 ) );
-  scene.add(new THREE.AmbientLight( 0x555555 ));
+  scene.add(new THREE.AmbientLight( 0x888888 ));
 
   // model
 	var manager = new THREE.LoadingManager();
