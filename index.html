@@ -221,10 +221,12 @@ function createProducts()
 
   var localToWorld = estimateTransformation([x1, x2, x3], recordedHits);
 
-  createProduct(new THREE.Vector3(-0.3, 0.5, 0.0), localToWorld, productInfos[0]);
-  createProduct(new THREE.Vector3(-0.3, 0.0, 0.0), localToWorld, productInfos[1]);
-  createProduct(new THREE.Vector3(0.3, 0.0, 0.0), localToWorld, productInfos[2]);
-  createProduct(new THREE.Vector3(0.3, 0.5, 0.0), localToWorld, productInfos[3]);
+  createProduct(new THREE.Vector3(-0.3, 0.1, 0.0), localToWorld, productInfos[0]);
+  createProduct(new THREE.Vector3(0.3, 0.2, 0.0), localToWorld, productInfos[1]);
+  createProduct(new THREE.Vector3(-0.3, 0.4, 0.0), localToWorld, productInfos[2]);
+  createProduct(new THREE.Vector3(0.3, 0.6, 0.0), localToWorld, productInfos[3]);
+  createProduct(new THREE.Vector3(-0.3, 0.7, 0.0), localToWorld, productInfos[4]);
+  createProduct(new THREE.Vector3(0.3, 0.9, 0.0), localToWorld, productInfos[5]);
 
   // Video
   video = document.getElementById( 'video' );
@@ -322,6 +324,8 @@ function createProduct(position, localToWorld, productInfo)
   // Create image
   var bitmap = document.createElement('canvas');
   var context = bitmap.getContext('2d');
+  context.fillStyle = '#000000';
+  context.fillRect( 0, 0, 700, 700 );
   bitmap.width = 700;
   bitmap.height = 700;
 
@@ -369,7 +373,7 @@ function createProduct(position, localToWorld, productInfo)
 
   // Create text geometry
   var geometry = new THREE.PlaneGeometry( 0.25, 0.25, 8, 8 );
-  var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
+  var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.7} );
   var textGeometry = new THREE.Mesh( geometry, material );
   var p2 = p.clone().addScaledVector(zAxis, 0.04);
   textGeometry.position.copy(p2);
