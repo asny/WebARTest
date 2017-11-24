@@ -295,16 +295,21 @@ function onClick (e)
     scene.add(hitMesh);
     hitMesh.position.set(pos.x, pos.y, pos.z);
 
-    // Show particles
-    for(var i = 0; i < particles.length; i++)
-    {
-      initParticle( particles[i], i * 10, pos );
-    }
+    initParticleEffect(pos);
 
     if(isInitialized())
     {
       createProducts();
     }
+  }
+}
+
+function initParticleEffect(pos)
+{
+  // Show particles
+  for(var i = 0; i < particles.length; i++)
+  {
+    initParticle( particles[i], i * 10, pos );
   }
 }
 
