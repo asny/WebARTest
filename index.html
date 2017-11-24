@@ -278,6 +278,7 @@ function createProducts()
 	var mesh = new THREE.Mesh( plane, material );
   mesh.position.copy(trans);
   mesh.quaternion.copy(rot);
+  mesh.scale.set(0.1, 0.1, 0.1);
 	scene.add(mesh);
 }
 
