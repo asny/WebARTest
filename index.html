@@ -343,6 +343,7 @@ function createProduct(position, localToWorld, productInfo)
 	mesh.material.metalness = 0.5;
   mesh.position.copy(p);
   mesh.quaternion.copy(rot);
+  mesh.rotation.x += 0.5 * Math.PI;
   mesh.scale.set(0.0001, 0.0001, 0.0001);
   scene.add( mesh );
 
