@@ -398,7 +398,7 @@ function createProduct(position, localToWorld, productInfo)
 
   // Create text geometry
   var geometry = new THREE.PlaneGeometry( 0.25, 0.25, 8, 8 );
-  var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.7} );
+  var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
   var textGeometry = new THREE.Mesh( geometry, material );
   var p2 = p.clone().addScaledVector(zAxis, 0.04);
   textGeometry.position.copy(p2);
