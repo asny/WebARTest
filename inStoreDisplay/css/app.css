@@ -155,3 +155,20 @@ img.ProcessImg {
 	margin-bottom:20px;
 }
 
+div#ProductLogo {
+	background-color:white;
+	height:180px;
+
+	position:absolute;
+	bottom:0px;
+	width:100%;
+} 
+
+div#ProductLogo img {
+	display:block;
+	margin:auto;
+	margin-top:32px;	
+	height:90px;
+	width:auto;
+}
+
