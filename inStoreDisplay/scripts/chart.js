@@ -22,7 +22,13 @@ function Chart () {
 		this.label1.hide();
 		this.label2.hide();
 
+		this.comparisonBase = $("span#ComparisonBase");
+
 	};
+	
+	this.initBeforeShow = function() {
+		this.comparisonBase.css('opacity', '0');
+	}
 
 	this.hideLabels = function(){
 		this.label0.fadeOut(0);
@@ -48,6 +54,10 @@ function Chart () {
 		this.label0.delay(offset + 0).fadeIn(200);
 		this.label1.delay(offset + 200).fadeIn(200);
 		this.label2.delay(offset + 400).fadeIn(200);
+		var cp = this.comparisonBase;
+		setTimeout(function() {
+			cp.animate( { opacity: 1 }, 400); } , offset + 800 );
+
 	};
 
 	this.hide = function(duration) {

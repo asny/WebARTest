@@ -147,8 +147,8 @@ $(function() {
 			// effects, hacky, should use futures
 			var totalDuration = config['showProductViewDuration'];
 			var panelDuration = totalDuration * 0.2;
-			var chartDuration = totalDuration * 0.2;
-			var certificationsDuration = totalDuration * 0.6;
+			var chartDuration = totalDuration * 0.1;
+			var sleep = totalDuration * 0.4; var certificationsDuration = totalDuration * 0.3;
 			var processDuration = totalDuration * 0.5;
 			hideProductInfoWithLeftMarginOffset();
 
@@ -161,6 +161,7 @@ $(function() {
 			};
 
 			var init = function() {
+				chart.initBeforeShow();
 
 				for(var i = 0; i < certificationContainers.length; i++) { 
 					certificationContainers[i].hide();
@@ -226,6 +227,10 @@ $(function() {
 			setTimeout(showChart, animationOffset);
 			animationOffset += chartDuration; 
 
+			// sleep
+			animationOffset += sleep; 
+
+			// certifications
 			setTimeout(showCertifications, animationOffset);
 			animationOffset += certificationsDuration;
 			
