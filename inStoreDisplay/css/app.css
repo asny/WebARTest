@@ -70,6 +70,10 @@ div#views {
 div#welcome {
 }
 
+div#productInfo {
+	margin-top:55px;
+}
+
 div#productInfo div#panel {
 	background-color:rgba(255,255,255,0.00);
 	width:980px;
