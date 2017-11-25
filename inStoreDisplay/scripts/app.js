@@ -152,6 +152,8 @@ $(function() {
 			var processDuration = totalDuration * 0.5;
 			hideProductInfoWithLeftMarginOffset();
 
+			var productInfoDuration = totalDuration * 0.5;
+
 			var finalize = function() {
 				freeAnimationLock(productInfo);
 			}
@@ -172,6 +174,10 @@ $(function() {
 				$(productInfo.panel).animate({
 					marginLeft: getPixels(0)}, 
 					panelDuration, null);
+			}
+
+			var showProductImage = function() {
+				productImage.fadeIn(productInfoDuration);
 			}
 
 			var showCertifications = function() {
@@ -215,6 +221,9 @@ $(function() {
 			// start and stop behaviour
 			init();
 			setTimeout(finalize, totalDuration);
+
+			// just show product logo
+			showProductImage();
 
 			// keep track of how far into the animation flow we are
 			var animationOffset = 0;
@@ -270,6 +279,8 @@ $(function() {
 
 	function hideProductInfo(onComplete) {
 		console.log("hide product info");
+
+		productImage.fadeOut(300);
 		if(productInfo.css('display') === 'none') { 
 			onComplete();
 			return;
@@ -279,6 +290,7 @@ $(function() {
 		chart.hide(config['changePageDuration'] * 0.5);
 
 		var duration = config['hideProductViewDuration'];
+
 
 		// main animation
 		$({ t:0 }).animate( { t:1 }, {
