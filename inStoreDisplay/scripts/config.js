@@ -6,7 +6,7 @@ config['updateInterval'] = 500; // miliseconds
 config['changePageDuration'] = 500; // miliseconds
 config['productInfoBackgroundBlur'] = 4; // miliseconds
 config['logoMarginTop'] = 270; 
-config['showProductViewDuration'] = 1200;
+config['showProductViewDuration'] = 3200;
 config['hideProductViewDuration'] = 1200;
 
 

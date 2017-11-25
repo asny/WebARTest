@@ -33,6 +33,7 @@ $(function() {
 	var productImage = $("#ProductImage");
 	var processLine = $("#ProcessLine");
 	var certifications = $("#Certifications");
+	var certificationContainers;
 
 	function update() {
 	}
@@ -145,8 +146,9 @@ $(function() {
 
 			// effects, hacky, should use futures
 			var totalDuration = config['showProductViewDuration'];
-			var panelDuration = totalDuration * 0.25;
-			var chartDuration = totalDuration * 0.25;
+			var panelDuration = totalDuration * 0.2;
+			var chartDuration = totalDuration * 0.2;
+			var certificationsDuration = totalDuration * 0.6;
 			var processDuration = totalDuration * 0.5;
 			hideProductInfoWithLeftMarginOffset();
 
@@ -158,6 +160,32 @@ $(function() {
 				chart.show(chartDuration);
 			};
 
+			var init = function() {
+
+				for(var i = 0; i < certificationContainers.length; i++) { 
+					certificationContainers[i].hide();
+				}
+			}
+
+			var showPanel = function() {
+				$(productInfo.panel).animate({
+					marginLeft: getPixels(0)}, 
+					panelDuration, null);
+			}
+
+			var showCertifications = function() {
+				var itemDuration = certificationsDuration / certificationContainers.length;
+
+				var showCertification = function(certification, delay) {
+					setTimeout(function() { certification.fadeIn(400); }, delay);
+				};
+
+				for(var i = 0; i < certificationContainers.length; i++) { 
+					var certification = certificationContainers[i];
+
+					showCertification(certification, itemDuration * i);
+				}
+			}
 
 
 			for(var i = 0; i < activeProcesses.length; i++) {
@@ -183,28 +211,37 @@ $(function() {
 			};
 
 
-
-
+			// start and stop behaviour
+			init();
 			setTimeout(finalize, totalDuration);
 
+			// keep track of how far into the animation flow we are
 			var animationOffset = 0;
 
+			// panel
+			setTimeout(showPanel, animationOffset);
 			animationOffset += panelDuration;
-			$(productInfo.panel).animate({
-				marginLeft: getPixels(0)}, 
-				panelDuration, null);
 
-			animationOffset += chartDuration; 
+			// chart
 			setTimeout(showChart, animationOffset);
+			animationOffset += chartDuration; 
+
+			setTimeout(showCertifications, animationOffset);
+			animationOffset += certificationsDuration;
 			
-			animationOffset += processDuration; 
-			setTimeout(showProcessLine, animationOffset);
+			// very done. finalize callback will handle clean up.
+
+		
+			//animationOffset += processDuration; 
+			//setTimeout(showProcessLine, animationOffset);
 
 			
+			/*
 			$(productInfo.panel).animate({
 				marginLeft: getPixels(0)}, 
 				panelDuration, 
 				showChart);
+				*/
 		}
 
 		// hacky and hardcoded stuff
@@ -296,6 +333,7 @@ $(function() {
 			certificationsData = product.Certification;
 		}
 		length = certificationsData.length;
+		certificationContainers = [];
 
 		for(var i=0; i < MAX_CERTIFICATIONS; i++) {
 			var certification = certifications.find("div#Certification" + i);
@@ -304,6 +342,7 @@ $(function() {
 			} else {
 				certification.show();
 				certification.html(certificationsData[i]);	
+				certificationContainers.push(certification);
 			}
 		}
 
