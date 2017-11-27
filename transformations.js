@@ -1,5 +1,5 @@
 
-var local2World;
+var local2World = null;
 var recordedHits = [];
 var rot, trans, scale;
 
@@ -10,6 +10,26 @@ function localToWorld(position)
 
   return trans.clone().add(xAxis.clone().multiplyScalar(position.x).add(yAxis.clone().multiplyScalar(position.y)).
     add(zAxis.clone().multiplyScalar(position.z)));
+}
+
+function addHit(position)
+{
+  recordedHits.push(position);
+
+  if(recordedHits.length == 3)
+  {
+    // Estimate transformation
+    var x1 = new THREE.Vector3(0.85, 0.0, 0.75);
+    var x2 = new THREE.Vector3(0.85, 0.0, 0.0);
+    var x3 = new THREE.Vector3(0.0, 0.0, 0.0);
+
+    estimateTransformation([x1, x2, x3], recordedHits);
+  }
+}
+
+function isInitialized()
+{
+  return local2World != null;
 }
 
 function estimateTransformation(X, Y)

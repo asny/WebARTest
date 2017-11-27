@@ -232,40 +232,21 @@ function onClick (e)
 
     if(!isInitialized())
     {
-      recordedHits.push(pos);
-
+      addHit(pos)
       // Add hit geometry
-      var geometry = new THREE.SphereGeometry( 0.01, 32, 32 );
-      var material = new THREE.MeshStandardMaterial();
-      var hitMesh = new THREE.Mesh( geometry, material );
-      scene.add(hitMesh);
-      hitMesh.position.set(pos.x, pos.y, pos.z);
+      //var geometry = new THREE.SphereGeometry( 0.01, 32, 32 );
+      //var material = new THREE.MeshStandardMaterial();
+      //var hitMesh = new THREE.Mesh( geometry, material );
+      //scene.add(hitMesh);
+      //hitMesh.position.set(pos.x, pos.y, pos.z);
 
       if(isInitialized())
       {
-        initialize();
+        createProducts();
+        createVideo();
       }
     }
   }
-}
-
-function initialize()
-{
-  // Estimate transformation
-  var x1 = new THREE.Vector3(0.85, 0.0, 0.75);
-  var x2 = new THREE.Vector3(0.85, 0.0, 0.0);
-  var x3 = new THREE.Vector3(0.0, 0.0, 0.0);
-
-  estimateTransformation([x1, x2, x3], recordedHits);
-
-  createProducts();
-
-  createVideo();
-}
-
-function isInitialized()
-{
-  return recordedHits.length == 3;
 }
 
 /**
