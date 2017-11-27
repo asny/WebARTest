@@ -18,23 +18,16 @@ function initParticles()
 
     scene.add( particle );
   }
+}
 
-  // Red particles
-  material = new THREE.SpriteMaterial( {
+function createParticleEffect(pos)
+{
+  var material = new THREE.SpriteMaterial( {
     map: new THREE.CanvasTexture( generateRedSprite() ),
     blending: THREE.AdditiveBlending
   } );
-
   var time = 2000;
   var delay = time / particles.length;
-  var pos = new THREE.Vector3(0.0, 180.0, 0.0);
-  for ( var i = 0; i < 200; i++ ) {
-
-    particle = new THREE.Sprite( material );
-    scene.add( particle );
-    initParticle( particle, delay, time, pos, true );
-  }
-  pos = new THREE.Vector3(85.0, 180.0, 0.0);
   for ( var i = 0; i < 200; i++ ) {
 
     particle = new THREE.Sprite( material );

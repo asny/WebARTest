@@ -13,6 +13,21 @@ function createProducts(localToWorld)
   createProduct(new THREE.Vector3(0.3, 1.6, -0.20), localToWorld, productInfos[6]);
   createProduct(new THREE.Vector3(0.6, 1.6, -0.20), localToWorld, productInfos[7]);
 
+  var position = new THREE.Vector3(0.0, 180.0, 0.0);
+  var p = trans.clone().add(xAxis.clone().multiplyScalar(position.x).add(yAxis.clone().multiplyScalar(position.y)).
+    add(zAxis.clone().multiplyScalar(position.z)));
+  createParticleEffect(p);
+
+  position = new THREE.Vector3(85.0, 180.0, 0.0);
+  p = trans.clone().add(xAxis.clone().multiplyScalar(position.x).add(yAxis.clone().multiplyScalar(position.y)).
+    add(zAxis.clone().multiplyScalar(position.z)));
+  createParticleEffect(p);
+
+}
+
+function createParticleEffect()
+{
+
 }
 
 function createProduct(position, localToWorld, productInfo)
@@ -25,7 +40,8 @@ function createProduct(position, localToWorld, productInfo)
   var xAxis = new THREE.Vector3(), yAxis = new THREE.Vector3(), zAxis = new THREE.Vector3();
   localToWorld.extractBasis(xAxis, yAxis, zAxis);
 
-  var p = trans.clone().add(xAxis.clone().multiplyScalar(position.x).add(yAxis.clone().multiplyScalar(position.y)).add(zAxis.clone().multiplyScalar(position.z)));
+  var p = trans.clone().add(xAxis.clone().multiplyScalar(position.x).add(yAxis.clone().multiplyScalar(position.y)).
+    add(zAxis.clone().multiplyScalar(position.z)));
 
   // ANCHOR
   // Create anchor
