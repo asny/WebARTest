@@ -18,19 +18,11 @@ function createVideo(localToWorld)
 
 	var plane = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
 
-  var trans = new THREE.Vector3();
-  var rot = new THREE.Quaternion();
-  var scale = new THREE.Vector3();
-  localToWorld.decompose(trans, rot, scale);
-
-  var xAxis = new THREE.Vector3(), yAxis = new THREE.Vector3(), zAxis = new THREE.Vector3();
-  localToWorld.extractBasis(xAxis, yAxis, zAxis);
-
   var position = new THREE.Vector3(0.0, 0.5, 0.0);
-  var p = trans.clone().add(xAxis.clone().multiplyScalar(position.x).add(yAxis.clone().multiplyScalar(position.y)).add(zAxis.clone().multiplyScalar(position.z)));
+  var posWorld = localToWorld(position);
 
 	var mesh = new THREE.Mesh( plane, material );
-  mesh.position.copy(p);
+  mesh.position.copy(posWorld);
   mesh.quaternion.copy(rot);
   //mesh.rotation.x -= 0.5 * Math.PI;
 	scene.add(mesh);
