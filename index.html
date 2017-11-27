@@ -320,18 +320,20 @@ function initParticleEffect(pos)
 
 function createProducts()
 {
-  var x1 = new THREE.Vector3(0, -0.5, 0.5);
-  var x2 = new THREE.Vector3(-0.3, -0.5, 0);
-  var x3 = new THREE.Vector3(0.3, -0.5, 0);
+  var x1 = new THREE.Vector3(0.85, 0.0, 0.75);
+  var x2 = new THREE.Vector3(0.85, 0.0, 0.0);
+  var x3 = new THREE.Vector3(0.0, 0.0, 0.0);
 
   var localToWorld = estimateTransformation([x1, x2, x3], recordedHits);
 
-  createProduct(new THREE.Vector3(-0.3, 0.1, 0.0), localToWorld, productInfos[0]);
-  createProduct(new THREE.Vector3(0.3, 0.2, 0.0), localToWorld, productInfos[1]);
-  createProduct(new THREE.Vector3(-0.3, 0.4, 0.0), localToWorld, productInfos[2]);
-  createProduct(new THREE.Vector3(0.3, 0.6, 0.0), localToWorld, productInfos[3]);
-  createProduct(new THREE.Vector3(-0.3, 0.7, 0.0), localToWorld, productInfos[4]);
-  createProduct(new THREE.Vector3(0.3, 0.9, 0.0), localToWorld, productInfos[5]);
+  createProduct(new THREE.Vector3(0.3, 0.4, -0.1), localToWorld, productInfos[0]);
+  createProduct(new THREE.Vector3(0.6, 0.4, -0.1), localToWorld, productInfos[1]);
+  createProduct(new THREE.Vector3(0.3, 0.8, -0.15), localToWorld, productInfos[2]);
+  createProduct(new THREE.Vector3(0.6, 0.8, -0.15), localToWorld, productInfos[3]);
+  createProduct(new THREE.Vector3(0.3, 1.2, -0.15), localToWorld, productInfos[4]);
+  createProduct(new THREE.Vector3(0.6, 1.2, -0.15), localToWorld, productInfos[5]);
+  createProduct(new THREE.Vector3(0.3, 1.6, -0.20), localToWorld, productInfos[6]);
+  createProduct(new THREE.Vector3(0.6, 1.6, -0.20), localToWorld, productInfos[7]);
 
   // Video
   video = document.getElementById( 'video' );
