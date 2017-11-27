@@ -196,7 +196,7 @@ function init() {
     blending: THREE.AdditiveBlending
   } );
 
-  for ( var i = 0; i < 100; i++ ) {
+  for ( var i = 0; i < 500; i++ ) {
 
     particle = new THREE.Sprite( material );
     particle.visible = false;
@@ -229,30 +229,28 @@ function generateSprite() {
 
 }
 
-function initParticle( particle, delay, pos ) {
+function initParticle( particle, delay, animationTime, pos ) {
 
 	var particle = this instanceof THREE.Sprite ? this : particle;
-	var delay = delay !== undefined ? delay : 0;
 
   particle.visible = true;
 	particle.position.copy(pos);
 	particle.scale.x = particle.scale.y = 0.01 + 0.02 * Math.random();
 
-  var time = 1000;
 	new TWEEN.Tween( particle )
 		.delay( delay )
-		.to( {}, time )
+		.to( {}, animationTime )
 		.onComplete( function(){particle.visible = false;} )
 		.start();
 
 	new TWEEN.Tween( particle.position )
 		.delay( delay )
-		.to( { x: pos.x + Math.random() - 0.5, y: pos.y + Math.random() - 0.5, z: pos.z + Math.random() - 0.5 }, time )
+		.to( { x: pos.x + Math.random() - 0.5, y: pos.y + Math.random() - 0.5, z: pos.z + Math.random() - 0.5 }, animationTime )
 		.start();
 
 	new TWEEN.Tween( particle.scale )
 		.delay( delay )
-		.to( { x: 0.0001, y: 0.0001 }, time )
+		.to( { x: 0.0001, y: 0.0001 }, animationTime )
 		.start();
 
 }
@@ -311,10 +309,12 @@ function onClick (e)
 
 function initParticleEffect(pos)
 {
+  var time = 2000;
+  var delay = time / particles.length;
   // Show particles
   for(var i = 0; i < particles.length; i++)
   {
-    initParticle( particles[i], i * 10, pos );
+    initParticle( particles[i], delay, time, pos );
   }
 }
 
@@ -420,11 +420,12 @@ function createProduct(position, localToWorld, productInfo)
   // ANCHOR
   // Create anchor
   var mesh = anchorModel.clone();
-  mesh.material = new THREE.MeshStandardMaterial({color:new THREE.Color(1, 0.7, 0.7)});
+  mesh.material = new THREE.MeshStandardMaterial();
+  mesh.material.color.copy(new THREE.Color(1, 0.7, 0.7));
 	mesh.material.roughness = 0.5;
 	mesh.material.metalness = 0.5;
   mesh.position.copy(p);
-  mesh.rotation.x -= 0.5 * Math.PI;
+  //mesh.rotation.x -= 0.5 * Math.PI;
   mesh.quaternion.copy(rot);
   mesh.scale.set(0.0001, 0.0001, 0.0001);
   scene.add( mesh );
