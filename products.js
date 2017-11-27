@@ -12,8 +12,8 @@ function createProducts()
   createProduct(new THREE.Vector3(0.3, 1.6, -0.20), productInfos[6]);
   createProduct(new THREE.Vector3(0.6, 1.6, -0.20), productInfos[7]);
 
-  createParticleEffect(new THREE.Vector3(0.0, 180.0, 0.0));
-  createParticleEffect(new THREE.Vector3(85.0, 180.0, 0.0));
+  createParticleEffect(localToWorld(new THREE.Vector3(0.0, 1.8, 0.0)));
+  createParticleEffect(localToWorld(new THREE.Vector3(0.85, 1.8, 0.0)));
 }
 
 function createProduct(position, productInfo)

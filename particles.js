@@ -21,7 +21,6 @@ function initParticles()
 
 function createParticleEffect(position)
 {
-  var pos = localToWorld(position);
   var material = new THREE.SpriteMaterial( {
     map: new THREE.CanvasTexture( generateRedSprite() ),
     blending: THREE.AdditiveBlending
@@ -32,7 +31,7 @@ function createParticleEffect(position)
 
     particle = new THREE.Sprite( material );
     scene.add( particle );
-    initParticle( particle, delay, time, pos, true );
+    initParticle( particle, delay, time, position, true );
   }
 }
 
