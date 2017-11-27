@@ -3,7 +3,6 @@ var products = [];
 
 function createProducts(localToWorld)
 {
-
   createProduct(new THREE.Vector3(0.3, 0.4, -0.1), localToWorld, productInfos[0]);
   createProduct(new THREE.Vector3(0.6, 0.4, -0.1), localToWorld, productInfos[1]);
   createProduct(new THREE.Vector3(0.3, 0.8, -0.15), localToWorld, productInfos[2]);
@@ -30,11 +29,6 @@ function createProducts(localToWorld)
   p = trans.clone().add(xAxis.clone().multiplyScalar(position.x).add(yAxis.clone().multiplyScalar(position.y)).
     add(zAxis.clone().multiplyScalar(position.z)));
   createParticleEffect(p);
-
-}
-
-function createParticleEffect()
-{
 
 }
 

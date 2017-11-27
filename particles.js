@@ -3,7 +3,6 @@ var particles = [];
 
 function initParticles()
 {
-  // Hit particles
   var material = new THREE.SpriteMaterial( {
     map: new THREE.CanvasTexture( generateBlueSprite() ),
     blending: THREE.AdditiveBlending
