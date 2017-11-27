@@ -1,13 +1,16 @@
 
+var particles = [];
+
 function initParticles()
 {
-  // Particles
+  // Hit particles
   var material = new THREE.SpriteMaterial( {
-    map: new THREE.CanvasTexture( generateSprite() ),
+    map: new THREE.CanvasTexture( generateBlueSprite() ),
     blending: THREE.AdditiveBlending
   } );
-
-  for ( var i = 0; i < 500; i++ ) {
+  
+  var particle;
+  for ( var i = 0; i < 200; i++ ) {
 
     particle = new THREE.Sprite( material );
     particle.visible = false;
@@ -15,9 +18,32 @@ function initParticles()
 
     scene.add( particle );
   }
+
+  // Red particles
+  material = new THREE.SpriteMaterial( {
+    map: new THREE.CanvasTexture( generateRedSprite() ),
+    blending: THREE.AdditiveBlending
+  } );
+
+  var time = 2000;
+  var delay = time / particles.length;
+  var pos = new THREE.Vector3(0.0, 180.0, 0.0);
+  for ( var i = 0; i < 200; i++ ) {
+
+    particle = new THREE.Sprite( material );
+    scene.add( particle );
+    initParticle( particle, delay, time, pos, true );
+  }
+  pos = new THREE.Vector3(85.0, 180.0, 0.0);
+  for ( var i = 0; i < 200; i++ ) {
+
+    particle = new THREE.Sprite( material );
+    scene.add( particle );
+    initParticle( particle, delay, time, pos, true );
+  }
 }
 
-function generateSprite() {
+function generateBlueSprite() {
 
   var canvas = document.createElement( 'canvas' );
   canvas.width = 16;
@@ -34,21 +60,39 @@ function generateSprite() {
   context.fillRect( 0, 0, canvas.width, canvas.height );
 
   return canvas;
-
 }
 
-function initParticleEffect(pos)
+function generateRedSprite() {
+
+  var canvas = document.createElement( 'canvas' );
+  canvas.width = 16;
+  canvas.height = 16;
+
+  var context = canvas.getContext( '2d' );
+  var gradient = context.createRadialGradient( canvas.width / 2, canvas.height / 2, 0, canvas.width / 2, canvas.height / 2, canvas.width / 2 );
+  gradient.addColorStop( 0, 'rgba(255,255,255,1)' );
+  gradient.addColorStop( 0.2, 'rgba(255,255,0,1)' );
+  gradient.addColorStop( 0.4, 'rgba(64,0,0,1)' );
+  gradient.addColorStop( 1, 'rgba(0,0,0,1)' );
+
+  context.fillStyle = gradient;
+  context.fillRect( 0, 0, canvas.width, canvas.height );
+
+  return canvas;
+}
+
+function startParticleEffect(pos)
 {
   var time = 2000;
   var delay = time / particles.length;
   // Show particles
   for(var i = 0; i < particles.length; i++)
   {
-    initParticle( particles[i], delay, time, pos );
+    initParticle( particles[i], delay, time, pos, false );
   }
 }
 
-function initParticle( particle, delay, animationTime, pos ) {
+function initParticle( particle, delay, animationTime, pos, restart ) {
 
 	var particle = this instanceof THREE.Sprite ? this : particle;
 
@@ -59,7 +103,7 @@ function initParticle( particle, delay, animationTime, pos ) {
 	new TWEEN.Tween( particle )
 		.delay( delay )
 		.to( {}, animationTime )
-		.onComplete( function(){particle.visible = false;} )
+		.onComplete( function(){restart ? initParticle(particle, delay, animationTime, pos, restart) : particle.visible = false;} )
 		.start();
 
 	new TWEEN.Tween( particle.position )

@@ -101,7 +101,6 @@ var products = [];
 var recordedHits = [];
 var videoTexture, videoContext, video, videoImage;
 var anchorModel;
-var particles = [];
 
 /**
  * Use the `getARDisplay()` utility to leverage the WebVR API
@@ -228,7 +227,7 @@ function onClick (e)
     var pos = new THREE.Vector3();
     pos.setFromMatrixPosition( modelMatrix );
 
-    initParticleEffect(pos);
+    startParticleEffect(pos);
 
     if(!isInitialized())
     {
