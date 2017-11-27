@@ -8,6 +8,7 @@ function createVideo()
 	// video.id = 'video';
 	// video.type = ' video/ogg; codecs="theora, vorbis" ';
 	video.src = "assets/sintel.ogv";
+  video.muted = true;
 	video.load(); // must call after setting/changing source
 	video.play();
 
@@ -28,7 +29,7 @@ function createVideo()
 
   var plane = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
 
-  var position = new THREE.Vector3(0.0, 0.5, 0.0);
+  var position = new THREE.Vector3(1.2, 0.5, 0.0);
   var posWorld = localToWorld(position);
 
 	var mesh = new THREE.Mesh( plane, movieMaterial );
