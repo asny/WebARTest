@@ -86,7 +86,7 @@ function createProduct(position, productInfo)
   var geometry = new THREE.PlaneGeometry( 0.25, 0.25, 8, 8 );
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
   var textGeometry = new THREE.Mesh( geometry, material );
-  var p2 = localToWorld(position.clone().addScaledVector(zAxis, 0.04));
+  var p2 = localToWorld(position.clone().add(new THREE.Vector3(0.0, 0.0, 0.04)));
   textGeometry.position.copy(p2);
   textGeometry.quaternion.copy(rot);
   scene.add( textGeometry );
