@@ -94,13 +94,12 @@
 <script src="./extern/tween.min.js"></script>
 <script src="./particles.js"></script>
 <script src="./products.js"></script>
+<script src="./video.js"></script>
 <script>
 
 var vrDisplay, vrControls, vrFrameData, arView;
 var canvas, camera, scene, renderer;
-var products = [];
 var recordedHits = [];
-var videoTexture, videoContext, video, videoImage;
 var anchorModel;
 
 /**
@@ -258,37 +257,9 @@ function initialize()
 
   var localToWorld = estimateTransformation([x1, x2, x3], recordedHits);
 
-  // Create products
   createProducts(localToWorld);
 
-  // Video
-  video = document.getElementById( 'video' );
-
-  videoImage = document.createElement( 'canvas' );
-  videoImage.width = 480;
-  videoImage.height = 204;
-
-  videoContext = videoImage.getContext( '2d' );
-  videoContext.fillStyle = '#000000';
-  videoContext.fillRect( 0, 0, 480, 204 );
-
-  videoTexture = new THREE.Texture( videoImage );
-  var material = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: 0.5 } );
-
-	var plane = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
-
-  var trans = new THREE.Vector3();
-  var rot = new THREE.Quaternion();
-  var scale = new THREE.Vector3();
-  localToWorld.decompose(trans, rot, scale);
-  var position = new THREE.Vector3(0.0, 0.0, 0.0);
-  var p = trans.clone().add(xAxis.clone().multiplyScalar(position.x).add(yAxis.clone().multiplyScalar(position.y)).add(zAxis.clone().multiplyScalar(position.z)));
-
-	var mesh = new THREE.Mesh( plane, material );
-  mesh.position.copy(p);
-  mesh.quaternion.copy(rot);
-  mesh.rotation.x -= 0.5 * Math.PI;
-	scene.add(mesh);
+  createVideo(localToWorld);
 }
 
 function estimateTransformation(X, Y)
@@ -338,7 +309,6 @@ function isInitialized()
   return recordedHits.length == 3;
 }
 
-var lastTime = new Date().getTime();
 /**
  * The render loop, called once per frame. Handles updating
  * our scene and rendering.
@@ -367,26 +337,13 @@ function update() {
     // Fetch the pose data from the current frame
     var pose = vrFrameData.pose;
 
-    var pos = new THREE.Vector3(
-      pose.position[0],
-      pose.position[1],
-      pose.position[2]
-    );
+    var pos = new THREE.Vector3( pose.position[0], pose.position[1], pose.position[2] );
     updateProducts(pos);
 
-    console.log("Damn " + video.readyState + ": " + video.HAVE_ENOUGH_DATA);
-    // Update video
-    if ( video.readyState == video.HAVE_ENOUGH_DATA ) {
-
-      videoContext.drawImage( video, 0, 0 );
-      console.log("HAHa");
-
-      if ( videoTexture ) videoTexture.needsUpdate = true;
-
-    }
+    updateVideo();
   }
 
-  TWEEN.update();
+  updateParticles();
 
   // Render our three.js virtual scene
   renderer.clearDepth();

@@ -8,7 +8,7 @@ function initParticles()
     map: new THREE.CanvasTexture( generateBlueSprite() ),
     blending: THREE.AdditiveBlending
   } );
-  
+
   var particle;
   for ( var i = 0; i < 200; i++ ) {
 
@@ -116,4 +116,9 @@ function initParticle( particle, delay, animationTime, pos, restart ) {
 		.to( { x: 0.0001, y: 0.0001 }, animationTime )
 		.start();
 
+}
+
+function updateParticles()
+{
+  TWEEN.update();
 }

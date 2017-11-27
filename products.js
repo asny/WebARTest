@@ -1,4 +1,6 @@
 
+var products = [];
+
 function createProducts(localToWorld)
 {
 
@@ -101,6 +103,7 @@ function createProduct(position, localToWorld, productInfo)
   products.push(product);
 }
 
+var lastTime = new Date().getTime();
 function updateProducts(pos)
 {
     var currentTime = (new Date().getTime() - lastTime) / 1000;
