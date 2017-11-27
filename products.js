@@ -13,6 +13,14 @@ function createProducts(localToWorld)
   createProduct(new THREE.Vector3(0.3, 1.6, -0.20), localToWorld, productInfos[6]);
   createProduct(new THREE.Vector3(0.6, 1.6, -0.20), localToWorld, productInfos[7]);
 
+  var trans = new THREE.Vector3();
+  var rot = new THREE.Quaternion();
+  var scale = new THREE.Vector3();
+  localToWorld.decompose(trans, rot, scale);
+
+  var xAxis = new THREE.Vector3(), yAxis = new THREE.Vector3(), zAxis = new THREE.Vector3();
+  localToWorld.extractBasis(xAxis, yAxis, zAxis);
+
   var position = new THREE.Vector3(0.0, 180.0, 0.0);
   var p = trans.clone().add(xAxis.clone().multiplyScalar(position.x).add(yAxis.clone().multiplyScalar(position.y)).
     add(zAxis.clone().multiplyScalar(position.z)));
