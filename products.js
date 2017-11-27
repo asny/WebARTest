@@ -1,23 +1,23 @@
 
 var products = [];
 
-function createProducts(localToWorld)
+function createProducts()
 {
-  createProduct(new THREE.Vector3(0.3, 0.4, -0.1), localToWorld, productInfos[0]);
-  createProduct(new THREE.Vector3(0.6, 0.4, -0.1), localToWorld, productInfos[1]);
-  createProduct(new THREE.Vector3(0.3, 0.8, -0.15), localToWorld, productInfos[2]);
-  createProduct(new THREE.Vector3(0.6, 0.8, -0.15), localToWorld, productInfos[3]);
-  createProduct(new THREE.Vector3(0.3, 1.2, -0.15), localToWorld, productInfos[4]);
-  createProduct(new THREE.Vector3(0.6, 1.2, -0.15), localToWorld, productInfos[5]);
-  createProduct(new THREE.Vector3(0.3, 1.6, -0.20), localToWorld, productInfos[6]);
-  createProduct(new THREE.Vector3(0.6, 1.6, -0.20), localToWorld, productInfos[7]);
+  createProduct(new THREE.Vector3(0.3, 0.4, -0.1), productInfos[0]);
+  createProduct(new THREE.Vector3(0.6, 0.4, -0.1), productInfos[1]);
+  createProduct(new THREE.Vector3(0.3, 0.8, -0.15), productInfos[2]);
+  createProduct(new THREE.Vector3(0.6, 0.8, -0.15), productInfos[3]);
+  createProduct(new THREE.Vector3(0.3, 1.2, -0.15), productInfos[4]);
+  createProduct(new THREE.Vector3(0.6, 1.2, -0.15), productInfos[5]);
+  createProduct(new THREE.Vector3(0.3, 1.6, -0.20), productInfos[6]);
+  createProduct(new THREE.Vector3(0.6, 1.6, -0.20), productInfos[7]);
 
   createParticleEffect(localToWorld(new THREE.Vector3(0.0, 180.0, 0.0));
   createParticleEffect(localToWorld(new THREE.Vector3(85.0, 180.0, 0.0)));
 
 }
 
-function createProduct(position, localToWorld, productInfo)
+function createProduct(position, productInfo)
 {
   var p = localToWorld(position);
 

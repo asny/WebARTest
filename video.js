@@ -1,7 +1,7 @@
 
 var videoTexture, videoContext, video, videoImage;
 
-function createVideo(localToWorld)
+function createVideo()
 {
   video = document.getElementById( 'video' );
 
