@@ -12,14 +12,13 @@ function createProducts()
   createProduct(new THREE.Vector3(0.3, 1.6, -0.20), productInfos[6]);
   createProduct(new THREE.Vector3(0.6, 1.6, -0.20), productInfos[7]);
 
-  createParticleEffect((new THREE.Vector3(0.0, 180.0, 0.0));
-  createParticleEffect((new THREE.Vector3(85.0, 180.0, 0.0)));
-
+  createParticleEffect(new THREE.Vector3(0.0, 180.0, 0.0));
+  createParticleEffect(new THREE.Vector3(85.0, 180.0, 0.0));
 }
 
 function createProduct(position, productInfo)
 {
-  var p = (position);
+  var p = localToWorld(position);
 
   // ANCHOR
   // Create anchor
@@ -87,7 +86,7 @@ function createProduct(position, productInfo)
   var geometry = new THREE.PlaneGeometry( 0.25, 0.25, 8, 8 );
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
   var textGeometry = new THREE.Mesh( geometry, material );
-  var p2 = (position.clone().addScaledVector(zAxis, 0.04));
+  var p2 = localToWorld(position.clone().addScaledVector(zAxis, 0.04));
   textGeometry.position.copy(p2);
   textGeometry.quaternion.copy(rot);
   scene.add( textGeometry );

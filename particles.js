@@ -19,8 +19,9 @@ function initParticles()
   }
 }
 
-function createParticleEffect(pos)
+function createParticleEffect(position)
 {
+  var pos = localToWorld(position);
   var material = new THREE.SpriteMaterial( {
     map: new THREE.CanvasTexture( generateRedSprite() ),
     blending: THREE.AdditiveBlending
