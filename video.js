@@ -13,6 +13,8 @@ function createVideo()
 	video.playsinline = true;
 	video.load(); // must call after setting/changing source
 	//video.play();
+	// and set JS variable:
+	video = document.getElementById( 'myVideo' );
 
 	var videoImage = document.createElement( 'canvas' );
 	videoImage.width = 480;
