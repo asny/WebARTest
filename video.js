@@ -1,5 +1,5 @@
 
-var videoTexture, videoImageContext, video;
+var videoTexture, videoImageContext, video, button;
 var posWorld;
 
 function createVideo()
@@ -15,6 +15,10 @@ function createVideo()
 	//video.play();
 	*/
 	video = document.getElementById( 'myVideo' );
+	button = document.getElementById( 'playbackButton' );
+	button.onclick = function(){
+    video.paused ? video.play() : video.pause();
+	}
 
 	var videoImage = document.createElement( 'canvas' );
 	videoImage.width = 480;
