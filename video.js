@@ -5,7 +5,7 @@ var posWorld;
 function createVideo()
 {
   // create the video element
-	video = document.createElement( 'video' );
+	/*video = document.createElement( 'video' );
 	// video.id = 'video';
 	// video.type = ' video/ogg; codecs="theora, vorbis" ';
 	video.src = "assets/sintel.mp4";
@@ -13,7 +13,7 @@ function createVideo()
 	video.playsinline = true;
 	video.load(); // must call after setting/changing source
 	//video.play();
-	// and set JS variable:
+	*/
 	video = document.getElementById( 'myVideo' );
 
 	var videoImage = document.createElement( 'canvas' );
@@ -47,7 +47,7 @@ function updateVideo(pos)
 	var shouldPause = pos.distanceTo(posWorld) > 2.0;
 	if(video.paused != shouldPause)
 	{
-		startParticleEffect(pos);
+		startParticleEffect(posWorld);
 		video.paused ? video.play() : video.pause();
 	}
 
