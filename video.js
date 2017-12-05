@@ -1,5 +1,5 @@
 
-var videoTexture, videoImageContext, video, button;
+var videoTexture, videoImageContext, video;
 var posWorld;
 
 function createVideo()
@@ -15,10 +15,6 @@ function createVideo()
 	//video.play();
 	*/
 	video = document.getElementById( 'myVideo' );
-	button = document.getElementById( 'playbackButton' );
-	button.onclick = function(){
-    video.paused ? video.play() : video.pause();
-	}
 
 	var videoImage = document.createElement( 'canvas' );
 	videoImage.width = 480;
@@ -44,6 +40,15 @@ function createVideo()
   mesh.position.copy(posWorld);
   mesh.quaternion.copy(rot);
   scene.add(mesh);
+
+	var button = document.createElement( 'button' );
+	var t = document.createTextNode("CLICK ME");
+	button.appendChild(t);
+	button.onclick = function(){
+		startParticleEffect(posWorld);
+		video.paused ? video.play() : video.pause();
+	}
+	document.body.appendChild(button);
 }
 
 function updateVideo(pos)
@@ -52,7 +57,7 @@ function updateVideo(pos)
 	if(video.paused != shouldPause)
 	{
 		startParticleEffect(posWorld);
-		video.paused ? video.play() : video.pause();
+		//video.paused ? video.play() : video.pause();
 	}
 
   // Update video
