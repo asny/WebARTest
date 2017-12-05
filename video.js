@@ -9,6 +9,7 @@ function createVideo()
 	// video.type = ' video/ogg; codecs="theora, vorbis" ';
 	video.src = "assets/sintel.ogv";
   video.muted = true;
+	video.autoplay = true;
 	video.load(); // must call after setting/changing source
 	video.play();
 
