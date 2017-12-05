@@ -43,10 +43,10 @@ function createVideo()
 function updateVideo()
 {
   // Update video
-  /*if ( video.readyState === video.HAVE_ENOUGH_DATA )
+  if ( video.readyState === video.HAVE_ENOUGH_DATA )
 	{
 		videoImageContext.drawImage( video, 0, 0 );
 		if ( videoTexture )
 			videoTexture.needsUpdate = true;
-	}*/
+	}
 }
