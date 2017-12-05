@@ -9,7 +9,7 @@ function initParticles()
   } );
 
   var particle;
-  for ( var i = 0; i < 200; i++ ) {
+  for ( var i = 0; i < 600; i++ ) {
 
     particle = new THREE.Sprite( material );
     particle.visible = false;
@@ -75,12 +75,19 @@ function generateRedSprite() {
 
 function startParticleEffect(pos)
 {
-  if(particle.visible == true)
-    return;
+  var noParticles = 200;
+  var startIndex = 0;
+  while(particles[startIndex].visible)
+  {
+    startIndex += noParticles;
+    if(startIndex > particles.length)
+      return;
+  }
+
   var time = 2000;
-  var delay = time / particles.length;
+  var delay = time / noParticles;
   // Show particles
-  for(var i = 0; i < particles.length; i++)
+  for(var i = startIndex; i < startIndex + noParticles; i++)
   {
     initParticle( particles[i], delay, time, pos, false );
   }
