@@ -56,7 +56,7 @@ function updateVideo(pos)
 	var shouldPause = pos.distanceTo(posWorld) > 2.0;
 	if(video.paused != shouldPause)
 	{
-		startParticleEffect(posWorld);
+		//startParticleEffect(posWorld);
 		//video.paused ? video.play() : video.pause();
 	}
 
