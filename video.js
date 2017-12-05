@@ -8,7 +8,7 @@ function createVideo()
 	video = document.createElement( 'video' );
 	// video.id = 'video';
 	// video.type = ' video/ogg; codecs="theora, vorbis" ';
-	video.src = "assets/sintel.ogv";
+	video.src = "assets/sintel.mp4";
   video.muted = true;
 	video.playsinline = true;
 	video.load(); // must call after setting/changing source
