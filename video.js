@@ -25,7 +25,7 @@ function createVideo()
 	videoTexture.minFilter = THREE.LinearFilter;
 	videoTexture.magFilter = THREE.LinearFilter;
 
-	var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
+	var movieMaterial = new THREE.MeshBasicMaterial( { side:THREE.DoubleSide } );
 
   var plane = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
 
