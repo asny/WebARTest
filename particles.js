@@ -75,6 +75,8 @@ function generateRedSprite() {
 
 function startParticleEffect(pos)
 {
+  if(particle.visible == true)
+    return;
   var time = 2000;
   var delay = time / particles.length;
   // Show particles
