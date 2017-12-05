@@ -1,5 +1,6 @@
 
 var videoTexture, videoImageContext, video;
+var posWorld;
 
 function createVideo()
 {
@@ -9,10 +10,9 @@ function createVideo()
 	// video.type = ' video/ogg; codecs="theora, vorbis" ';
 	video.src = "assets/sintel.ogv";
   video.muted = true;
-	video.autoplay = true;
 	video.playsinline = true;
 	video.load(); // must call after setting/changing source
-	video.play();
+	//video.play();
 
 	var videoImage = document.createElement( 'canvas' );
 	videoImage.width = 480;
@@ -34,7 +34,7 @@ function createVideo()
   var plane = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
 
   var position = new THREE.Vector3(1.2, 0.5, 0.0);
-  var posWorld = localToWorld(position);
+  posWorld = localToWorld(position);
 
 	var mesh = new THREE.Mesh( plane, movieMaterial );
   mesh.position.copy(posWorld);
@@ -42,10 +42,16 @@ function createVideo()
   scene.add(mesh);
 }
 
-function updateVideo()
+function updateVideo(pos)
 {
+	var shouldPause = pos.distanceTo(posWorld) > 2.0;
+	if(video.paused != shouldPause)
+	{
+		video.paused ? video.play() : video.pause();
+	}
+
   // Update video
-  if ( video.readyState === video.HAVE_ENOUGH_DATA )
+  if ( !video.paused && video.readyState === video.HAVE_ENOUGH_DATA )
 	{
 		videoImageContext.drawImage( video, 0, 0 );
 		if ( videoTexture )
