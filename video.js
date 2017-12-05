@@ -63,8 +63,8 @@ function updateVideo(pos)
   // Update video
   if ( !video.paused && video.readyState === video.HAVE_ENOUGH_DATA )
 	{
-		videoImageContext.drawImage( video, 0, 0 );
+		/*videoImageContext.drawImage( video, 0, 0 );
 		if ( videoTexture )
-			videoTexture.needsUpdate = true;
+			videoTexture.needsUpdate = true;*/
 	}
 }
