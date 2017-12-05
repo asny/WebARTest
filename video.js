@@ -20,7 +20,7 @@ function createVideo()
 
 	videoImageContext = videoImage.getContext( '2d' );
 	// background color if no video present
-	videoImageContext.fillStyle = '#000000';
+	videoImageContext.fillStyle = '#ff0000';
 	videoImageContext.fillRect( 0, 0, videoImage.width, videoImage.height );
 
 	videoTexture = new THREE.Texture( videoImage );
