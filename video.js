@@ -10,6 +10,7 @@ function createVideo()
 	video.src = "assets/sintel.ogv";
   video.muted = true;
 	video.autoplay = true;
+	video.playsinline = true;
 	video.load(); // must call after setting/changing source
 	video.play();
 
