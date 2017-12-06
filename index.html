@@ -64,24 +64,15 @@
 
 <body>
   <canvas id="canvas"></canvas>
-  <div style="display:none;">
-    <img id="source" src="assets/logo1.png"
-         width="800" height="800">
-  </div>
-  <div style='position: absolute; top: 0px; width: 100%;font-family:arial; font-weight: bolder; padding-top: 5px;'>
-    on IOS, start the video manually
-    <button onclick='onVideoPlayButtonClick()'>play</button>
-    <button onclick='onVideoPauseButtonClick()'>pause</button>
-  </div>
 
-<!--<div id="info">
-  <span class="title">Render detected surfaces.</span><br/>
-  <span class="links">
-    <a href="https://github.com/google-ar/three.ar.js">three.ar.js</a> -
-    <a href="https://developers.google.com/ar/develop/web/getting-started#examples">examples</a>
-  </span>
-</div>-->
-<script>
+  <div id="info">
+    <span class="title">Render detected surfaces.</span><br/>
+    <span class="links">
+      <button onclick='onVideoPlayButtonClick()'>play</button>
+      <button onclick='onVideoPauseButtonClick()'>pause</button>
+    </span>
+  </div>
+  <script>
 
 var vrDisplay, vrControls, vrFrameData, arView;
 var canvas, camera, scene, renderer;
@@ -227,7 +218,7 @@ function onClick (e)
       if(isInitialized())
       {
         createProducts();
-        //createVideo();
+        createVideo();
       }
     }
   }
@@ -264,7 +255,7 @@ function update() {
     var pos = new THREE.Vector3( pose.position[0], pose.position[1], pose.position[2] );
     updateProducts(pos);
 
-    //updateVideo(pos);
+    updateVideo(pos);
   }
 
   updateParticles();

@@ -16,19 +16,22 @@ function createVideo()
 	// create the videoTexture
 	videoTexture= new THREEx.VideoTexture(url)
 	video	= videoTexture.video
-	updateFcts.push(function(delta, now){
-		videoTexture.update(delta, now)
-	})
 
 	// use the texture in a THREE.Mesh
-	var geometry	= new THREE.CubeGeometry(1,1,1);
+	var geometry	= new THREE.CubeGeometry(0.2,0.2,0.2);
 	var material	= new THREE.MeshBasicMaterial({
 		map	: videoTexture.texture
 	});
 	var mesh	= new THREE.Mesh( geometry, material );
-	scene.add( mesh );
 
-	/*var material = new THREE.MeshBasicMaterial( { map: texture } );
+  var position = new THREE.Vector3(1.2, 0.5, 0.0);
+  posWorld = localToWorld(position);
+	mesh.position.copy(posWorld);
+  mesh.quaternion.copy(rot);
+
+	//scene.add( mesh );
+
+	/*var material = new THREE.MeshBasicMaterial( { map: videoTexture.texture, side: THREE.DoubleSide } );
 
   var plane = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
 
@@ -52,20 +55,17 @@ function createVideo()
 
 
 function onVideoPlayButtonClick(){
+  startParticleEffect(posWorld);
 	video.play();
 }
 function onVideoPauseButtonClick(){
+  startParticleEffect(posWorld);
 	video.pause();
 }
 
-var lastTimeMsec = null;
 function updateVideo(pos)
 {
-	// measure time
-	lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
-	var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
-	lastTimeMsec	= nowMsec
-	videoTexture.update(delta, now);
+	videoTexture.update();
 	/*if( video.readyState !== video.HAVE_ENOUGH_DATA )
 		return;
 	texture.needsUpdate	= true;
