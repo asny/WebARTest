@@ -47,9 +47,9 @@ function createProduct(position, productInfo)
 
   var image = document.createElement("img");
   image.src = productInfo.img;
-  image.width = 300;
-  image.height = 300;
-  context.drawImage(image, 800, 100, image.width, image.height);
+  image.width = 700;
+  image.height = 700;
+  context.drawImage(image, 0, 0, image.width, image.height, 100, 100, 300, 300);
   div.appendChild(image);
   document.body.appendChild(div);
 
