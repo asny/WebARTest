@@ -1,23 +1,7 @@
-<!--
-/*
- * Copyright 2017 Google Inc. All Rights Reserved.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>three.ar.js - Surfaces</title>
+  <title>Beaware</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, user-scalable=no,
   minimum-scale=1.0, maximum-scale=1.0">
@@ -64,22 +48,44 @@
     }
   </style>
 </head>
+
+<script src="./extern/three.js"></script>
+<script src="./extern/VRControls.js"></script>
+<script src="./extern/three.ar.js"></script>
+<script src="./extern/numeric.js"></script>
+<script src="./extern/OBJLoader.js"></script>
+<script src="./assets/product-info.js"></script>
+<script src="./extern/tween.min.js"></script>
+<script src="./transformations.js"></script>
+<script src="./particles.js"></script>
+<script src="./products.js"></script>
+<script src="./threex.videotexture.js"></script>
+<script src="./video.js"></script>
+
 <body>
-<div id="info">
+  <canvas id="canvas"></canvas>
+  <div style="display:none;">
+    <img id="source" src="assets/logo1.png"
+         width="800" height="800">
+  </div>
+  <div style='position: absolute; top: 0px; width: 100%;font-family:arial; font-weight: bolder; padding-top: 5px;'>
+    on IOS, start the video manually
+    <button onclick='onVideoPlayButtonClick()'>play</button>
+    <button onclick='onVideoPauseButtonClick()'>pause</button>
+  </div>
+
+<!--<div id="info">
   <span class="title">Render detected surfaces.</span><br/>
   <span class="links">
     <a href="https://github.com/google-ar/three.ar.js">three.ar.js</a> -
     <a href="https://developers.google.com/ar/develop/web/getting-started#examples">examples</a>
   </span>
-</div>
-<script src="./three.js"></script>
-<script src="./VRControls.js"></script>
-<script src="./three.ar.js"></script>
+</div>-->
 <script>
 
 var vrDisplay, vrControls, vrFrameData, arView;
 var canvas, camera, scene, renderer;
-var products = [];
+var anchorModel;
 
 /**
  * Use the `getARDisplay()` utility to leverage the WebVR API
@@ -140,65 +146,91 @@ function init() {
 
   // Bind our event handlers
   window.addEventListener('resize', onWindowResize, false);
+  canvas.addEventListener('touchstart', onClick, false);
 
-  // Create Scene
-  scene.add( new THREE.DirectionalLight( 0xffffff, 0.5 ) );
+  // Add lights
+  scene.add(new THREE.AmbientLight( 0x888888 ));
 
-  createProduct(new THREE.Vector3(-0.3, 0.5, -1.0), 'T-shirt');
-  createProduct(new THREE.Vector3(-0.3, 0.0, -1.0), 'Jeans');
-  createProduct(new THREE.Vector3(0.3, 0.0, -1.0), 'Shoes');
-  createProduct(new THREE.Vector3(0.3, 0.5, -1.0), 'Dress');
+  // model
+	var manager = new THREE.LoadingManager();
+	manager.onProgress = function ( item, loaded, total ) {
+
+		console.log( item, loaded, total );
+
+	};
+  var onProgress = function ( xhr ) {
+    if ( xhr.lengthComputable ) {
+      var percentComplete = xhr.loaded / xhr.total * 100;
+      console.log( Math.round(percentComplete, 2) + '% downloaded' );
+    }
+  };
+
+  var onError = function ( xhr ) {
+  };
+
+  var loader = new THREE.OBJLoader( manager );
+  loader.load( 'assets/logo.obj', function ( object ) {
+
+    anchorModel = object;
+
+  }, onProgress, onError );
+
+  initParticles();
 
   // Kick off the render loop!
   update();
 }
 
-function createProduct(position, text)
+/**
+ * When clicking on the screen, fire a ray from where the user clicked
+ * on the screen and if a hit is found, place a cube there.
+ */
+function onClick (e)
 {
-  var geometry = new THREE.TorusKnotGeometry( 0.05, 0.02, 100, 16 );
-  //var geometry = new THREE.SphereGeometry( 0.05, 32, 32 );
-  var material = new THREE.MeshStandardMaterial();
-	material.roughness = 0.5;
-	material.metalness = 0.5;
-  var mesh = new THREE.Mesh( geometry, material );
-  mesh.translateX(position.x);
-  mesh.translateY(position.y);
-  mesh.translateZ(position.z);
-  scene.add( mesh );
+  // If we don't have a touches object, abort
+  // TODO: is this necessary?
+  if (!e.touches[0]) {
+    return;
+  }
 
-  // Text
-  // load a texture, set wrap mode to repeat
-  //var texture = new THREE.TextureLoader().load( "test.png" );
-  //texture.wrapS = THREE.RepeatWrapping;
-  //texture.wrapT = THREE.RepeatWrapping;
-  //texture.repeat.set( 1, 1 );
-  //create image
-  var bitmap = document.createElement('canvas');
-  var g = bitmap.getContext('2d');
-  bitmap.width = 100;
-  bitmap.height = 100;
-  g.font = 'Bold 20px Arial';
+  // Inspect the event object and generate normalize screen coordinates
+  // (between 0 and 1) for the screen position.
+  var x = e.touches[0].pageX / window.innerWidth;
+  var y = e.touches[0].pageY / window.innerHeight;
 
-  g.fillStyle = 'black';
-  g.fillText(text, 0, 20);
-  g.strokeStyle = 'black';
-  g.strokeText(text, 0, 20);
+  // Send a ray from the point of click to the real world surface
+  // and attempt to find a hit. `hitTest` returns an array of potential
+  // hits.
+  var hits = vrDisplay.hitTest(x, y);
 
-  // canvas contents will be used for a texture
-  var texture = new THREE.Texture(bitmap)
-  texture.needsUpdate = true;
-  texture.magFilter = THREE.NearestFilter;
-  texture.minFilter = THREE.NearestFilter;
+  // If a hit is found, just use the first one
+  if (hits && hits.length) {
+    // Record hit
+    var hit = hits[0];
+    var modelMatrix = new THREE.Matrix4();
+    modelMatrix.fromArray(hit.modelMatrix);
+    var pos = new THREE.Vector3();
+    pos.setFromMatrixPosition( modelMatrix );
 
-  var geometry = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
-  var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide} );
-  var textGeometry = new THREE.Mesh( geometry, material );
-  textGeometry.translateX(position.x);
-  textGeometry.translateY(position.y);
-  textGeometry.translateZ(position.z);
-  scene.add( textGeometry );
-  var product = {anchor:mesh, description:textGeometry};
-  products.push(product);
+    startParticleEffect(pos);
+
+    if(!isInitialized())
+    {
+      addHit(pos)
+      // Add hit geometry
+      //var geometry = new THREE.SphereGeometry( 0.01, 32, 32 );
+      //var material = new THREE.MeshStandardMaterial();
+      //var hitMesh = new THREE.Mesh( geometry, material );
+      //scene.add(hitMesh);
+      //hitMesh.position.set(pos.x, pos.y, pos.z);
+
+      if(isInitialized())
+      {
+        createProducts();
+        //createVideo();
+      }
+    }
+  }
 }
 
 /**
@@ -224,31 +256,18 @@ function update() {
   // Update our perspective camera's positioning
   vrControls.update();
 
-  // Fetch the pose data from the current frame
-  var pose = vrFrameData.pose;
-
-  var pos = new THREE.Vector3(
-    pose.position[0],
-    pose.position[1],
-    pose.position[2]
-  );
-
-  for(var i = 0; i < products.length; i++)
+  if(isInitialized())
   {
-    var product = products[i];
-    if(pos.distanceTo(product.anchor.position) < 1.0)
-    {
-      product.anchor.visible = false;
-      product.description.visible = true;
-    }
-    else {
-      product.anchor.visible = true;
-      product.description.visible = false;
-    }
+    // Fetch the pose data from the current frame
+    var pose = vrFrameData.pose;
 
-    product.anchor.rotation.x += 0.01;
-  	product.anchor.rotation.y += 0.01;
+    var pos = new THREE.Vector3( pose.position[0], pose.position[1], pose.position[2] );
+    updateProducts(pos);
+
+    //updateVideo(pos);
   }
+
+  updateParticles();
 
   // Render our three.js virtual scene
   renderer.clearDepth();
@@ -269,6 +288,7 @@ function onWindowResize () {
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
+
 </script>
 </body>
 </html>
