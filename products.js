@@ -42,6 +42,8 @@ function createProduct(position, productInfo)
   var context = bitmap.getContext('2d');
   bitmap.width = 1200;
   bitmap.height = 1200;
+  context.fillStyle="#FFFFFF";
+  context.fillRect(0,0,bitmap.width,bitmap.height);
 
   var lineHeight = 60;
   var marginX = lineHeight * 2;
