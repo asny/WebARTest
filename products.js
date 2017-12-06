@@ -47,9 +47,9 @@ function createProduct(position, productInfo)
 
   var image = document.createElement("img");
   image.src = productInfo.img;
-  image.width = 700;
-  image.height = 700;
-  context.drawImage(image, 0, 0, bitmap.width, bitmap.height);
+  image.width = 300;
+  image.height = 300;
+  context.drawImage(image, 100, 100, image.width, image.height);
   div.appendChild(image);
   document.body.appendChild(div);
 
@@ -93,7 +93,7 @@ function createProduct(position, productInfo)
 
   // Create text geometry
   var geometry = new THREE.PlaneGeometry( 0.25, 0.25, 8, 8 );
-  var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
+  var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide});//, transparent: true, opacity: 0.8} );
   var textGeometry = new THREE.Mesh( geometry, material );
   var p2 = localToWorld(position.clone().add(new THREE.Vector3(0.0, 0.0, 0.04)));
   textGeometry.position.copy(p2);
