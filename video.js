@@ -63,15 +63,9 @@ function onVideoPauseButtonClick(){
 	video.pause();
 }
 
-var lastTimeMsec = null;
 function updateVideo(pos)
 {
-	// measure time
-	var nowMsec = new Date().getTime();
-	lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
-	var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
-	lastTimeMsec	= nowMsec
-	videoTexture.update(deltaMsec/1000, nowMsec/1000);
+	videoTexture.update();
 	/*if( video.readyState !== video.HAVE_ENOUGH_DATA )
 		return;
 	texture.needsUpdate	= true;
