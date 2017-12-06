@@ -1,7 +1,9 @@
 
-var local2World = null;
+var local2World = new THREE.Matrix4();
+var trans = new THREE.Vector3();
+var rot = new THREE.Quaternion();
+var scale = new THREE.Vector3();
 var recordedHits = [];
-var rot, trans, scale;
 
 function localToWorld(position)
 {
@@ -29,7 +31,7 @@ function addHit(position)
 
 function isInitialized()
 {
-  return local2World != null;
+  return recordedHits.length == 3;
 }
 
 function estimateTransformation(X, Y)
@@ -65,15 +67,10 @@ function estimateTransformation(X, Y)
   var R = numeric.dot(V, numeric.dot(D, WT));
 
   // Create matrix
-  local2World = new THREE.Matrix4();
   local2World.set(R[0][0], R[1][0], R[2][0], translation.x,
                   R[0][1], R[1][1], R[2][1], translation.y,
                   R[0][2], R[1][2], R[2][2], translation.z,
                   0.0, 0.0, 0.0, 1.0);
 
-
-  trans = new THREE.Vector3();
-  rot = new THREE.Quaternion();
-  scale = new THREE.Vector3();
   local2World.decompose(trans, rot, scale);
 }
