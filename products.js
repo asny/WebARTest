@@ -38,18 +38,18 @@ function createProduct(position, productInfo)
   // Create image
   var bitmap = document.createElement('canvas');
   var context = bitmap.getContext('2d');
-  bitmap.width = 700;
-  bitmap.height = 700;
+  bitmap.width = 1500;
+  bitmap.height = 1500;
 
   // Create background
   var div = document.createElement("div");
   div.style = "display:none;";
-  
+
   var image = document.createElement("img");
   image.src = 'assets/logo1.png';
   image.width = 700;
   image.height = 700;
-  context.drawImage(image, 0, 0, bitmap.width, bitmap.height);
+  context.drawImage(image, 100, 100, image.width, image.height);
   div.appendChild(image);
   document.body.appendChild(div);
 
