@@ -26,6 +26,11 @@ function createVideo()
 		map	: videoTexture.texture
 	});
 	var mesh	= new THREE.Mesh( geometry, material );
+
+  var position = new THREE.Vector3(1.2, 0.5, 0.0);
+  posWorld = localToWorld(position);
+	mesh.position.copy(posWorld);
+
 	scene.add( mesh );
 
 	/*var material = new THREE.MeshBasicMaterial( { map: texture } );
@@ -62,10 +67,11 @@ var lastTimeMsec = null;
 function updateVideo(pos)
 {
 	// measure time
+	var nowMsec = new Date().getTime();
 	lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 	var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
 	lastTimeMsec	= nowMsec
-	videoTexture.update(delta, now);
+	videoTexture.update(deltaMsec/1000, nowMsec/1000);
 	/*if( video.readyState !== video.HAVE_ENOUGH_DATA )
 		return;
 	texture.needsUpdate	= true;
