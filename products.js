@@ -5,13 +5,13 @@ var products = [];
 function createProducts()
 {
   createProduct(new THREE.Vector3(0.3, 0.4, -0.1), productInfos[0]);
-  createProduct(new THREE.Vector3(0.6, 0.4, -0.1), productInfos[1]);
+  /*createProduct(new THREE.Vector3(0.6, 0.4, -0.1), productInfos[1]);
   createProduct(new THREE.Vector3(0.3, 0.8, -0.15), productInfos[2]);
   createProduct(new THREE.Vector3(0.6, 0.8, -0.15), productInfos[3]);
   createProduct(new THREE.Vector3(0.3, 1.2, -0.15), productInfos[4]);
   createProduct(new THREE.Vector3(0.6, 1.2, -0.15), productInfos[5]);
   createProduct(new THREE.Vector3(0.3, 1.6, -0.20), productInfos[6]);
-  createProduct(new THREE.Vector3(0.6, 1.6, -0.20), productInfos[7]);
+  createProduct(new THREE.Vector3(0.6, 1.6, -0.20), productInfos[7]);*/
 
   createParticleEffect(localToWorld(new THREE.Vector3(0.0, 1.8, 0.0)));
   createParticleEffect(localToWorld(new THREE.Vector3(0.85, 1.8, 0.0)));
@@ -44,9 +44,9 @@ function createProduct(position, productInfo)
   // Create background
   var div = document.createElement("div");
   div.style = "display:none;";
-  
+
   var image = document.createElement("img");
-  image.src = 'assets/logo1.png';
+  image.src = productInfo.img;
   image.width = 700;
   image.height = 700;
   context.drawImage(image, 0, 0, bitmap.width, bitmap.height);
@@ -59,17 +59,17 @@ function createProduct(position, productInfo)
   var marginY = lineHeight * 3;
   context.font = '56px Open Sans';
   context.fillStyle = 'black';
-  marginY = wrapText(context, productInfo.ProductTitle, marginX, marginY, bitmap.width - 2 * marginX, lineHeight);
+  marginY = wrapText(context, productInfo.title, marginX, marginY, bitmap.width - 2 * marginX, lineHeight);
 
   // Draw teaser
   lineHeight = 40;
   marginY += lineHeight;
   context.font = '28px Open Sans';
   context.fillStyle = 'black';
-  marginY = wrapText(context, productInfo.Teaser, marginX, marginY, bitmap.width - 2 * marginX, lineHeight);
+  marginY = wrapText(context, productInfo.text, marginX, marginY, bitmap.width - 2 * marginX, lineHeight);
 
   // Draw certifications
-  marginX += lineHeight * 0.25;
+  /*marginX += lineHeight * 0.25;
   for(var i = 0; i < productInfo.Certification.length; i++)
   {
     marginY = wrapText(context, " - " + productInfo.Certification[i], marginX, marginY, bitmap.width - 2 * marginX, lineHeight);
@@ -83,7 +83,7 @@ function createProduct(position, productInfo)
   {
     var effect = productInfo.EnvironmentalEffects.effect[i];
     marginY = wrapText(context, effect["@name"] + ": " + effect["#text"], marginX, marginY, bitmap.width - 2 * marginX, lineHeight);
-  }
+  }*/
 
   // Create a texture
   var texture = new THREE.Texture(bitmap);
