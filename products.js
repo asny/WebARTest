@@ -15,7 +15,7 @@ function createProducts()
 
   createParticleEffect(localToWorld(new THREE.Vector3(-0.5, 0.8, 0.3)));
   createParticleEffect(localToWorld(new THREE.Vector3(1.15, 1.4, 0.1)));
-  createParticleEffect(localToWorld(new THREE.Vector3(-0.2, 0.5, 0.7)));
+  createParticleEffect(localToWorld(new THREE.Vector3(0.8, 0.7, 0.5)));
   createParticleEffect(localToWorld(new THREE.Vector3(-1.2, 1.8, 0.1)));
 }
 
