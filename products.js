@@ -13,8 +13,10 @@ function createProducts()
   createProduct(new THREE.Vector3(0.3, 1.6, -0.20), productInfos[3]);
   //createProduct(new THREE.Vector3(0.6, 1.6, -0.20), productInfos[7]);*/
 
-  createParticleEffect(localToWorld(new THREE.Vector3(0.0, 1.8, 0.0)));
-  createParticleEffect(localToWorld(new THREE.Vector3(0.85, 1.8, 0.0)));
+  createParticleEffect(localToWorld(new THREE.Vector3(-0.5, 0.8, 0.3)));
+  createParticleEffect(localToWorld(new THREE.Vector3(1.15, 1.4, 0.1)));
+  createParticleEffect(localToWorld(new THREE.Vector3(-0.2, 0.5, 0.7)));
+  createParticleEffect(localToWorld(new THREE.Vector3(-1.2, 1.8, 0.1)));
 }
 
 function createProduct(position, productInfo)
@@ -38,8 +40,13 @@ function createProduct(position, productInfo)
   // Create image
   var bitmap = document.createElement('canvas');
   var context = bitmap.getContext('2d');
-  bitmap.width = 700;
-  bitmap.height = 700;
+  bitmap.width = 1200;
+  bitmap.height = 1200;
+
+  var lineHeight = 60;
+  var marginX = lineHeight * 2;
+  var marginY = lineHeight * 2;
+  var textWidth = bitmap.width - 2 * marginX;
 
   // Create background
   var div = document.createElement("div");
@@ -47,26 +54,25 @@ function createProduct(position, productInfo)
 
   var image = document.createElement("img");
   image.src = productInfo.img;
-  image.width = 700;
-  image.height = 700;
-  context.drawImage(image, 0, 0, bitmap.width, bitmap.height);
+  image.width = 3840;
+  image.height = 2160;
+  var imageHeight = image.height * textWidth / image.width;
+  context.drawImage(image, 0, 0, image.width, image.height, marginX, marginY, textWidth, imageHeight);
   div.appendChild(image);
   document.body.appendChild(div);
 
   // Draw product title
-  var lineHeight = 60;
-  var marginX = lineHeight * 2;
-  var marginY = lineHeight * 3;
+  marginY += imageHeight + lineHeight * 2;
   context.font = '56px Open Sans';
   context.fillStyle = 'black';
-  marginY = wrapText(context, productInfo.title, marginX, marginY, bitmap.width - 2 * marginX, lineHeight);
+  marginY = wrapText(context, productInfo.title, marginX, marginY, textWidth, lineHeight);
 
   // Draw teaser
   lineHeight = 40;
   marginY += lineHeight;
   context.font = '28px Open Sans';
   context.fillStyle = 'black';
-  marginY = wrapText(context, productInfo.text, marginX, marginY, bitmap.width - 2 * marginX, lineHeight);
+  marginY = wrapText(context, productInfo.text, marginX, marginY, textWidth, lineHeight);
 
   // Draw certifications
   /*marginX += lineHeight * 0.25;
@@ -93,7 +99,7 @@ function createProduct(position, productInfo)
 
   // Create text geometry
   var geometry = new THREE.PlaneGeometry( 0.25, 0.25, 8, 8 );
-  var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
+  var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide} );
   var textGeometry = new THREE.Mesh( geometry, material );
   var p2 = localToWorld(position.clone().add(new THREE.Vector3(0.0, 0.0, 0.04)));
   textGeometry.position.copy(p2);
