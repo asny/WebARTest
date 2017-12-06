@@ -43,7 +43,7 @@ function createProduct(position, productInfo)
 
   // Create background
   var image = document.createElement("img");
-  image.src = "assets/logo1.png";
+  image.src = 'assets/logo1.png';
   image.width = 700;
   image.height = 700;
   context.drawImage(image, 0, 0, bitmap.width, bitmap.height);
