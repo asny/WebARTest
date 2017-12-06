@@ -29,7 +29,7 @@ function createVideo()
 	mesh.position.copy(posWorld);
   mesh.quaternion.copy(rot);
 
-	scene.add( mesh );
+	//scene.add( mesh );
 
 	/*var material = new THREE.MeshBasicMaterial( { map: videoTexture.texture, side: THREE.DoubleSide } );
 
