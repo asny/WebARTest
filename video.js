@@ -18,7 +18,7 @@ function createVideo()
 	video	= videoTexture.video
 
 	// use the texture in a THREE.Mesh
-	/*var geometry	= new THREE.CubeGeometry(1,1,1);
+	var geometry	= new THREE.CubeGeometry(0.2,0.2,0.2);
 	var material	= new THREE.MeshBasicMaterial({
 		map	: videoTexture.texture
 	});
@@ -27,10 +27,11 @@ function createVideo()
   var position = new THREE.Vector3(1.2, 0.5, 0.0);
   posWorld = localToWorld(position);
 	mesh.position.copy(posWorld);
+  mesh.quaternion.copy(rot);
 
-	scene.add( mesh );*/
+	scene.add( mesh );
 
-	var material = new THREE.MeshBasicMaterial( { map: videoTexture.texture, side: THREE.DoubleSide } );
+	/*var material = new THREE.MeshBasicMaterial( { map: videoTexture.texture, side: THREE.DoubleSide } );
 
   var plane = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
 
@@ -40,7 +41,7 @@ function createVideo()
 	var mesh = new THREE.Mesh( plane, material );
   mesh.position.copy(posWorld);
   mesh.quaternion.copy(rot);
-  scene.add(mesh);
+  scene.add(mesh);*/
 
 	/*var button = document.createElement( 'button' );
 	var t = document.createTextNode("CLICK ME");
