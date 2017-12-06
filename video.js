@@ -57,9 +57,11 @@ function createVideo()
 
 
 function onVideoPlayButtonClick(){
+  startParticleEffect(posWorld);
 	video.play();
 }
 function onVideoPauseButtonClick(){
+  startParticleEffect(posWorld);
 	video.pause();
 }
 
