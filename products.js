@@ -5,8 +5,8 @@ var products = [];
 function createProducts()
 {
   createProduct(new THREE.Vector3(0.3, 0.4, -0.1), productInfos[0]);
-  /*createProduct(new THREE.Vector3(0.6, 0.4, -0.1), productInfos[1]);
-  createProduct(new THREE.Vector3(0.3, 0.8, -0.15), productInfos[2]);
+  createProduct(new THREE.Vector3(0.6, 0.4, -0.1), productInfos[1]);
+  /*createProduct(new THREE.Vector3(0.3, 0.8, -0.15), productInfos[2]);
   createProduct(new THREE.Vector3(0.6, 0.8, -0.15), productInfos[3]);
   createProduct(new THREE.Vector3(0.3, 1.2, -0.15), productInfos[4]);
   createProduct(new THREE.Vector3(0.6, 1.2, -0.15), productInfos[5]);
