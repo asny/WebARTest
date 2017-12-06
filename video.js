@@ -23,7 +23,7 @@ function createVideo()
 	// use the texture in a THREE.Mesh
 	var geometry	= new THREE.CubeGeometry(1,1,1);
 	var material	= new THREE.MeshBasicMaterial({
-		map	: videoTexture.texture
+		//map	: videoTexture.texture
 	});
 	var mesh	= new THREE.Mesh( geometry, material );
 

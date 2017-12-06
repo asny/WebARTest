@@ -42,11 +42,16 @@ function createProduct(position, productInfo)
   bitmap.height = 700;
 
   // Create background
+  var div = document.createElement("div");
+  div.style = "display:none;";
+  
   var image = document.createElement("img");
   image.src = 'assets/logo1.png';
   image.width = 700;
   image.height = 700;
   context.drawImage(image, 0, 0, bitmap.width, bitmap.height);
+  div.appendChild(image);
+  document.body.appendChild(div);
 
   // Draw product title
   var lineHeight = 60;
