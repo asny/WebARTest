@@ -5,13 +5,13 @@ var products = [];
 function createProducts()
 {
   createProduct(new THREE.Vector3(0.3, 0.4, -0.1), productInfos[0]);
-  createProduct(new THREE.Vector3(0.6, 0.4, -0.1), productInfos[1]);
-  /*createProduct(new THREE.Vector3(0.3, 0.8, -0.15), productInfos[2]);
-  createProduct(new THREE.Vector3(0.6, 0.8, -0.15), productInfos[3]);
-  createProduct(new THREE.Vector3(0.3, 1.2, -0.15), productInfos[4]);
-  createProduct(new THREE.Vector3(0.6, 1.2, -0.15), productInfos[5]);
-  createProduct(new THREE.Vector3(0.3, 1.6, -0.20), productInfos[6]);
-  createProduct(new THREE.Vector3(0.6, 1.6, -0.20), productInfos[7]);*/
+  //createProduct(new THREE.Vector3(0.6, 0.4, -0.1), productInfos[1]);
+  //createProduct(new THREE.Vector3(0.3, 0.8, -0.15), productInfos[2]);
+  createProduct(new THREE.Vector3(0.6, 0.8, -0.15), productInfos[1]);
+  //createProduct(new THREE.Vector3(0.3, 1.2, -0.15), productInfos[4]);
+  createProduct(new THREE.Vector3(0.6, 1.2, -0.15), productInfos[2]);
+  createProduct(new THREE.Vector3(0.3, 1.6, -0.20), productInfos[3]);
+  //createProduct(new THREE.Vector3(0.6, 1.6, -0.20), productInfos[7]);*/
 
   createParticleEffect(localToWorld(new THREE.Vector3(0.0, 1.8, 0.0)));
   createParticleEffect(localToWorld(new THREE.Vector3(0.85, 1.8, 0.0)));
@@ -38,15 +38,15 @@ function createProduct(position, productInfo)
   // Create image
   var bitmap = document.createElement('canvas');
   var context = bitmap.getContext('2d');
-  bitmap.width = 1500;
-  bitmap.height = 800;
+  bitmap.width = 700;
+  bitmap.height = 700;
 
   // Create background
   var div = document.createElement("div");
   div.style = "display:none;";
 
   var image = document.createElement("img");
-  image.src = "imgs/" + productInfo.img;
+  image.src = productInfo.img;
   image.width = 700;
   image.height = 700;
   context.drawImage(image, 0, 0, bitmap.width, bitmap.height);
@@ -93,7 +93,7 @@ function createProduct(position, productInfo)
 
   // Create text geometry
   var geometry = new THREE.PlaneGeometry( 0.25, 0.25, 8, 8 );
-  var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide});//, transparent: true, opacity: 0.8} );
+  var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
   var textGeometry = new THREE.Mesh( geometry, material );
   var p2 = localToWorld(position.clone().add(new THREE.Vector3(0.0, 0.0, 0.04)));
   textGeometry.position.copy(p2);

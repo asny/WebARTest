@@ -2,11 +2,25 @@ var productInfos =[
    {
       "title": "Strauss skrædderi",
       "text": "Alt inden for omforandring, tilpasning og reperationer af skræddervare til privat og erhverv. 500 faste erhvervskunder. Læder og skindvarer i alle afdelinger. Skomager varer og rense service i København og Århus.",
-      "img": "tailor.png",
+      "img": "imgs/tailor.png",
    },
    {
       "title": "Nü Fashion",
-      "text": "Sofistikeret, råt og feminint. Det var den stil Jannie og Lars Schacksen drømte om at skabe, da de introducerede fashion brandet NÜ på det danske marked i 1997.",
-      "img": "model.jpg",
+      "text": "Sofistikeret, råt og feminint. Det var den stil Jannie og Lars Schacksen drømte om at skabe, da de introducerede fashion brandet NÜ på det danske marked i 1997. NÜ betyder nøgen på fransk og kvinde på kinesisk, og det passer perfekt ind i designernes vision om at skabe mode med rå enkelhed, rene naturmaterialer og etisk produktion."+
+"NÜ er mode defineret ved et moderne, provokerende og laid-back design, udtrykt på en sexet og glamourøs måde. Luksuriøse tekstiler som silke, uld, bomuld og læder, forskønnet med håndlavede prints, broderier og karakteristiske detaljer af udsøgt håndværk, giver den helt særlige DNA, der kendetegner NÜ . Feminine elementer og rock ‘n’ roll vibes forenes smukt i et passioneret univers af rå maskulinitet og sensuel kvindelighed."+
+"NÜ blev hurtigt et efterspurgt mode brand, og virksomheden har kunnet glæde sig over vækst år efter år. Fem gange er NÜ blevet kåret af Børsen som Gazelle virksomhed – senest i 2010."+
+"NÜ kollektionerne forhandles i førende butikker overalt i Danmark og på eksportmarkederne – Norge, Sverige, Finland, Island, Tyskland, England, Irland, Frankrig, Holland, Belgien, Schweiz, Østrig, Italien, Canada, USA og Australien."+
+"NÜ opstod af drømmen om at skabe lækkert mode tøj i høj kvalitet og unik stil. En drøm om at drive en sund virksomhed med glade medarbejdere og tage socialt ansvar ude i verden med etiske produktionsforhold. Det er den drøm, vi giver videre til dig med NÜ.",
+      "img": "imgs/model.jpg",
+   },
+   {
+      "title": "Dansk håndværk",
+      "text": "Håndværk er en proces, der kræver viden og kunnen. Gode håndværkere har en klar vision om, hvad de vil skabe, og værktøjet og evnerne til at frembringe produktet. Københavns Haandværkerforening er med til at understøtte og fremme traditionerne for ægte håndværk.",
+      "img": "imgs/icon.jpg",
+   },
+   {
+      "title": "Grado Labs SR80",
+      "text": "John Grado beskriver den selv som den bedst mulige hovedtelefon til prisen. Frekvensgangen er på 20 Hz - 20 kHz og den er den eneste hovedtelefon der har fået the Academy for the Advancement of High End Audio’s "Golden Note Award". Grado's absolutte bestseller. Grado har med model "e" taget en af verdens mest legendariske hovedtelefoner og gjort den endnu bedre. SR80e har et nyt driverdesign, en ny overflade der dæmper resonans forvrængning i kabinettet og et nyt kabel fra stik til drivertilslutning. Måden SR80e's nye driver og plasthus flytter luft og reagerer på lydvibrationer, eliminerer næsten transient forvrængning. Dette gør det muligt for signalstrømmen over det nye kabel at reproducere lyd, der har forbedret kontrol af det øvre og nedre område af frekvensspektret, samtidig med at understøtter Grados verdensberømte mellemtone.",
+      "img": "imgs/product.jpg",
    }
 ]
