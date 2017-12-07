@@ -240,7 +240,7 @@ function onClick (e)
       }
     }
   }
-  else {
+  else if(!isInitialized()) {
     updateText("Kig lidt mere rundt før du trykker");
     warningTime = new Date().getTime();
   }
