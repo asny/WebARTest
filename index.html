@@ -169,9 +169,20 @@ function init() {
   var onError = function ( xhr ) {
   };
 
+  var mat = new THREE.MeshStandardMaterial();
+  mat.color.copy(new THREE.Color(1, 0.5, 0.5));
+	mat.roughness = 0.5;
+	mat.metalness = 0.5;
+
   var loader = new THREE.OBJLoader( manager );
   loader.load( 'assets/logo.obj', function ( object ) {
 
+    object.traverse(function(child) {
+    if (child instanceof THREE.Mesh){
+        child.material = mat;
+
+    }
+    });
     anchorModel = object;
 
   }, onProgress, onError );

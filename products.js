@@ -26,10 +26,6 @@ function createProduct(position, productInfo)
   // ANCHOR
   // Create anchor
   var mesh = anchorModel.clone();
-  mesh.material = new THREE.MeshStandardMaterial();
-  mesh.material.color.copy(new THREE.Color(1, 0.7, 0.7));
-	mesh.material.roughness = 0.5;
-	mesh.material.metalness = 0.5;
   mesh.position.copy(p);
   mesh.quaternion.copy(rot);
   mesh.rotation.x -= 0.5 * Math.PI;
