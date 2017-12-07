@@ -31,8 +31,8 @@ function createVideo()
 
 	scene.add( mesh );*/
 
-	//var material = new THREE.MeshBasicMaterial( { map: videoTexture.texture, side: THREE.DoubleSide } );
-	var material = new THREE.MeshBasicMaterial( { color: new THREE.Color(1.0, 0.0, 0.0), side: THREE.DoubleSide } );
+	var material = new THREE.MeshBasicMaterial( { map: videoTexture.texture, side: THREE.DoubleSide } );
+	//var material = new THREE.MeshBasicMaterial( { color: new THREE.Color(1.0, 0.0, 0.0), side: THREE.DoubleSide } );
 
   var plane = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
 
