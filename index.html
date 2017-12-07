@@ -36,6 +36,13 @@
       padding: 0.4em 0.6em;
       border-radius: 0.1em;
     }
+    .help {
+      background-color: rgba(40, 40, 40, 0.4);
+      padding: 0.4em 0.6em;
+      border-radius: 0.1em;
+      color: #f00;
+      font-size: 250%;
+    }
     .links {
       background-color: rgba(40, 40, 40, 0.6);
       padding: 0.4em 0.6em;
@@ -64,14 +71,17 @@
 
 <body>
   <canvas id="canvas"></canvas>
-
   <div id="info">
+    <span id="HelpText" class="help"></span><br/>
+  </div>
+
+  <!--<div id="info">
     <span class="title">Render detected surfaces.</span><br/>
     <span class="links">
       <button onclick='onVideoPlayButtonClick()'>play</button>
       <button onclick='onVideoPauseButtonClick()'>pause</button>
     </span>
-  </div>
+  </div>-->
   <script>
 
 var vrDisplay, vrControls, vrFrameData, arView;
@@ -167,6 +177,7 @@ function init() {
   }, onProgress, onError );
 
   initParticles();
+  updateText("Kig rundt og tryk så på nummer 1");
 
   // Kick off the render loop!
   update();
@@ -219,9 +230,20 @@ function onClick (e)
       {
         createProducts();
         //createVideo();
+        var element = document.getElementById("HelpText");
+        element.parentNode.removeChild(element);
+      }
+      else {
+        updateText("Tryk på nummer " + (recordedHits.length + 1));
       }
     }
   }
+}
+
+function updateText(text)
+{
+  var x = document.getElementById("HelpText");
+  x.textContent = text;
 }
 
 /**
