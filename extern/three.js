@@ -18472,7 +18472,8 @@
 
 		function makePowerOfTwo( image ) {
 
-			if ( image instanceof HTMLImageElement || image instanceof HTMLCanvasElement || image instanceof ImageBitmap ) {
+			if ( image instanceof HTMLImageElement || image instanceof HTMLCanvasElement)// || image instanceof ImageBitmap ) 
+			{
 
 				var canvas = document.createElementNS( 'http://www.w3.org/1999/xhtml', 'canvas' );
 				canvas.width = _Math.floorPowerOfTwo( image.width );
@@ -22151,7 +22152,7 @@
 			if ( isAnimating ) return;
 
 			var device = vr.getDevice();
-			
+
 			if ( device && device.isPresenting ) {
 
 				device.requestAnimationFrame( loop );
@@ -22171,7 +22172,7 @@
 			if ( onAnimationFrame !== null ) onAnimationFrame( time );
 
 			var device = vr.getDevice();
-			
+
 			if ( device && device.isPresenting ) {
 
 				device.requestAnimationFrame( loop );
@@ -36778,7 +36779,7 @@
 									cpx0 = laste.x;
 									cpy0 = laste.y;
 
-									
+
 
 								}
 
@@ -36802,7 +36803,7 @@
 									cpx0 = laste.x;
 									cpy0 = laste.y;
 
-									
+
 
 								}
 
