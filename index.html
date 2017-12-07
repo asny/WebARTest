@@ -72,7 +72,7 @@
 <body>
   <canvas id="canvas"></canvas>
   <div id="info">
-    <span id="HelpText" class="help"></span><br/>
+    <span id="HelpText" class="help"></span><br/><br/>
   </div>
 
   <!--<div id="info">
@@ -115,12 +115,12 @@ function init() {
   scene = new THREE.Scene();
 
   // Turn on the debugging panel
-  var arDebug = new THREE.ARDebug(vrDisplay, scene, {
+  /*var arDebug = new THREE.ARDebug(vrDisplay, scene, {
     showLastHit: true,
     showPoseStatus: true,
     showPlanes: true,
   });
-  document.body.appendChild(arDebug.getElement());
+  document.body.appendChild(arDebug.getElement());*/
 
   // Creating the ARView, which is the object that handles
   // the rendering of the camera stream behind the three.js
@@ -177,11 +177,13 @@ function init() {
   }, onProgress, onError );
 
   initParticles();
-  updateText("Kig rundt og tryk så på nummer 1");
+  updateText("Kig rundt og tryk så på nummer 1.");
 
   // Kick off the render loop!
   update();
 }
+
+var warningTime = null;
 
 /**
  * When clicking on the screen, fire a ray from where the user clicked
@@ -228,15 +230,19 @@ function onClick (e)
 
       if(isInitialized())
       {
+        var element = document.getElementById("info");
+        element.parentNode.removeChild(element);
         createProducts();
         //createVideo();
-        var element = document.getElementById("HelpText");
-        element.parentNode.removeChild(element);
       }
       else {
         updateText("Tryk på nummer " + (recordedHits.length + 1));
       }
     }
+  }
+  else {
+    updateText("Kig lidt mere rundt før du trykker");
+    warningTime = new Date().getTime();
   }
 }
 
@@ -251,6 +257,12 @@ function updateText(text)
  * our scene and rendering.
  */
 function update() {
+
+  if(warningTime != null && new Date().getTime() - warningTime > 2000.0)
+  {
+    updateText("Tryk på nummer " + (recordedHits.length + 1));
+    warningTime = null
+  }
   // Clears color from the frame before rendering the camera (arView) or scene.
   renderer.clearColor();
 
