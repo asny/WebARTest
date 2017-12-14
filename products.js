@@ -39,7 +39,7 @@ function createProduct(position, productInfo)
   certificates = [];
   for(var i = 0; i < productInfo.cers.length; i++)
   {
-    var pos = localToWorld(position.clone().add(new THREE.Vector3(i * 0.1, 0.0, 0.04)));
+    var pos = localToWorld(position.clone().add(new THREE.Vector3((i%3) * 0.2, -((i+1)%3) * 0.2, 0.06)));
     certificate = createCertificate(pos, certifications[productInfo.cers[i]]);
     certificates.push(certificate);
   }
