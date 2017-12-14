@@ -17,22 +17,7 @@ function createVideo()
 	videoTexture= new THREEx.VideoTexture(url)
 	video	= videoTexture.video
 
-	// use the texture in a THREE.Mesh
-	/*var geometry	= new THREE.CubeGeometry(0.2,0.2,0.2);
-	var material	= new THREE.MeshBasicMaterial({
-		map	: videoTexture.texture
-	});
-	var mesh	= new THREE.Mesh( geometry, material );
-
-  var position = new THREE.Vector3(1.2, 0.5, 0.0);
-  posWorld = localToWorld(position);
-	mesh.position.copy(posWorld);
-  mesh.quaternion.copy(rot);
-
-	scene.add( mesh );*/
-
 	var material = new THREE.MeshBasicMaterial( { map: videoTexture.texture, side: THREE.DoubleSide } );
-	//var material = new THREE.MeshBasicMaterial( { color: new THREE.Color(1.0, 0.0, 0.0), side: THREE.DoubleSide } );
 
   var plane = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
 
@@ -43,45 +28,16 @@ function createVideo()
   mesh.position.copy(posWorld);
   mesh.quaternion.copy(rot);
   scene.add(mesh);
-
-	/*var button = document.createElement( 'button' );
-	var t = document.createTextNode("CLICK ME");
-	button.appendChild(t);
-	button.onclick = function(){
-		startParticleEffect(posWorld);
-		video.paused ? video.play() : video.pause();
-	}
-	document.body.appendChild(button);*/
 }
 
-
 /*function onVideoPlayButtonClick(){
-  startParticleEffect(posWorld);
 	video.play();
 }
 function onVideoPauseButtonClick(){
-  startParticleEffect(posWorld);
 	video.pause();
 }*/
 
 function updateVideo(pos)
 {
 	videoTexture.update();
-	/*if( video.readyState !== video.HAVE_ENOUGH_DATA )
-		return;
-	texture.needsUpdate	= true;
-	/*var shouldPause = pos.distanceTo(posWorld) > 2.0;
-	if(video.paused != shouldPause)
-	{
-		//startParticleEffect(posWorld);
-		//video.paused ? video.play() : video.pause();
-	}
-
-  // Update video
-  if ( !video.paused && video.readyState === video.HAVE_ENOUGH_DATA )
-	{
-		//videoImageContext.drawImage( video, 0, 0 );
-		if ( videoTexture )
-			videoTexture.needsUpdate = true;
-	}*/
 }
