@@ -1,10 +1,10 @@
 var THREEx = THREEx || {}
 
-THREEx.VideoTexture	= function(url){
+THREEx.VideoTexture	= function(url, width, height){
 	// create the video element
 	var video	= document.createElement('video');
-	video.width	= 320;
-	video.height	= 240;
+	video.width	= width;
+	video.height	= height;
 	video.autoplay	= true;
 	video.loop	= true;
 	video.src	= url;

@@ -1,5 +1,5 @@
 
-function createVideo(url, posWorld)
+function createVideo(url, posWorld, width, height)
 {
 	var videoTexture;
 	// find out which file formats i can read
@@ -7,11 +7,11 @@ function createVideo(url, posWorld)
 	if( canPlayMp4 )
 	{
 		// create the videoTexture
-		videoTexture = new THREEx.VideoTexture(url);
+		videoTexture = new THREEx.VideoTexture(url, width, height);
 
 		var material = new THREE.MeshBasicMaterial( { map: videoTexture.texture, side: THREE.DoubleSide } );
 
-	  var plane = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
+	  var plane = new THREE.PlaneGeometry( 0.5, 0.5 * (height / width), 32, 32 );
 
 		var mesh = new THREE.Mesh( plane, material );
 	  mesh.position.copy(posWorld);
