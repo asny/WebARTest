@@ -3,7 +3,7 @@ var videoTexture = [];
 var video;
 var posWorld;
 
-function createVideo(url, position)
+function createVideo(url, posWorld)
 {
 	// find out which file formats i can read
 	var canPlayMp4	= document.createElement('video').canPlayType('video/mp4') !== '' ? true : false
@@ -16,8 +16,6 @@ function createVideo(url, position)
 		var material = new THREE.MeshBasicMaterial( { map: videoTexture.texture, side: THREE.DoubleSide } );
 
 	  var plane = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
-
-	  posWorld = localToWorld(position);
 
 		var mesh = new THREE.Mesh( plane, material );
 	  mesh.position.copy(posWorld);

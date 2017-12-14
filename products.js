@@ -50,7 +50,7 @@ function createProduct(position, productInfo)
 
 }
 
-function createCertificate(position, certificateInfo)
+function createCertificate(posWorld, certificateInfo)
 {
   // TEXT
   // Create image
@@ -119,7 +119,7 @@ function createCertificate(position, certificateInfo)
   var geometry = new THREE.PlaneGeometry( 0.25, 0.25, 8, 8 );
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
   var textGeometry = new THREE.Mesh( geometry, material );
-  textGeometry.position.copy(position);
+  textGeometry.position.copy(posWorld);
   textGeometry.quaternion.copy(rot);
   scene.add( textGeometry );
 
