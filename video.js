@@ -2,16 +2,14 @@
 var videoTexture, video;
 var posWorld;
 
-function createVideo()
+function createVideo(url, position)
 {
 	// find out which file formats i can read
 	var canPlayMp4	= document.createElement('video').canPlayType('video/mp4') !== '' ? true : false
-	var canPlayOgg	= document.createElement('video').canPlayType('video/ogg') !== '' ? true : false
-	if( canPlayMp4 ){
-		var url	= 'assets/sintel.mp4'
-	}else if( canPlayOgg ){
-		var url	= 'assets/sintel.ogv'
-	}else	alert('cant play mp4 or ogv')
+	if( !canPlayMp4 )
+	{
+		alert('cant play mp4')
+	}
 
 	// create the videoTexture
 	videoTexture= new THREEx.VideoTexture(url)
@@ -21,7 +19,6 @@ function createVideo()
 
   var plane = new THREE.PlaneGeometry( 0.5, 0.5, 32, 32 );
 
-  var position = new THREE.Vector3(1.2, 0.5, 0.0);
   posWorld = localToWorld(position);
 
 	var mesh = new THREE.Mesh( plane, material );
