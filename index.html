@@ -65,9 +65,9 @@
 <script src="./extern/tween.min.js"></script>
 <script src="./transformations.js"></script>
 <script src="./particles.js"></script>
-<script src="./products.js"></script>
 <script src="./threex.videotexture.js"></script>
 <script src="./video.js"></script>
+<script src="./products.js"></script>
 
 <body>
   <canvas id="canvas"></canvas>
@@ -245,7 +245,6 @@ function onClick (e)
         var element = document.getElementById("info");
         element.parentNode.removeChild(element);
         createProducts();
-        createVideo('AR_assets/Swedish_stocking/swedishstockings_film_2017.mp4', new THREE.Vector3(1.2, 0.5, 0.0));
       }
       else {
         updateText("Tryk på nummer " + (recordedHits.length + 1));
