@@ -161,14 +161,13 @@ function updateProducts(pos)
     	product.anchor.rotation.y += 0.01;
 
       product.video.update();
-      var isPlaying = !product.video.video.paused;
-      if(shouldShow && !isPlaying)
+
+      if(shouldShow)
       {
-        product.video.video.play();
+        product.video.play();
       }
-      if(!shouldShow && isPlaying)
-      {
-        product.video.video.pause();
+      else {
+        product.video.pause();
       }
     }
 }

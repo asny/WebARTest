@@ -20,8 +20,18 @@ THREEx.VideoTexture	= function(url){
 	 * update the object
 	 */
 	this.update	= function(){
-		if( video.readyState !== video.HAVE_ENOUGH_DATA )	return;
-		texture.needsUpdate	= true;		
+		if( video.paused || video.readyState !== video.HAVE_ENOUGH_DATA )	return;
+		texture.needsUpdate	= true;
+	}
+
+	this.pause	= function(){
+		if(!video.paused)
+			video.pause()
+	}
+
+	this.play	= function(){
+		if(video.paused)
+			video.play()
 	}
 
 	/**
