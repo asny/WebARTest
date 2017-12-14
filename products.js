@@ -34,7 +34,7 @@ function createProduct(position, productInfo)
 
   // VIDEO
   var p2 = localToWorld(position.clone().add(new THREE.Vector3(0.0, 0.0, 0.04)));
-  createVideo(productInfo.vid, p2);
+  var video = createVideo(productInfo.vid, p2);
 
   certificates = [];
   for(var i = 0; i < productInfo.cers.length; i++)
@@ -45,7 +45,7 @@ function createProduct(position, productInfo)
   }
 
   // Save product information
-  var product = {anchor:mesh, certificates:certificates, animation:0.0};
+  var product = {anchor:mesh, certificates:certificates, animation:0.0, video: video};
   products.push(product);
 
 }
@@ -72,8 +72,8 @@ function createCertificate(posWorld, certificateInfo)
 
   var image = document.createElement("img");
   image.src = certificateInfo.img;
-  image.width = 3840;
-  image.height = 2160;
+  image.width = 289;
+  image.height = 108;
   var imageHeight = image.height * textWidth / image.width;
   context.drawImage(image, 0, 0, image.width, image.height, marginX, marginY, textWidth, imageHeight);
   div.appendChild(image);
@@ -116,7 +116,7 @@ function createCertificate(posWorld, certificateInfo)
   texture.minFilter = THREE.NearestFilter;
 
   // Create text geometry
-  var geometry = new THREE.PlaneGeometry( 0.25, 0.25, 8, 8 );
+  var geometry = new THREE.PlaneGeometry( 0.1, 0.1, 8, 8 );
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
   var textGeometry = new THREE.Mesh( geometry, material );
   textGeometry.position.copy(posWorld);
@@ -147,17 +147,29 @@ function updateProducts(pos)
       var product = products[i];
       var animation = product.animation + 0.001 * currentTime * ( closestProduct == i ? 1.0 : - 1.0 );
       product.animation = Math.min(1.0, Math.max(0.0, animation));
+      var shouldShow = product.animation > 0.00001;
 
       for(var j = 0; j < product.certificates.length; j++)
       {
         var certificate = product.certificates[j];
         certificate.description.scale.set(product.animation, product.animation, product.animation);
-        certificate.description.visible = product.animation > 0.00001;
+        certificate.description.visible = shouldShow;
       }
 
       product.anchor.rotation.x += 0.015;
     	product.anchor.rotation.y += 0.01;
     	product.anchor.rotation.y += 0.01;
+
+      product.video.update();
+      var isPlaying = !product.video.video.paused;
+      if(shouldShow && !isPlaying)
+      {
+        product.video.video.play();
+      }
+      if(!shouldShow && isPlaying)
+      {
+        product.video.video.pause();
+      }
     }
 }
 

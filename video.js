@@ -1,17 +1,13 @@
 
-var videoTexture = [];
-var video;
-var posWorld;
-
 function createVideo(url, posWorld)
 {
+	var videoTexture;
 	// find out which file formats i can read
 	var canPlayMp4	= document.createElement('video').canPlayType('video/mp4') !== '' ? true : false
 	if( canPlayMp4 )
 	{
 		// create the videoTexture
-		videoTexture.push(new THREEx.VideoTexture(url));
-		video	= videoTexture.video;
+		videoTexture = new THREEx.VideoTexture(url);
 
 		var material = new THREE.MeshBasicMaterial( { map: videoTexture.texture, side: THREE.DoubleSide } );
 
@@ -25,18 +21,5 @@ function createVideo(url, posWorld)
 	else {
 			alert('cant play mp4')
 	}
-}
-
-/*function onVideoPlayButtonClick(){
-	video.play();
-}
-function onVideoPauseButtonClick(){
-	video.pause();
-}*/
-
-function updateVideo(pos)
-{
-	for(var i = 0; i < videoTexture.length; i++) {
-		videoTexture[i].update();
-	}
+	return videoTexture;
 }
