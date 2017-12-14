@@ -1,9 +1,13 @@
 var productInfos =[
    {
       "title": "Swedish stockings",
-      "text": "Alt inden for omforandring, tilpasning og reperationer af skræddervare til privat og erhverv. 500 faste erhvervskunder. Læder og skindvarer i alle afdelinger. Skomager varer og rense service i København og Århus.",
       "cers": [0, 1, 2],
       "vid": "videos/swedishstockings_film_2017.mp4",
+   },
+   {
+      "title": "Neutral",
+      "cers": [0, 1, 2],
+      "vid": "videos/Neutral.mp4",
    },
 ]
 
