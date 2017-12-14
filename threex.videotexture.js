@@ -63,7 +63,7 @@ function createVideo(url, posWorld, width, height)
 	  scene.add(mesh);
 	}
 	else {
-			alert('cant play mp4')
+			alert('cant play mp4 or mov')
 	}
 	return videoTexture;
 }
