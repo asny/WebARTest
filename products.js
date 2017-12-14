@@ -34,7 +34,7 @@ function createProduct(position, productInfo)
 
   // VIDEO
   var p2 = localToWorld(position.clone().add(new THREE.Vector3(0.0, 0.0, 0.04)));
-  var video = createVideo(productInfo.vid, p2, 320, 240);
+  var video = createVideo(productInfo.vid, p2, productInfo.vidwidth, productInfo.vidheight);
 
   certificates = [];
   for(var i = 0; i < productInfo.cers.length; i++)

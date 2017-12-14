@@ -47,7 +47,8 @@ function createVideo(url, posWorld, width, height)
 	var videoTexture;
 	// find out which file formats i can read
 	var canPlayMp4	= document.createElement('video').canPlayType('video/mp4') !== '' ? true : false
-	if( canPlayMp4 )
+	var canPlayMov	= document.createElement('video').canPlayType('video/mov') !== '' ? true : false
+	if( canPlayMov || canPlayMp4 )
 	{
 		// create the videoTexture
 		videoTexture = new THREEx.VideoTexture(url, width, height);

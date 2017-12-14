@@ -2,12 +2,16 @@ var productInfos =[
    {
       "title": "Swedish stockings",
       "cers": [0, 1, 2],
-      "vid": "videos/swedishstockings_film_2017.mp4",
+      "vid": "videos/swedishstockings_film_2017.mov",
+      "vidwidth": 640,
+      "vidheight": 360,
    },
    {
       "title": "Neutral",
       "cers": [0, 1, 2],
       "vid": "videos/Neutral.mp4",
+      "vidwidth": 640,
+      "vidheight": 360,
    },
 ]
 
