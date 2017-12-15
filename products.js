@@ -77,14 +77,14 @@ function createCertificate(posWorld, certificateInfo)
 
   // Draw product title
   marginY += imageHeight + lineHeight * 2;
-  context.font = '56px Open Sans';
+  context.font = '56px Open Sans bold';
   context.fillStyle = 'black';
   marginY = wrapText(context, certificateInfo.title, marginX, marginY, textWidth, lineHeight);
 
   // Draw teaser
-  lineHeight = 40;
+  lineHeight = 50;
   marginY += lineHeight;
-  context.font = '28px Open Sans';
+  context.font = '40px Open Sans';
   context.fillStyle = 'black';
   marginY = wrapText(context, certificateInfo.text, marginX, marginY, textWidth, lineHeight);
 

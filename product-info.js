@@ -1,6 +1,6 @@
 ﻿var productInfos =[
    {
-      "position": [0.3, 0.4, -0.1],
+      "position": [0.3, 1.6, -0.2],
       "title": "Swedish stockings",
       "cers": [0, 1, 2],
       "vid": "videos/swedishstockings_film_2017.mov",
@@ -16,7 +16,7 @@
       "vidheight": 720,
    },
    {
-      "position": [-0.9, 0.4, -0.1],
+      "position": [-0.9, 1.6, -0.2],
       "title": "Boody booxers & bh",
       "cers": [3, 4, 5, 6, 7, 8],
       "vid": "videos/Boody-boxers-BH-hq.mp4",
