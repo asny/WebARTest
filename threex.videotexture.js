@@ -18,19 +18,6 @@ THREEx.VideoTexture	= function(url, width, height){
 	// expose texture as this.texture
 	this.texture	= texture
 
-	/**
-	 * update the object
-	 */
-	this.update	= function(){
-		if( !video.paused )
-		{
-			texture.needsUpdate	= true;
-		}
-		else {
-			this.play();
-		}
-	}
-
 	this.pause	= function(){
 		if(!video.paused)
 			video.pause()
@@ -47,6 +34,19 @@ THREEx.VideoTexture	= function(url, width, height){
 			else {
 				shouldPlay = true;
 			}
+		}
+	}
+
+	/**
+	 * update the object
+	 */
+	this.update	= function(){
+		if( !video.paused )
+		{
+			texture.needsUpdate	= true;
+		}
+		else {
+			this.play();
 		}
 	}
 
