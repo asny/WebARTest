@@ -10,10 +10,10 @@
    {
       "position": [0.6, 0.8, -0.15],
       "title": "Neutral",
-      "cers": [0, 1, 2],
+      "cers": [10, 14, 15, 16, 17, 7],
       "vid": "videos/Neutral.mp4",
-      "vidwidth": 640,
-      "vidheight": 360,
+      "vidwidth": 1280,
+      "vidheight": 720,
    },
    {
       "position": [0.9, 0.8, -0.15],
@@ -131,5 +131,29 @@ var certifications =[
      "title": "Responsible Care",
      "text": "The chemical industry’s global voluntary initiative – co-operation to improve health, safety and environmental performance.",
      "img": "logos/responsible-care-25hrs.jpg",
+  }
+// 14
+ {
+     "title": "Fairtrade",
+     "text": "The Fairtrade Certification Mark is your independent guarantee that the cotton in this product has been certified in accordance with international Fairtrade Standards.",
+     "img": "logos/Fairtrade.png",
+  }
+// 15
+ {
+     "title": "EU ecolabel",
+     "text": "The official EU label for Greener Products. Ecolabelled products have a comparatively modest impact on air, water, soil, quality, natural resource consumption, global warming and biodiversity. Products must pass rigorous tests with results verified by an independent body. The label adorns top performing products only.",
+     "img": "logos/ecolabel_logo.jpg",
+  }
+// 16
+ {
+     "title": "SA8000",
+     "text": "SA8000 is based on the principles of international human rights norms. It measures the performance of companies in eight key areas: child labour, forced labour, health and safety, free association and collective bargaining, discrimination, disciplinary practices, working hours and compensation.",
+     "img": "logos/SA8000.png",
+  }
+// 17
+ {
+     "title": "Neutral responsibility",
+     "text": "Renewable energy powers the Neutral® production. That way, making Neutral® clothing contributes to cleaner environments and fights climate change. In times of surplus, energy not needed for production is directed to local networks.",
+     "img": "logos/Neutral.png",
   }
 ]
