@@ -45,7 +45,7 @@ THREEx.VideoTexture	= function(url, width, height){
 		{
 			texture.needsUpdate	= true;
 		}
-		else {
+		else if(shouldPlay) {
 			this.play();
 		}
 	}
