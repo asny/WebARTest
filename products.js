@@ -18,10 +18,11 @@ function createProducts()
 function createProduct(productInfo)
 {
   var position = new THREE.Vector3(productInfo.position[0], productInfo.position[1], productInfo.position[2]);
-  var posAnchor = localToWorld(position.clone().add(new THREE.Vector3(-0.3, 0.3, 0.1)));
+  var posWorld = localToWorld(position);
 
   // ANCHOR
   // Create anchor
+  var posAnchor = localToWorld(position.clone().add(new THREE.Vector3(-0.1, 0.1, 0.04)));
   var mesh = anchorModel.clone();
   mesh.position.copy(posAnchor);
   mesh.quaternion.copy(rot);
@@ -30,8 +31,7 @@ function createProduct(productInfo)
   scene.add( mesh );
 
   // VIDEO
-  var posVideo = localToWorld(position);
-  var video = createVideo(productInfo.vid, posVideo, productInfo.vidwidth, productInfo.vidheight);
+  var video = createVideo(productInfo.vid, posWorld, productInfo.vidwidth, productInfo.vidheight);
 
   certificates = [];
   for(var i = 0; i < productInfo.cers.length; i++)
@@ -41,7 +41,7 @@ function createProduct(productInfo)
   }
 
   // Save product information
-  var product = {position: position, anchor:mesh, certificates:certificates, animation:0.0, video: video};
+  var product = {position: posWorld, anchor:mesh, certificates:certificates, animation:0.0, video: video};
   products.push(product);
 
 }
