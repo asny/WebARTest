@@ -10,7 +10,8 @@ THREEx.VideoTexture	= function(url, width, height){
 	video.preload = "auto";
 	video.src	= url;
 	// expose video as this.video
-	this.video	= video
+	this.video	= video;
+	this.shouldPlay = false;
 
 	// create the texture
 	var texture	= new THREE.Texture( video );
@@ -21,8 +22,13 @@ THREEx.VideoTexture	= function(url, width, height){
 	 * update the object
 	 */
 	this.update	= function(){
-		if( video.paused || video.readyState !== video.HAVE_FUTURE_DATA )	return;
-		texture.needsUpdate	= true;
+		if( !video.paused )
+		{
+			texture.needsUpdate	= true;
+		}
+		else {
+			this.play();
+		}
 	}
 
 	this.pause	= function(){
@@ -32,7 +38,16 @@ THREEx.VideoTexture	= function(url, width, height){
 
 	this.play	= function(){
 		if(video.paused)
-			video.play()
+		{
+			if(video.readyState === video.HAVE_FUTURE_DATA)
+			{
+				video.play();
+				shouldPlay = false;
+			}
+			else {
+				shouldPlay = true;
+			}
+		}
 	}
 
 	/**
