@@ -68,8 +68,8 @@ function createCertificate(posWorld, certificateInfo)
 
   var image = document.createElement("img");
   image.src = certificateInfo.img;
-  image.width = 289;
-  image.height = 108;
+  image.width = certificateInfo.logowidth;
+  image.height = certificateInfo.logoheight;
   var imageHeight = image.height * textWidth / image.width;
   context.drawImage(image, 0, 0, image.width, image.height, marginX, marginY, textWidth, imageHeight);
   div.appendChild(image);
