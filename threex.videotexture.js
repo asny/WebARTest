@@ -29,10 +29,10 @@ THREEx.VideoTexture	= function(url, width, height){
 			if(video.readyState === video.HAVE_FUTURE_DATA)
 			{
 				video.play();
-				shouldPlay = false;
+				this.shouldPlay = false;
 			}
 			else {
-				shouldPlay = true;
+				this.shouldPlay = true;
 			}
 		}
 	}
@@ -45,7 +45,7 @@ THREEx.VideoTexture	= function(url, width, height){
 		{
 			texture.needsUpdate	= true;
 		}
-		else if(shouldPlay) {
+		else if(this.shouldPlay) {
 			this.play();
 		}
 	}
