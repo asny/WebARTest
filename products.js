@@ -153,7 +153,7 @@ function updateProducts(pos)
         if(shouldShow)
         {
           var t = 0.0001 * (new Date().getTime()) + (j/6.0) * 2.0 * Math.PI;
-          var localPos = new THREE.Vector3(0.3 * Math.sin(t), -0.2, 0.06 * Math.cos(t));
+          var localPos = new THREE.Vector3(0.1 * Math.sin(t), -0.2, 0.06 * Math.cos(t));
           var posCertificate = localToWorld(product.position.clone().add(localPos));
           certificate.mesh.position.copy(posCertificate);
         }
