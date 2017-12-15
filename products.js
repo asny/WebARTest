@@ -18,11 +18,10 @@ function createProducts()
 function createProduct(productInfo)
 {
   var position = new THREE.Vector3(productInfo.position[0], productInfo.position[1], productInfo.position[2]);
-  var posWorld = localToWorld(position);
 
   // ANCHOR
   // Create anchor
-  var posAnchor = localToWorld(position.clone().add(new THREE.Vector3(-0.1, 0.1, 0.04)));
+  var posAnchor = localToWorld(position.clone().add(new THREE.Vector3(-0.3, 0.3, 0.1)));
   var mesh = anchorModel.clone();
   mesh.position.copy(posAnchor);
   mesh.quaternion.copy(rot);
@@ -31,7 +30,8 @@ function createProduct(productInfo)
   scene.add( mesh );
 
   // VIDEO
-  var video = createVideo(productInfo.vid, posWorld, productInfo.vidwidth, productInfo.vidheight);
+  var posVideo = localToWorld(position);
+  var video = createVideo(productInfo.vid, posVideo, productInfo.vidwidth, productInfo.vidheight);
 
   certificates = [];
   for(var i = 0; i < productInfo.cers.length; i++)
@@ -41,7 +41,7 @@ function createProduct(productInfo)
   }
 
   // Save product information
-  var product = {position: posWorld, anchor:mesh, certificates:certificates, animation:0.0, video: video};
+  var product = {position: position, anchor:mesh, certificates:certificates, animation:0.0, video: video};
   products.push(product);
 
 }
@@ -125,13 +125,12 @@ function createCertificate(posWorld, certificateInfo)
 var lastTime = new Date().getTime();
 function updateProducts(pos)
 {
-    var time = new Date().getTime();
-    var currentTime = (time - lastTime) / 1000;
+    var currentTime = (new Date().getTime() - lastTime) / 1000;
     var closestProduct = -1;
     var closestDist = 1000000.0;
     for(var i = 0; i < products.length; i++)
     {
-      var dist = pos.distanceTo(products[i].position);
+      var dist = pos.distanceTo(localToWorld(products[i].position));
       if(dist < 1.0 && closestDist > dist)
       {
         closestDist = dist;
@@ -153,7 +152,7 @@ function updateProducts(pos)
         certificate.mesh.visible = shouldShow;
         if(shouldShow)
         {
-          var sinT = Math.sin(0.001 * (time % (2.0 * Math.PI) + (j/10.0) * 2.0 * Math.PI));
+          var sinT = Math.sin(0.001 * (new Date().getTime()) + (j/10.0) * 2.0 * Math.PI);
           var localPos = new THREE.Vector3(0.3 * sinT, -0.2, 0.06 * sinT);
           var posCertificate = localToWorld(product.position.clone().add(localPos));
           certificate.mesh.position.copy(posCertificate);
