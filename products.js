@@ -18,10 +18,10 @@ function createProducts()
 function createProduct(productInfo)
 {
   var position = new THREE.Vector3(productInfo.position[0], productInfo.position[1], productInfo.position[2]);
-  var posAnchor = localToWorld(position.clone().add(new THREE.Vector3(-0.3, 0.3, 0.1)));
 
   // ANCHOR
   // Create anchor
+  var posAnchor = localToWorld(position.clone().add(new THREE.Vector3(-0.3, 0.3, 0.1)));
   var mesh = anchorModel.clone();
   mesh.position.copy(posAnchor);
   mesh.quaternion.copy(rot);
@@ -130,7 +130,7 @@ function updateProducts(pos)
     var closestDist = 1000000.0;
     for(var i = 0; i < products.length; i++)
     {
-      var dist = pos.distanceTo(products[i].position);
+      var dist = pos.distanceTo(localToWorld(products[i].position));
       if(dist < 1.0 && closestDist > dist)
       {
         closestDist = dist;
@@ -150,13 +150,13 @@ function updateProducts(pos)
         var certificate = product.certificates[j];
         certificate.mesh.scale.set(product.animation, product.animation, product.animation);
         certificate.mesh.visible = shouldShow;
-        /*if(shouldShow)
+        if(shouldShow)
         {
           var sinT = Math.sin(0.001 * (time) + (j/10.0) * 2.0 * Math.PI);
           var localPos = new THREE.Vector3(0.3 * sinT, -0.2, 0.06 * sinT);
           var posCertificate = localToWorld(product.position.clone().add(localPos));
           certificate.mesh.position.copy(posCertificate);
-        }*/
+        }
       }
 
       product.anchor.rotation.x += 0.015;
