@@ -21,7 +21,7 @@ function createProduct(productInfo)
 
   // ANCHOR
   // Create anchor
-  var posAnchor = localToWorld(position.clone().add(new THREE.Vector3(-0.3, 0.3, 0.1)));
+  var posAnchor = localToWorld(position.clone().add(new THREE.Vector3(-0.1, 0.1, 0.1)));
   var mesh = anchorModel.clone();
   mesh.position.copy(posAnchor);
   mesh.quaternion.copy(rot);
@@ -77,14 +77,14 @@ function createCertificate(posWorld, certificateInfo)
 
   // Draw product title
   marginY += imageHeight + lineHeight * 2;
-  context.font = '56px Open Sans';
+  context.font = '56px Open Sans bold';
   context.fillStyle = 'black';
   marginY = wrapText(context, certificateInfo.title, marginX, marginY, textWidth, lineHeight);
 
   // Draw teaser
-  lineHeight = 40;
+  lineHeight = 50;
   marginY += lineHeight;
-  context.font = '28px Open Sans';
+  context.font = '40px Open Sans';
   context.fillStyle = 'black';
   marginY = wrapText(context, certificateInfo.text, marginX, marginY, textWidth, lineHeight);
 
@@ -152,8 +152,8 @@ function updateProducts(pos)
         certificate.mesh.visible = shouldShow;
         if(shouldShow)
         {
-          var t = 0.0001 * (new Date().getTime()) + (j/6.0) * 2.0 * Math.PI;
-          var localPos = new THREE.Vector3(0.3 * Math.sin(t), -0.2, 0.06 * Math.cos(t));
+          var t = 0.00005 * (new Date().getTime() % (100000.0)) + ((1.0*j)/product.certificates.length) * 2.0 * Math.PI;
+          var localPos = new THREE.Vector3(0.1 * Math.sin(t), -0.2, 0.06 * Math.cos(t));
           var posCertificate = localToWorld(product.position.clone().add(localPos));
           certificate.mesh.position.copy(posCertificate);
         }
