@@ -21,7 +21,7 @@ function createProduct(productInfo)
 
   // ANCHOR
   // Create anchor
-  var posAnchor = localToWorld(position.clone().add(new THREE.Vector3(-0.3, 0.3, 0.1)));
+  var posAnchor = localToWorld(position.clone().add(new THREE.Vector3(-0.1, 0.1, 0.1)));
   var mesh = anchorModel.clone();
   mesh.position.copy(posAnchor);
   mesh.quaternion.copy(rot);
