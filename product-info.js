@@ -34,7 +34,7 @@
    {
       "position": [1.5, 0.8, -0.15],
       "title": "Wunderwerk Tencel",
-      "cers": [4, 5, 7, 6, 13, ],
+      "cers": [4, 5, 7, 6, 13],
       "vid": "videos/wunderwerk-tencel-b.mp4",
       "vidwidth": 640,
       "vidheight": 360,
