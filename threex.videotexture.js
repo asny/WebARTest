@@ -21,7 +21,7 @@ THREEx.VideoTexture	= function(url, width, height){
 	 * update the object
 	 */
 	this.update	= function(){
-		if( video.paused || video.readyState !== video.HAVE_ENOUGH_DATA )	return;
+		if( video.paused || video.readyState !== video.HAVE_FUTURE_DATA )	return;
 		texture.needsUpdate	= true;
 	}
 
