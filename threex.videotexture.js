@@ -7,6 +7,7 @@ THREEx.VideoTexture	= function(url, width, height){
 	video.height	= height;
 	video.autoplay	= true;
 	video.loop	= true;
+	video.preload = "auto";
 	video.src	= url;
 	// expose video as this.video
 	this.video	= video
