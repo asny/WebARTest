@@ -78,9 +78,9 @@ var certifications =[
  {
      "title": "ISO 9001",
      "text": "ISO 9001 specifies requirements for a quality management system to ensure that products meet statutory regulations and requirements, as well as consistency for the customer. In this way it aims to enhance customer satisfaction.",
-     "img": "logos/ISO 9001.svg",
-     "logowidth": 0,
-     "logoheight": 0,
+     "img": "logos/ISO 9001.jpg",
+     "logowidth": 1280,
+     "logoheight": 640,
   },
 // 5
  {
