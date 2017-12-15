@@ -4,14 +4,10 @@ var products = [];
 
 function createProducts()
 {
-  createProduct(new THREE.Vector3(0.3, 0.4, -0.1), productInfos[0]);
-  //createProduct(new THREE.Vector3(0.6, 0.4, -0.1), productInfos[1]);
-  //createProduct(new THREE.Vector3(0.3, 0.8, -0.15), productInfos[2]);
-  createProduct(new THREE.Vector3(0.6, 0.8, -0.15), productInfos[1]);
-  //createProduct(new THREE.Vector3(0.3, 1.2, -0.15), productInfos[4]);
-  //createProduct(new THREE.Vector3(0.6, 1.2, -0.15), productInfos[2]);
-  //createProduct(new THREE.Vector3(0.3, 1.6, -0.20), productInfos[3]);
-  //createProduct(new THREE.Vector3(0.6, 1.6, -0.20), productInfos[7]);*/
+  for(var i = 0; i < productInfos.length; i++)
+  {
+    createProduct(productInfos[i]);
+  }
 
   createParticleEffect(localToWorld(new THREE.Vector3(-0.5, 0.8, 0.3)));
   createParticleEffect(localToWorld(new THREE.Vector3(1.15, 1.4, 0.1)));
@@ -19,8 +15,9 @@ function createProducts()
   createParticleEffect(localToWorld(new THREE.Vector3(-1.2, 1.8, 0.1)));
 }
 
-function createProduct(position, productInfo)
+function createProduct(productInfo)
 {
+  var position = new THREE.Vector3(productInfo.position[0], productInfo.position[1], productInfo.position[2]);
   var p = localToWorld(position);
 
   // ANCHOR
