@@ -73,7 +73,7 @@ function createCertificate(posWorld, certificateInfo)
   var imageHeight = textWidth * image.height / image.width;
   var imageWidth = textWidth;
   var imageXStart = marginX;
-  var maxImageHeight = bitmap.height / 2;
+  var maxImageHeight = bitmap.height / 2 - lineHeight;
   if(imageHeight > maxImageHeight)
   {
     imageHeight = maxImageHeight;
