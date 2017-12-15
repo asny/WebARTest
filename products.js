@@ -152,7 +152,7 @@ function updateProducts(pos)
         certificate.mesh.visible = shouldShow;
         if(shouldShow)
         {
-          var sinT = Math.sin(0.001 * (time) + (j/10.0) * 2.0 * Math.PI);
+          var sinT = Math.sin(0.001 * (new Date().getTime()) + (j/10.0) * 2.0 * Math.PI);
           var localPos = new THREE.Vector3(0.3 * sinT, -0.2, 0.06 * sinT);
           var posCertificate = localToWorld(product.position.clone().add(localPos));
           certificate.mesh.position.copy(posCertificate);
