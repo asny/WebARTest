@@ -8,7 +8,7 @@
       "vidheight": 360,
    },
    {
-      "position": [0.6, 0.8, -0.15],
+      "position": [-0.6, 0.8, -0.15],
       "title": "Neutral",
       "cers": [10, 14, 15, 16, 17, 7],
       "vid": "videos/Neutral.mp4",
@@ -16,7 +16,7 @@
       "vidheight": 720,
    },
    {
-      "position": [0.9, 0.8, -0.15],
+      "position": [-0.9, 0.4, -0.1],
       "title": "Boody booxers & bh",
       "cers": [3, 4, 5, 6, 7, 8],
       "vid": "videos/Boody-boxers-BH-hq.mp4",
@@ -32,7 +32,7 @@
       "vidheight": 720,
    },
    {
-      "position": [1.5, 0.8, -0.15],
+      "position": [0.0, 1.2, -0.2],
       "title": "Wunderwerk Tencel",
       "cers": [4, 5, 7, 6, 13],
       "vid": "videos/wunderwerk-tencel-b.mp4",
