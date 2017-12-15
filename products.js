@@ -125,8 +125,7 @@ function createCertificate(posWorld, certificateInfo)
 var lastTime = new Date().getTime();
 function updateProducts(pos)
 {
-    var time = new Date().getTime();
-    var currentTime = (time - lastTime) / 1000;
+    var currentTime = (new Date().getTime() - lastTime) / 1000;
     var closestProduct = -1;
     var closestDist = 1000000.0;
     for(var i = 0; i < products.length; i++)
