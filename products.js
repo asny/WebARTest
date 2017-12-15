@@ -161,7 +161,7 @@ function updateProducts(pos)
         certificate.mesh.visible = shouldShow;
         if(shouldShow)
         {
-          var t = 0.00005 * (new Date().getTime() % (100000.0)) + ((1.0*j)/product.certificates.length) * 2.0 * Math.PI;
+          var t = (0.00005 * new Date().getTime() + ((1.0*j)/product.certificates.length) * 2.0 * Math.PI) % (2.0 * Math.PI);
           var localPos = new THREE.Vector3(0.1 * Math.sin(t), -0.2, 0.06 * Math.cos(t));
           var posCertificate = localToWorld(product.position.clone().add(localPos));
           certificate.mesh.position.copy(posCertificate);
