@@ -4,14 +4,10 @@ var products = [];
 
 function createProducts()
 {
-  createProduct(new THREE.Vector3(0.3, 0.4, -0.1), productInfos[0]);
-  //createProduct(new THREE.Vector3(0.6, 0.4, -0.1), productInfos[1]);
-  //createProduct(new THREE.Vector3(0.3, 0.8, -0.15), productInfos[2]);
-  //createProduct(new THREE.Vector3(0.6, 0.8, -0.15), productInfos[1]);
-  //createProduct(new THREE.Vector3(0.3, 1.2, -0.15), productInfos[4]);
-  //createProduct(new THREE.Vector3(0.6, 1.2, -0.15), productInfos[2]);
-  //createProduct(new THREE.Vector3(0.3, 1.6, -0.20), productInfos[3]);
-  //createProduct(new THREE.Vector3(0.6, 1.6, -0.20), productInfos[7]);*/
+  for(var i = 0; i < productInfos.length; i++)
+  {
+    createProduct(productInfos[i]);
+  }
 
   createParticleEffect(localToWorld(new THREE.Vector3(-0.5, 0.8, 0.3)));
   createParticleEffect(localToWorld(new THREE.Vector3(1.15, 1.4, 0.1)));
@@ -19,33 +15,33 @@ function createProducts()
   createParticleEffect(localToWorld(new THREE.Vector3(-1.2, 1.8, 0.1)));
 }
 
-function createProduct(position, productInfo)
+function createProduct(productInfo)
 {
-  var p = localToWorld(position);
+  var position = new THREE.Vector3(productInfo.position[0], productInfo.position[1], productInfo.position[2]);
+  var posWorld = localToWorld(position);
 
   // ANCHOR
   // Create anchor
+  var posAnchor = localToWorld(position.clone().add(new THREE.Vector3(-0.1, 0.1, 0.04)));
   var mesh = anchorModel.clone();
-  mesh.position.copy(p);
+  mesh.position.copy(posAnchor);
   mesh.quaternion.copy(rot);
   mesh.rotation.x -= 0.5 * Math.PI;
   mesh.scale.set(0.0001, 0.0001, 0.0001);
   scene.add( mesh );
 
   // VIDEO
-  var p2 = localToWorld(position.clone().add(new THREE.Vector3(0.0, 0.0, 0.04)));
-  var video = createVideo(productInfo.vid, p2);
+  var video = createVideo(productInfo.vid, posWorld, productInfo.vidwidth, productInfo.vidheight);
 
   certificates = [];
   for(var i = 0; i < productInfo.cers.length; i++)
   {
-    var pos = localToWorld(position.clone().add(new THREE.Vector3((i%3) * 0.2, -((i+1)%3) * 0.2, 0.06)));
-    certificate = createCertificate(pos, certifications[productInfo.cers[i]]);
+    certificate = createCertificate(posVideo, certifications[productInfo.cers[i]]);
     certificates.push(certificate);
   }
 
   // Save product information
-  var product = {anchor:mesh, certificates:certificates, animation:0.0, video: video};
+  var product = {position: posWorld, anchor:mesh, certificates:certificates, animation:0.0, video: video};
   products.push(product);
 
 }
@@ -118,23 +114,24 @@ function createCertificate(posWorld, certificateInfo)
   // Create text geometry
   var geometry = new THREE.PlaneGeometry( 0.1, 0.1, 8, 8 );
   var material = new THREE.MeshBasicMaterial( {map : texture, side: THREE.DoubleSide, transparent: true, opacity: 0.8} );
-  var textGeometry = new THREE.Mesh( geometry, material );
-  textGeometry.position.copy(posWorld);
-  textGeometry.quaternion.copy(rot);
-  scene.add( textGeometry );
+  var mesh = new THREE.Mesh( geometry, material );
+  mesh.position.copy(posWorld);
+  mesh.quaternion.copy(rot);
+  scene.add( mesh );
 
-  return {description:textGeometry}
+  return {mesh:mesh}
 }
 
 var lastTime = new Date().getTime();
 function updateProducts(pos)
 {
-    var currentTime = (new Date().getTime() - lastTime) / 1000;
+    var time = new Date().getTime();
+    var currentTime = (time - lastTime) / 1000;
     var closestProduct = -1;
     var closestDist = 1000000.0;
     for(var i = 0; i < products.length; i++)
     {
-      var dist = pos.distanceTo(products[i].anchor.position);
+      var dist = pos.distanceTo(products[i].position);
       if(dist < 1.0 && closestDist > dist)
       {
         closestDist = dist;
@@ -152,8 +149,15 @@ function updateProducts(pos)
       for(var j = 0; j < product.certificates.length; j++)
       {
         var certificate = product.certificates[j];
-        certificate.description.scale.set(product.animation, product.animation, product.animation);
-        certificate.description.visible = shouldShow;
+        certificate.mesh.scale.set(product.animation, product.animation, product.animation);
+        certificate.mesh.visible = shouldShow;
+        if(shouldShow)
+        {
+          var sinT = Math.sin(0.001 * (time % (2.0 * Math.PI) + (j/10.0) * 2.0 * Math.PI));
+          var localPos = new THREE.Vector3(0.3 * sinT, -0.2, 0.06 * sinT);
+          var posCertificate = localToWorld(product.position.clone().add(localPos));
+          certificate.mesh.position.copy(posCertificate);
+        }
       }
 
       product.anchor.rotation.x += 0.015;
@@ -161,14 +165,13 @@ function updateProducts(pos)
     	product.anchor.rotation.y += 0.01;
 
       product.video.update();
-      var isPlaying = !product.video.video.paused;
-      if(shouldShow && !isPlaying)
+
+      if(shouldShow)
       {
-        product.video.video.play();
+        product.video.play();
       }
-      if(!shouldShow && isPlaying)
-      {
-        product.video.video.pause();
+      else {
+        product.video.pause();
       }
     }
 }
