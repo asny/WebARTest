@@ -26,7 +26,7 @@ THREEx.VideoTexture	= function(url, width, height){
 	this.play	= function(){
 		if(video.paused)
 		{
-			if(video.readyState === video.HAVE_FUTURE_DATA)
+			if(video.readyState >= video.HAVE_FUTURE_DATA)
 			{
 				video.play();
 				this.shouldPlay = false;
